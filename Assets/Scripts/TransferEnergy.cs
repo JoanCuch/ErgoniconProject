@@ -7,9 +7,6 @@ using Valve.VR.InteractionSystem;
 
 public class TransferEnergy : MonoBehaviour
 {
-	public Transform hand; //This is the HoverPoint of the hand
-	public Transform target;
-
 	public float deviationAccepted = 0.6f;
 
 	private Vector3 handForward;
@@ -28,62 +25,73 @@ public class TransferEnergy : MonoBehaviour
 	public SteamVR_Action_Boolean addEnergy;
 	public SteamVR_Action_Boolean substractEnergy;
 
-	public SteamVR_Input_Sources actionHand;
-	public SteamVR_Input_Sources targetHand;
+	public SteamVR_Input_Sources actionHandSource;
+	public SteamVR_Input_Sources targetHandSource;
 
 	public float transferedEnergyPerSecond = 0.2f;
 
-    void Start()
-    {
-		actionHand = SteamVR_Input_Sources.LeftHand;
-		targetHand = SteamVR_Input_Sources.RightHand;
-    
-    }
+	//
 
-    void Update()
-    {
+	private Transform targetHand;
+	private Transform hoverPoint;
+
+	private Transform target;
+
+
+
+	void Start()
+	{
+		GetTargetHand();
+	}
+
+	void Update()
+	{
 
 		bool adding = CheckAddEnergy();
 		bool substracting = CheckSubstractEnergy();
 
 		//The hand is open and ready to send at the same time that an action is selected
-		if(ReadyToTransfer() && (adding || substracting))
+		if (ReadyToTransfer() && (adding || substracting))
 		{
-			targetDirection = Vector3.Normalize(hand.position - target.position);
-			handForward = Vector3.Normalize(hand.right);
+			//Check if the hand is targeting an object
+			target = SearchTarget();
 
-			float dot = Vector3.Dot(targetDirection, handForward);
+			Debug.Log(target.name);
 
-			if (dot >= deviationAccepted)
-			{
+			//targetDirection = Vector3.Normalize(hand.position - target.position);
+			//handForward = Vector3.Normalize(hand.right);
+
+			//float dot = Vector3.Dot(targetDirection, handForward);
+
+			//if (dot >= deviationAccepted)
+			//{
 				if (adding)
 				{
-					ChangeSize(true);
+					ChangeSize(target, true);
 				}
 				else if (substracting)
 				{
-					ChangeSize(false);
-				}
-			}
+					ChangeSize(target, false);
+				}	
 		}
 
 
 
-    }
+	}
 
 	private bool ReadyToTransfer()
 	{
 		//If it is not touching, transfer energy
 		bool isTouching = false;
 
-		if (trackpadTouch[targetHand].state) isTouching = true;
-		else if (thumbstickTouch[targetHand].state) isTouching = true;
-		else if (aTouch[targetHand].state) isTouching = true;
-		else if (bTouch[targetHand].state) isTouching = true;
-		else if (firefingerTouch[targetHand].state) isTouching = true;
-		else if (gripTouch[targetHand].state) isTouching = true;
+		if (trackpadTouch[targetHandSource].state) isTouching = true;
+		else if (thumbstickTouch[targetHandSource].state) isTouching = true;
+		else if (aTouch[targetHandSource].state) isTouching = true;
+		else if (bTouch[targetHandSource].state) isTouching = true;
+		else if (firefingerTouch[targetHandSource].state) isTouching = true;
+		else if (gripTouch[targetHandSource].state) isTouching = true;
 
-		Debug.Log(targetHand + ": " + isTouching);
+		Debug.Log(targetHandSource + ": " + isTouching);
 
 		return !isTouching;
 
@@ -91,32 +99,87 @@ public class TransferEnergy : MonoBehaviour
 
 	private bool CheckAddEnergy()
 	{
-		bool add = addEnergy[actionHand].state;
+		bool add = addEnergy[actionHandSource].state;
 		Debug.Log("action hand add: " + add);
 		return add;
 	}
 
 	private bool CheckSubstractEnergy()
 	{
-		bool add = substractEnergy[actionHand].state;
+		bool add = substractEnergy[actionHandSource].state;
 		Debug.Log("action hand substract: " + add);
 		return add;
 	}
 
-	private void ChangeSize(bool makeBigger)
+	private void ChangeSize(Transform objective, bool makeBigger)
 	{
 
 		if (makeBigger)
 		{
-			target.localScale *= 1 + transferedEnergyPerSecond * Time.deltaTime;
+			objective.localScale *= 1 + transferedEnergyPerSecond * Time.deltaTime;
 		}
 		else
 		{
-			target.localScale *= 1 - transferedEnergyPerSecond * Time.deltaTime;
+			objective.localScale *= 1 - transferedEnergyPerSecond * Time.deltaTime;
 
 		}
 	}
 
+	private void GetTargetHand()
+	{
+		if (targetHandSource == SteamVR_Input_Sources.RightHand)
+		{
+			targetHand = GameObject.FindGameObjectWithTag("RIGHTHAND").transform;
+		}
+		else if (targetHandSource == SteamVR_Input_Sources.LeftHand)
+		{
+			targetHand = GameObject.FindGameObjectWithTag("LEFTHAND").transform;
+		}
+		else
+		{
+			Debug.LogError("Hand object transform not found");
+		}
 
+		if (targetHand == null)
+		{
+			Debug.LogError("Target hand is null");
+		}
+		else
+		{
+			//Get the hoverPoint
+			foreach(Transform child in targetHand)
+			{
+				if(child.tag == "HOVERPOINT")
+				{
+					hoverPoint = child;
+				}
+			}
+
+			if (hoverPoint == null)
+				Debug.LogError("Hover point is null");
+ 		}
+
+		Debug.LogWarning("Target hand: " + targetHand.name);
+		Debug.LogWarning("Hoverpoint: " + hoverPoint.name);
+	}
+
+	private Transform SearchTarget()
+	{
+		Transform hitObject = null;
+
+		if (targetHand == null)
+			GetTargetHand();
+
+		RaycastHit hit;
+		Ray ray;
+
+		ray = new Ray(hoverPoint.position,Vector3.Normalize(-hoverPoint.right));
+
+		if (Physics.Raycast(ray, out hit))
+		{
+			hitObject = hit.transform;
+		}
+		return hitObject;
+	}
 
 }

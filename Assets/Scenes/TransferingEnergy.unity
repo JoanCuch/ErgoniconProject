@@ -141,8 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1616bb92a696b49468755bdd81a56d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand: {fileID: 506965955}
-  target: {fileID: 406101015}
   deviationAccepted: 0.6
   trackpadTouch:
     actionPath: /actions/default/in/TrackpadTouchInput
@@ -168,8 +166,8 @@ MonoBehaviour:
   substractEnergy:
     actionPath: /actions/default/in/BClick
     needsReinit: 0
-  actionHand: 1
-  targetHand: 2
+  actionHandSource: 1
+  targetHandSource: 2
   transferedEnergyPerSecond: 0.2
 --- !u!4 &94565860
 Transform:
@@ -199,6 +197,18 @@ PrefabInstance:
     - target: {fileID: 107946, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144230, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_TagString
+      value: LEFTHAND
+      objectReference: {fileID: 0}
+    - target: {fileID: 160596, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_TagString
+      value: RIGHTHAND
+      objectReference: {fileID: 0}
+    - target: {fileID: 165334, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_TagString
+      value: HOVERPOINT
       objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -459,12 +469,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &506965955 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 480432, guid: dc06161b6d97feb419f45f03b62e14b9,
-    type: 3}
-  m_PrefabInstance: {fileID: 326257066}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &986984364
 GameObject:
   m_ObjectHideFlags: 0
