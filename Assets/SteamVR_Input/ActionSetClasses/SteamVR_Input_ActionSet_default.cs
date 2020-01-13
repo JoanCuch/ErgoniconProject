@@ -113,11 +113,67 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Boolean Shoot
+        public virtual SteamVR_Action_Boolean ThumbstickInput
         {
             get
             {
-                return SteamVR_Actions.default_Shoot;
+                return SteamVR_Actions.default_ThumbstickInput;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean GripInput
+        {
+            get
+            {
+                return SteamVR_Actions.default_GripInput;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean AInput
+        {
+            get
+            {
+                return SteamVR_Actions.default_AInput;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean BInput
+        {
+            get
+            {
+                return SteamVR_Actions.default_BInput;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean TrackpadTouchInput
+        {
+            get
+            {
+                return SteamVR_Actions.default_TrackpadTouchInput;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean ForefingerTouchInput
+        {
+            get
+            {
+                return SteamVR_Actions.default_ForefingerTouchInput;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean AClick
+        {
+            get
+            {
+                return SteamVR_Actions.default_AClick;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean BClick
+        {
+            get
+            {
+                return SteamVR_Actions.default_BClick;
             }
         }
         
