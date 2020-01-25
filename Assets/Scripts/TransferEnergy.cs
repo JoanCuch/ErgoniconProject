@@ -91,7 +91,7 @@ public class TransferEnergy : MonoBehaviour
 		else if (firefingerTouch[targetHandSource].state) isTouching = true;
 		else if (gripTouch[targetHandSource].state) isTouching = true;
 
-		Debug.Log(targetHandSource + ": " + isTouching);
+
 
 		return !isTouching;
 
@@ -100,14 +100,12 @@ public class TransferEnergy : MonoBehaviour
 	private bool CheckAddEnergy()
 	{
 		bool add = addEnergy[actionHandSource].state;
-		Debug.Log("action hand add: " + add);
 		return add;
 	}
 
 	private bool CheckSubstractEnergy()
 	{
 		bool add = substractEnergy[actionHandSource].state;
-		Debug.Log("action hand substract: " + add);
 		return add;
 	}
 
@@ -159,8 +157,8 @@ public class TransferEnergy : MonoBehaviour
 				Debug.LogError("Hover point is null");
  		}
 
-		Debug.LogWarning("Target hand: " + targetHand.name);
-		Debug.LogWarning("Hoverpoint: " + hoverPoint.name);
+		Debug.Log("Target hand: " + targetHand.name);
+		Debug.Log("Hoverpoint: " + hoverPoint.name);
 	}
 
 	private Transform SearchTarget()
