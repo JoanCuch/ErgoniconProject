@@ -12,6 +12,7 @@ public class TransferEnergy : MonoBehaviour
 	private Vector3 handForward;
 	private Vector3 targetDirection;
 
+	public GestureTest spell;
 
 	//Inputs
 
@@ -47,35 +48,36 @@ public class TransferEnergy : MonoBehaviour
 	void Update()
 	{
 
-		bool adding = CheckAddEnergy();
-		bool substracting = CheckSubstractEnergy();
+		//bool adding = CheckAddEnergy();
+		//bool substracting = CheckSubstractEnergy();
 
 		//The hand is open and ready to send at the same time that an action is selected
-		if (ReadyToTransfer() && (adding || substracting))
+		if (ReadyToTransfer() && spell.currentSpell != GestureTest.spells.none)
 		{
 			//Check if the hand is targeting an object
 			target = SearchTarget();
 
 			Debug.Log(target.name);
 
-			//targetDirection = Vector3.Normalize(hand.position - target.position);
-			//handForward = Vector3.Normalize(hand.right);
 
-			//float dot = Vector3.Dot(targetDirection, handForward);
+			/*if (adding)
+			{
+				ChangeSize(target, true);
+			}
+			else if (substracting)
+			{
+				ChangeSize(target, false);
+			}*/
 
-			//if (dot >= deviationAccepted)
-			//{
-				if (adding)
-				{
-					ChangeSize(target, true);
-				}
-				else if (substracting)
-				{
-					ChangeSize(target, false);
-				}	
+			if (spell.currentSpell == GestureTest.spells.grow)
+			{
+				ChangeSize(target, true);
+			}
+			else if (spell.currentSpell == GestureTest.spells.reduce)
+			{
+				ChangeSize(target, false);
+			}
 		}
-
-
 
 	}
 

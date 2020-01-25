@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deviationAccepted: 0.6
+  spell: {fileID: 392978689}
   trackpadTouch:
     actionPath: /actions/default/in/TrackpadTouchInput
     needsReinit: 0
@@ -366,7 +367,7 @@ GameObject:
   - component: {fileID: 392978690}
   - component: {fileID: 392978689}
   m_Layer: 0
-  m_Name: Gesture
+  m_Name: SpellDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -388,6 +389,7 @@ MonoBehaviour:
   Click:
     actionPath: /actions/default/in/InteractUI
     needsReinit: 0
+  currentSpell: 0
 --- !u!4 &392978690
 Transform:
   m_ObjectHideFlags: 0
