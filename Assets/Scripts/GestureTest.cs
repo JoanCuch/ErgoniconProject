@@ -35,7 +35,7 @@ public class GestureTest : MonoBehaviour
 
 		currentSpell = spells.none;
 
-		rightController = GameObject.FindGameObjectWithTag("RIGHTHAND");
+		rightController = GameObject.FindGameObjectWithTag("LEFTHAND");
 
 		gr = new GestureRecognition();
 
@@ -50,7 +50,7 @@ public class GestureTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		bool castingSpell = Click[SteamVR_Input_Sources.RightHand].state;
+		bool castingSpell = Click[SteamVR_Input_Sources.LeftHand].state;
 
 		//Starting a spell
 		if (active_controller == null)

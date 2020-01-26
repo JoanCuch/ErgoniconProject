@@ -57,9 +57,6 @@ public class TransferEnergy : MonoBehaviour
 			//Check if the hand is targeting an object
 			target = SearchTarget();
 
-			Debug.Log(target.name);
-
-
 			/*if (adding)
 			{
 				ChangeSize(target, true);
@@ -68,14 +65,16 @@ public class TransferEnergy : MonoBehaviour
 			{
 				ChangeSize(target, false);
 			}*/
-
-			if (spell.currentSpell == GestureTest.spells.grow)
+			if (target != null)
 			{
-				ChangeSize(target, true);
-			}
-			else if (spell.currentSpell == GestureTest.spells.reduce)
-			{
-				ChangeSize(target, false);
+				if (spell.currentSpell == GestureTest.spells.grow)
+				{
+					ChangeSize(target, true);
+				}
+				else if (spell.currentSpell == GestureTest.spells.reduce)
+				{
+					ChangeSize(target, false);
+				}
 			}
 		}
 
