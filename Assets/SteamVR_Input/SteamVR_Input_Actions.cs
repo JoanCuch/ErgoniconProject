@@ -56,6 +56,7 @@ namespace Valve.VR
         private static SteamVR_Action_Boolean p_default_AClick;
         
         private static SteamVR_Action_Boolean p_default_BClick;
+
         
         private static SteamVR_Action_Vibration p_default_Haptic;
         
@@ -74,7 +75,7 @@ namespace Valve.VR
         private static SteamVR_Action_Pose p_mixedreality_ExternalCamera;
         
         private static SteamVR_Action_Boolean p_energy_Teleport;
-        
+
         public static SteamVR_Action_Boolean default_InteractUI
         {
             get

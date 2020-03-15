@@ -112,7 +112,6 @@ namespace Valve.VR
                 return SteamVR_Actions.default_TouchPad;
             }
         }
-        
         public virtual SteamVR_Action_Boolean ThumbstickInput
         {
             get
