@@ -6,8 +6,17 @@ using Valve.VR.InteractionSystem;
 
 public class InputManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+	GestureRecognition gr = null;
+
+	public string file_load_gestures = "Assets/GestureRecognition/shapes1.dat";
+
+
+
+
+
+	// Start is called before the first frame update
+	void Start()
     {
         
     }
