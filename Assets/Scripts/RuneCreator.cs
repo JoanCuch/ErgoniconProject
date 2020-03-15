@@ -10,8 +10,14 @@ public class RuneCreator : MonoBehaviour
 
 	//Gameobjects
 	public GameObject star;
-	public List<GameObject> minorRunes;
 
+	public GameObject minorRune_base;
+	public GameObject minorRune_inverse;
+	public GameObject minorRune_object;
+	public GameObject minorRune_ambient;
+	public GameObject minorRune_direct;
+	public GameObject minorRune_heat;
+	public GameObject minorRune_force;
 
 	//Gesture recognition
 	GestureRecognition gr = null;
@@ -110,11 +116,65 @@ public class RuneCreator : MonoBehaviour
 		else
 		{
 			string gesture_name = gr.getGestureName(gesture_id);
-			Debug.LogWarning("Identified gesture " + gesture_name + "(" + gesture_id + ")\n(Similarity: " + similarity + ")");
+			Debug.Log("Identified gesture " + gesture_name + "(" + gesture_id + ")\n(Similarity: " + similarity + ")");
+
+			GameObject minorRuneToInstantiate = GetMinorRuneAsGameobject(gesture_name);
+			InstantiateMinorRune(minorRuneToInstantiate);
+
 		}
 		return;
 
 	}
+
+
+	public GameObject GetMinorRuneAsGameobject(string runeId)
+	{
+		GameObject r = null;
+
+		switch (runeId)
+		{
+			case "base":
+				r = minorRune_base;
+				break;
+
+			case "inverse":
+				r = minorRune_inverse;
+				break;
+
+			case "object":
+				r = minorRune_object;
+				break;
+
+			case "ambient":
+				r = minorRune_ambient;
+				break;
+
+			case "direct":
+				r = minorRune_direct;
+				break;
+
+			case "heat":
+				r = minorRune_heat;
+				break;
+
+			case "force":
+				r = minorRune_force;
+				break;
+
+			default:
+				Debug.LogWarning("Couldn't find the gameobject of the minor rune: " + runeId);
+				break;
+		}
+
+		return r;
+	}
+
+	public void InstantiateMinorRune(GameObject runePrefab)
+	{
+		Instantiate(runePrefab, attachedObject.transform.position, attachedObject.transform.rotation);
+	}
+
+
 
 	public void addToStrokeTrail(Vector3 p)
 	{
