@@ -8,6 +8,10 @@ public class RuneCreator : MonoBehaviour
 	//OtherScripts
 	public InputManager inputManager;
 
+	//Gameobjects
+	public GameObject star;
+	public List<GameObject> minorRunes;
+
 
 	//Gesture recognition
 	GestureRecognition gr = null;
