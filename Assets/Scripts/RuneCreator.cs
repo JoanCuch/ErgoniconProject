@@ -9,15 +9,7 @@ public class RuneCreator : MonoBehaviour
 	public InputManager inputManager;
 
 	//Gameobjects
-	public GameObject star;
-
-	public GameObject minorRune_base;
-	public GameObject minorRune_inverse;
-	public GameObject minorRune_object;
-	public GameObject minorRune_ambient;
-	public GameObject minorRune_direct;
-	public GameObject minorRune_heat;
-	public GameObject minorRune_force;
+	public GameObject starPrefab;
 
 	//Gesture recognition
 	GestureRecognition gr = null;
@@ -31,12 +23,6 @@ public class RuneCreator : MonoBehaviour
 
 	//Hardcoded
 	public GameObject attachedObject;
-	public GameObject modifiedRune;
-
-
-
-
-
 
 
 	// Start is called before the first frame update
@@ -118,67 +104,61 @@ public class RuneCreator : MonoBehaviour
 			string gesture_name = gr.getGestureName(gesture_id);
 			Debug.Log("Identified gesture " + gesture_name + "(" + gesture_id + ")\n(Similarity: " + similarity + ")");
 
-			GameObject minorRuneToInstantiate = GetMinorRuneAsGameobject(gesture_name);
-			InstantiateMinorRune(minorRuneToInstantiate);
+
+			MajorRune.minorRunes newMinorRune = GetMinorRuneType(gesture_name);
+			//Todo temp assignation of the rune
+			attachedObject.GetComponent<MajorRune>().AddMinorRune(newMinorRune);
 
 		}
 		return;
 
 	}
 
-
-	public GameObject GetMinorRuneAsGameobject(string runeId)
+	public MajorRune.minorRunes GetMinorRuneType(string runeId)
 	{
-		GameObject r = null;
+		MajorRune.minorRunes r = MajorRune.minorRunes.error;
 
 		switch (runeId)
 		{
 			case "base":
-				r = minorRune_base;
+				r = MajorRune.minorRunes.basic;
 				break;
 
 			case "inverse":
-				r = minorRune_inverse;
+				r = MajorRune.minorRunes.inverse;
 				break;
 
 			case "object":
-				r = minorRune_object;
+				r = MajorRune.minorRunes.physicObject;
 				break;
 
 			case "ambient":
-				r = minorRune_ambient;
+				r = MajorRune.minorRunes.ambient;
 				break;
 
 			case "direct":
-				r = minorRune_direct;
+				r = MajorRune.minorRunes.direct;
 				break;
 
 			case "heat":
-				r = minorRune_heat;
+				r = MajorRune.minorRunes.heat;
 				break;
 
 			case "force":
-				r = minorRune_force;
+				r = MajorRune.minorRunes.force;
 				break;
 
 			default:
-				Debug.LogWarning("Couldn't find the gameobject of the minor rune: " + runeId);
+				Debug.LogWarning("Couldn't find the minor rune: " + runeId);
 				break;
 		}
 
 		return r;
 	}
 
-	public void InstantiateMinorRune(GameObject runePrefab)
-	{
-		Instantiate(runePrefab, attachedObject.transform.position, attachedObject.transform.rotation);
-	}
-
-
-
 	public void addToStrokeTrail(Vector3 p)
 	{
-		GameObject star_instance = Instantiate(GameObject.Find("star"));
+		GameObject star_instance = Instantiate(starPrefab);
 		GameObject star = new GameObject("stroke_" + stroke_index++);
 		star_instance.name = star.name + "_instance";
 		star_instance.transform.SetParent(star.transform, false);
