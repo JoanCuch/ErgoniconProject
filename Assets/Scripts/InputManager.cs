@@ -21,7 +21,6 @@ public class InputManager : MonoBehaviour
     {
 		leftController = GameObject.FindGameObjectWithTag("LEFTHAND");
     }
-
     // Update is called once per frame
     void Update()
     {

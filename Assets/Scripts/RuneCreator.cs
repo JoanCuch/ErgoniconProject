@@ -21,6 +21,8 @@ public class RuneCreator : MonoBehaviour
 	private int recordGestureId = -1;
 	private int stroke_index = 0;
 
+	private bool isDrawing;
+
 	//Hardcoded
 	public GameObject attachedObject;
 
@@ -33,15 +35,16 @@ public class RuneCreator : MonoBehaviour
 		//Load the file gestures file
 		bool success = gr.loadFromFile(file_load_gestures);
 		Debug.Log((success ? "Gesture file loaded successfully" : "[ERROR] Failed to load gesture file."));
+
+		isDrawing = false;
+
+
+
 	}
 
     // Update is called once per frame
     void Update()
     {
-
-		bool isDrawing = inputManager.CheckDrawRune();
-
-
 		//Starting a rune
 
 		if (activeDrawingController == null)
@@ -169,5 +172,9 @@ public class RuneCreator : MonoBehaviour
 		float star_scale = (float)random.NextDouble() + 0.3f;
 		star.transform.localScale = new Vector3(star_scale, star_scale, star_scale);
 		stroke.Add(star.name);
+	}
+
+	public void SetIsDrawing(bool draw) {
+		isDrawing = draw;
 	}
 }
