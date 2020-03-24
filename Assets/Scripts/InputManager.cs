@@ -7,11 +7,12 @@ using Valve.VR.InteractionSystem;
 public class InputManager : MonoBehaviour
 {
 
+	private GameManager gameManager;
 
 	public SteamVR_Action_Boolean Click;
 	public SteamVR_Action_Boolean A;
 	public SteamVR_Action_Boolean B;
-
+	public SteamVR_Action_Boolean TouchPad;
 
 	//Temp and hardcoded
 	private GameObject leftController;
@@ -21,11 +22,19 @@ public class InputManager : MonoBehaviour
 	void Start()
     {
 		leftController = GameObject.FindGameObjectWithTag("LEFTHAND");
+		gameManager = GameManager.gameManager;
     }
     // Update is called once per frame
     void Update()
     {
-        
+
+		/*if (TouchPad[SteamVR_Input_Sources.LeftHand].stateDown)
+		{
+			gameManager.TryingToSelect();
+		}*/
+
+
+
     }
 
 
@@ -47,7 +56,7 @@ public class InputManager : MonoBehaviour
 
 	public bool IsSelectingTarget()
 	{
-		return true;
+		return TouchPad[SteamVR_Input_Sources.LeftHand].stateDown;
 	}
 
 	public GameObject getDrawingController()

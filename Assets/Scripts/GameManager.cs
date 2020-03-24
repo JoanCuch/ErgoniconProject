@@ -144,4 +144,10 @@ public class GameManager : MonoBehaviour
 		return leftHandIndex;
 	}
 
+
+	public void TryingToSelect() {
+
+	}
+
+
 }
