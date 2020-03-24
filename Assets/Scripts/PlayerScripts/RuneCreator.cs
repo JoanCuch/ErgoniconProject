@@ -57,8 +57,15 @@ public class RuneCreator : MonoBehaviour
 			inputManager = gameManager.inputManager;
 		}
 
+		GestureRuneUpdate();
+		
+	}
+
+	
 
 
+	public void GestureRuneUpdate()
+	{
 		//Starting a rune
 		if (activeDrawingController == null)
 		{
@@ -127,7 +134,6 @@ public class RuneCreator : MonoBehaviour
 
 		}
 		return;
-
 	}
 
 	public MajorRune.minorRunes GetMinorRuneType(string runeId)
@@ -187,8 +193,7 @@ public class RuneCreator : MonoBehaviour
 		stroke.Add(star.name);
 	}
 
-
-	public void SetTarget(Transform _newTarget)
+	public void SetTarget(Transform _newTarget, RaycastHit hit)
 	{
 		MajorRune runeToAttach = null;
 
@@ -204,7 +209,7 @@ public class RuneCreator : MonoBehaviour
 		{
 			//If the target is an object, then add a rune to it.
 			
-			GameObject newRune = Instantiate(runePrefab);
+			GameObject newRune = Instantiate(runePrefab, hit.point, Quaternion.LookRotation(hit.normal));
 			objectScript.AttachMajorRune(newRune.transform);
 			runeToAttach = newRune.GetComponent<MajorRune>();		
 		}

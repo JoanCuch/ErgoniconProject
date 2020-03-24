@@ -32,17 +32,19 @@ public class ObjectSelector : MonoBehaviour
 
 		if (isSelecting)
 		{
-			Transform _newTarget = SelectTarget();
+			RaycastHit hit;
+			Transform _newTarget = SelectTarget(out hit);
 			if (_newTarget != null)
 			{
-				runeCreator.SetTarget(_newTarget);
+				
+				runeCreator.SetTarget(_newTarget, hit);
 				Debug.Log("Detected object: " + _newTarget.name);
 			}
 			
 		}
     }
 
-	public Transform SelectTarget()
+	public Transform SelectTarget(out RaycastHit externalHit)
 	{
 		Transform hitObject = null;
 		Transform indexFinger = gameManager.GetHandIndex();
@@ -54,8 +56,10 @@ public class ObjectSelector : MonoBehaviour
 
 		if (Physics.Raycast(ray, out hit))
 		{
-			hitObject = hit.transform;
+			hitObject = hit.transform;			
 		}
+
+		externalHit = hit;
 
 		return hitObject;
 	}

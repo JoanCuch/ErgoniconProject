@@ -33,7 +33,6 @@ public class PhysicObject : EnergyInteractable
 	public void AttachMajorRune(Transform _newRune)
 	{
 		_newRune.SetParent(transform);
-		_newRune.position = transform.position + Vector3.up;
 		attachedRunes.Add(_newRune.GetComponent<MajorRune>());
 	}
 	public void RemoveMajorRune(Transform _oldRune)
