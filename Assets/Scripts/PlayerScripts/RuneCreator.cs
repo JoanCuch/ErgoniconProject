@@ -6,10 +6,12 @@ public class RuneCreator : MonoBehaviour
 {
 
 	//OtherScripts
-	public InputManager inputManager;
+	private GameManager gameManager;
+	private InputManager inputManager;
 
-	//Gameobjects
+	//Gameobjects prefabs
 	public GameObject starPrefab;
+	public GameObject runePrefab;
 
 	//Gesture recognition
 	GestureRecognition gr = null;
@@ -21,10 +23,13 @@ public class RuneCreator : MonoBehaviour
 	private int recordGestureId = -1;
 	private int stroke_index = 0;
 
+	//Other
+	private MajorRune targetRune;
+
+	//State
 	private bool isDrawing;
 
-	//Hardcoded
-	public GameObject attachedObject;
+	
 
 
 	// Start is called before the first frame update
@@ -38,15 +43,23 @@ public class RuneCreator : MonoBehaviour
 
 		isDrawing = false;
 
-
+		gameManager = GameManager.gameManager;
+		inputManager = gameManager.inputManager;
 
 	}
 
     // Update is called once per frame
     void Update()
     {
-		//Starting a rune
+		if(gameManager == null)
+		{
+			gameManager = GameManager.gameManager;
+			inputManager = gameManager.inputManager;
+		}
 
+
+
+		//Starting a rune
 		if (activeDrawingController == null)
 		{
 			//If there isn't any active controller, it means that the player isn't drawing anything
@@ -110,7 +123,7 @@ public class RuneCreator : MonoBehaviour
 
 			MajorRune.minorRunes newMinorRune = GetMinorRuneType(gesture_name);
 			//Todo temp assignation of the rune
-			attachedObject.GetComponent<MajorRune>().AddMinorRune(newMinorRune);
+			targetRune.AddMinorRune(newMinorRune);
 
 		}
 		return;
@@ -172,6 +185,39 @@ public class RuneCreator : MonoBehaviour
 		float star_scale = (float)random.NextDouble() + 0.3f;
 		star.transform.localScale = new Vector3(star_scale, star_scale, star_scale);
 		stroke.Add(star.name);
+	}
+
+
+	public void SetTarget(Transform _newTarget)
+	{
+		MajorRune runeToAttach = null;
+
+		MajorRune runeScript = _newTarget.GetComponent<MajorRune>();
+		PhysicObject objectScript = _newTarget.GetComponent<PhysicObject>();
+
+		if (runeScript != null)
+		{
+			//If the target is a rune then get it.
+			runeToAttach = runeScript;
+		}
+		else if (objectScript != null)
+		{
+			//If the target is an object, then add a rune to it.
+			
+			GameObject newRune = Instantiate(runePrefab);
+			objectScript.AttachMajorRune(newRune.transform);
+			runeToAttach = newRune.GetComponent<MajorRune>();		
+		}
+		else
+		{
+			Debug.LogWarning("The selected object is not magicable");
+		}
+
+		if (runeToAttach == null)
+			Debug.LogWarning("There is no rune to attach");
+
+		targetRune = runeToAttach;
+		
 	}
 
 	public void SetIsDrawing(bool draw) {

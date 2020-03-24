@@ -9,7 +9,8 @@ public class InputManager : MonoBehaviour
 
 
 	public SteamVR_Action_Boolean Click;
-
+	public SteamVR_Action_Boolean A;
+	public SteamVR_Action_Boolean B;
 
 
 	//Temp and hardcoded
@@ -28,16 +29,25 @@ public class InputManager : MonoBehaviour
     }
 
 
-	public bool CheckActivateDrawMode()
+	public bool IsChangingToSelectMode()
 	{
-		//TODO checkactivatedrawmode()
-		return true;
+		return A[SteamVR_Input_Sources.LeftHand].state;
+	}
+
+	public bool IsChangingToDrawMode()
+	{
+		return B[SteamVR_Input_Sources.LeftHand].state; ;
 	}
 
 	public bool CheckDrawRune()
 	{
 		//TODO remove hardcoded on lefthand
 		return Click[SteamVR_Input_Sources.LeftHand].state;
+	}
+
+	public bool IsSelectingTarget()
+	{
+		return true;
 	}
 
 	public GameObject getDrawingController()
