@@ -24,7 +24,9 @@ public class RuneCreator : MonoBehaviour
 	private int stroke_index = 0;
 
 	//Other
+	private Transform targetObject;
 	private MajorRune targetRune;
+	private RaycastHit targetHit;
 
 	//State
 	private bool isDrawing;
@@ -43,8 +45,12 @@ public class RuneCreator : MonoBehaviour
 
 		isDrawing = false;
 
+
 		gameManager = GameManager.gameManager;
 		inputManager = gameManager.inputManager;
+
+		targetObject = null;
+		targetRune = null;
 
 	}
 
@@ -130,6 +136,12 @@ public class RuneCreator : MonoBehaviour
 
 			MajorRune.minorRunes newMinorRune = GetMinorRuneType(gesture_name);
 			//Todo temp assignation of the rune
+
+			if(targetRune == null)
+			{
+				GetRuneFromTarget(targetObject, targetHit);
+			}
+
 			targetRune.AddMinorRune(newMinorRune);
 
 		}
@@ -193,7 +205,17 @@ public class RuneCreator : MonoBehaviour
 		stroke.Add(star.name);
 	}
 
+
+
 	public void SetTarget(Transform _newTarget, RaycastHit hit)
+	{
+		targetObject = _newTarget;
+		targetHit = hit;
+		targetRune = null;
+	}
+
+
+	public void GetRuneFromTarget(Transform _newTarget, RaycastHit hit)
 	{
 		MajorRune runeToAttach = null;
 

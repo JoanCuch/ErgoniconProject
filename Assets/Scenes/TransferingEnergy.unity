@@ -830,6 +830,9 @@ MonoBehaviour:
   B:
     actionPath: /actions/default/in/BClick
     needsReinit: 0
+  TouchPad:
+    actionPath: /actions/default/in/TrackpadTouchInput
+    needsReinit: 0
 --- !u!4 &1217030679
 Transform:
   m_ObjectHideFlags: 0
