@@ -6,8 +6,10 @@ public class MinorRune : MonoBehaviour
 {
 
 	public enum RuneTypes { source, transformation, complement, basic}
-
 	[SerializeField]private RuneTypes runeType;
+
+	private MajorRune parentMajorRune;
+
 
 	// Start is called before the first frame update
     void Start()
@@ -32,5 +34,9 @@ public class MinorRune : MonoBehaviour
 		return runeType;
 	}
 
+	public void SetParent(MajorRune newParent)
+	{
+		parentMajorRune = newParent;
+	}
 
 }

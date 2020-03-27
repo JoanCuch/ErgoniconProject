@@ -6,9 +6,6 @@ public class HeatMinorRune : MinorRune
 {
 
 
-
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +15,13 @@ public class HeatMinorRune : MinorRune
     // Update is called once per frame
     void Update()
     {
-        
+		Debug.Log("potato");
     }
 
 	public override void DoYourAction()
 	{
 		
 	}
+
+	
 }
