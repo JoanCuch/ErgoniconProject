@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4458079999213527883}
   - component: {fileID: 2992954675747568823}
-  - component: {fileID: 8634830433785650278}
+  - component: {fileID: -4989968867590812107}
   m_Layer: 0
   m_Name: ambient
   m_TagString: Untagged
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8634830433785650278
+--- !u!114 &-4989968867590812107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,7 +90,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4861901939916807851}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8296c92474125d42b1566087abdf84c, type: 3}
+  m_Script: {fileID: 11500000, guid: a939300f5e161214e818ef3873276365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   runeType: 0
+  environment: {fileID: 0}
+  energyFlow: 1
+  detectionRadius: 1
+  environmentTag: ENVIRONMENT

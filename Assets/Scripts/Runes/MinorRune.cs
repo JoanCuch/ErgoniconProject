@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinorRune : MonoBehaviour
+public class MinorRune : EnergyInteractable
 {
 
 	public enum RuneTypes { source, transformation, complement, basic}
 	[SerializeField]private RuneTypes runeType;
 
-	private MajorRune parentMajorRune;
+	protected MajorRune parentMajorRune;
 
 
 	// Start is called before the first frame update
@@ -24,7 +24,7 @@ public class MinorRune : MonoBehaviour
     }
 
 
-	public virtual void DoYourAction()
+	public virtual void UpdateEnergy()
 	{
 		Debug.LogWarning("This minor rune is doing nothing");
 	}

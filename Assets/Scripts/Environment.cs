@@ -2,26 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeatMinorRune : MinorRune
+public class Environment : EnergyInteractable
 {
-
-
-    // Start is called before the first frame update
+    
+	[SerializeField] private float startEnergy;
+	
+	// Start is called before the first frame update
     void Start()
     {
-        
+		AddEnergy(startEnergy);
     }
 
     // Update is called once per frame
     void Update()
     {
-		Debug.Log("potato");
     }
-
-	public override void DoYourAction()
-	{
-		
-	}
-
-	
 }

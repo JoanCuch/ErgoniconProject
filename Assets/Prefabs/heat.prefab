@@ -94,3 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runeType: 1
+  sourceRune: {fileID: 0}
+  target: {fileID: 0}
+  energyFlow: 1
+  conversionRateEnergyHeat: 1
+  heatFlow: 1

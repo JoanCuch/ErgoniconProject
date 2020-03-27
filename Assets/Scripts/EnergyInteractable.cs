@@ -7,17 +7,16 @@ public class EnergyInteractable : MonoBehaviour
 
 	//
 
-	private float _heat;
-	private float _energy;
-	private Vector3 force;
+	[ReadOnly] [SerializeField] private float _heat;
+	[ReadOnly] [SerializeField] private float _energy;
+	[ReadOnly] [SerializeField] private Vector3 force;
+	[ReadOnly] [SerializeField] private float _fatigue;
 
-	private float coeffHeatResistance;
-	private float coeffForceResistance;
-	private float coeffEnergyResistance;
+	//[SerializeField] private float coeffHeatResistance = 1;
+	//[SerializeField] private float coeffForceResistance = 1;
+	//[SerializeField] private float coeffEnergyResistance = 1;
 
 	//
-
-	private float _fatigue;
 
 	private float coeffFatigueHeat;
 	private float coeffFatigueForce;
@@ -29,8 +28,11 @@ public class EnergyInteractable : MonoBehaviour
     void Start()
     {
 		//Every child will have to assign his propierties from a seriarizable object.
-	
-    }
+
+		_heat = 0;
+		_energy = 0;
+		force = Vector3.zero;
+	}
 
     // Update is called once per frame
     void Update()
@@ -45,15 +47,15 @@ public class EnergyInteractable : MonoBehaviour
 
 	public void AddEnergy(float energyReceibed)
 	{
-		_energy += energyReceibed * coeffEnergyResistance;
+		_energy += energyReceibed;
 	}
 	public void AddHeat(float heatReceibed)
 	{
-		_heat += heatReceibed * coeffHeatResistance;
+		_heat += heatReceibed;
 	}
 	public void AddForce(Vector3 forceReceived)
 	{
-		force += forceReceived * coeffForceResistance;
+		force += forceReceived;
 	}
 
 	public float AbsorbEnergy(float energyAsked) {

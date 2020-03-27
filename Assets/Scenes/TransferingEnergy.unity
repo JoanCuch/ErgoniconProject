@@ -697,9 +697,10 @@ GameObject:
   - component: {fileID: 1110581005}
   - component: {fileID: 1110581004}
   - component: {fileID: 1110581003}
+  - component: {fileID: 1110581007}
   m_Layer: 0
   m_Name: Environment
-  m_TagString: Untagged
+  m_TagString: ENVIRONMENT
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -771,12 +772,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110581002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.38, y: 0, z: -2.43}
+  m_LocalPosition: {x: 2.39, y: 0, z: -2.64}
   m_LocalScale: {x: 5, y: 50, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1110581007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110581002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff38ada56fc4fc41a849041217136ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startEnergy: 30
 --- !u!1 &1129181938
 GameObject:
   m_ObjectHideFlags: 0
