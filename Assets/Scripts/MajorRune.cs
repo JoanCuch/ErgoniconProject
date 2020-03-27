@@ -6,7 +6,7 @@ public class MajorRune : EnergyInteractable
 {
 	
 	//Prefabs
-	public enum minorRunes { basic, inverse, physicObject, direct, ambient, heat, force, error}
+	//public enum minorRunes { basic, inverse, physicObject, direct, ambient, heat, force, error}
 
 	public GameObject prefabBase;
 	public GameObject prefabInverse;
@@ -23,6 +23,11 @@ public class MajorRune : EnergyInteractable
 	[SerializeField] private Transform complement;
 	[SerializeField] private Transform basic;
 
+	private MinorRune sourceRune;
+	private MinorRune transformationRune;
+	private MinorRune complementRune;
+	private MinorRune basicRune;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,52 +40,47 @@ public class MajorRune : EnergyInteractable
         
     }
 
-	public void AddMinorRune(minorRunes newRune)
+	/// <summary>
+	/// Gets a minorRune gameobject and asigns it
+	/// </summary>
+	public void AddMinorRune(Transform minorRune)
 	{
-		switch (newRune)
+		MinorRune minorRuneScript = minorRune.GetComponent<MinorRune>();
+
+		MinorRune.RuneTypes runeType = minorRuneScript.GetRuneType();
+
+		Transform runeParent = null;
+
+		switch (runeType)
 		{
-			case minorRunes.basic:
-				InstantiateRune(prefabBase, basic);	
+			case MinorRune.RuneTypes.source:
+				runeParent = source;
 				break;
 
-			case minorRunes.inverse:
-				InstantiateRune(prefabInverse, complement);
+			case MinorRune.RuneTypes.transformation:
+				runeParent = transf;
+				break;
+			case MinorRune.RuneTypes.complement:
+				runeParent = complement;
 				break;
 
-			case minorRunes.physicObject:
-				InstantiateRune(prefabObject, source);
-				break;
-
-			case minorRunes.direct:
-				InstantiateRune(prefabDirect, source);
-				break;
-
-			case minorRunes.ambient:
-				InstantiateRune(prefabAmbient, source);
-				break;
-
-			case minorRunes.heat:
-				InstantiateRune(prefabHeat, transf);
-				break;
-
-			case minorRunes.force:
-				InstantiateRune(prefabForce, transf);
-				break;
-
-			case minorRunes.error:
-				Debug.LogWarning("Error while trying to instantiate a minor rune");
+			case MinorRune.RuneTypes.basic:
+				runeParent = basic;
 				break;
 
 			default:
-				Debug.LogWarning("Error while trying to instantiate a minor rune");
+				Debug.LogWarning("minor rune type not detected: " + runeType);
 				break;
 		}
-	}
 
-	private void InstantiateRune(GameObject runePrefab, Transform parent)
-	{
-		foreach (Transform child in parent) Destroy(child.gameObject);
-		Instantiate(runePrefab, parent);
-	}
+		foreach(Transform child in runeParent)
+		{
+			Destroy(child.gameObject);
+		}
 
+		minorRune.parent = runeParent;
+		minorRune.position = runeParent.position;
+		minorRune.rotation = runeParent.rotation;
+		
+	}
 }

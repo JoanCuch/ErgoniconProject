@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Class duties;
+///  - Make the gesture recognition of the minorRunes
+///  - Instantiate minor runes and add to his attached major runes
+///  - Instantiate major runes and add to his attached physical object
+/// </summary>
 public class RuneCreator : MonoBehaviour
 {
-
+	
 	//OtherScripts
 	private GameManager gameManager;
 	private InputManager inputManager;
+	private RunesIdealWorld runeIdealWorld;
 
 	//Gameobjects prefabs
 	public GameObject starPrefab;
-	public GameObject runePrefab;
+	public GameObject majorRunePrefab;
 
 	//Gesture recognition
 	GestureRecognition gr = null;
@@ -25,15 +33,13 @@ public class RuneCreator : MonoBehaviour
 
 	//Other
 	private Transform targetObject;
-	private MajorRune targetRune;
+	private MajorRune targetMajorRune;
 	private RaycastHit targetHit;
 
 	//State
 	private bool isDrawing;
 
 	
-
-
 	// Start is called before the first frame update
 	void Start()
     {
@@ -48,9 +54,10 @@ public class RuneCreator : MonoBehaviour
 
 		gameManager = GameManager.gameManager;
 		inputManager = gameManager.inputManager;
+		runeIdealWorld = gameManager.runesIdealWorld;
 
 		targetObject = null;
-		targetRune = null;
+		targetMajorRune = null;
 
 	}
 
@@ -67,10 +74,10 @@ public class RuneCreator : MonoBehaviour
 		
 	}
 
-	
-
-
-	public void GestureRuneUpdate()
+	/// <summary>
+	/// If the player is drawing, manages from start to ending of the drawing and gets the name of the resulting shape.
+	/// </summary>
+	private void GestureRuneUpdate()
 	{
 		//Starting a rune
 		if (activeDrawingController == null)
@@ -130,67 +137,72 @@ public class RuneCreator : MonoBehaviour
 		}
 		else
 		{
+			//Geting the name of the identified rune.
 			string gesture_name = gr.getGestureName(gesture_id);
-			Debug.Log("Identified gesture " + gesture_name + "(" + gesture_id + ")\n(Similarity: " + similarity + ")");
-
-
-			MajorRune.minorRunes newMinorRune = GetMinorRuneType(gesture_name);
-			//Todo temp assignation of the rune
-
-			if(targetRune == null)
-			{
-				GetRuneFromTarget(targetObject, targetHit);
-			}
-
-			targetRune.AddMinorRune(newMinorRune);
-
+			CreateMinorRune(gesture_name);
 		}
 		return;
 	}
 
-	public MajorRune.minorRunes GetMinorRuneType(string runeId)
-	{
-		MajorRune.minorRunes r = MajorRune.minorRunes.error;
+	/// <summary>
+	/// Instantiates a minor rune using his name
+	/// </summary>
+	private void CreateMinorRune(string runeName)
+	{		
+		//Debug.Log("Identified gesture " + gesture_name + "(" + gesture_id + ")\n(Similarity: " + similarity + ")");
 
-		switch (runeId)
+		//Getting the prefab of the minorRune to instantiate it
+		GameObject minorRunePrefab = runeIdealWorld.GetRuneByName(runeName);
+		GameObject newMinorRune = Instantiate(minorRunePrefab);
+		
+		//The minor rune has to be added to a major rune script.
+		if (targetMajorRune == null)
 		{
-			case "base":
-				r = MajorRune.minorRunes.basic;
-				break;
-
-			case "inverse":
-				r = MajorRune.minorRunes.inverse;
-				break;
-
-			case "object":
-				r = MajorRune.minorRunes.physicObject;
-				break;
-
-			case "ambient":
-				r = MajorRune.minorRunes.ambient;
-				break;
-
-			case "direct":
-				r = MajorRune.minorRunes.direct;
-				break;
-
-			case "heat":
-				r = MajorRune.minorRunes.heat;
-				break;
-
-			case "force":
-				r = MajorRune.minorRunes.force;
-				break;
-
-			default:
-				Debug.LogWarning("Couldn't find the minor rune: " + runeId);
-				break;
+			targetMajorRune = GetRuneFromTarget(targetObject, targetHit);
 		}
 
-		return r;
+		targetMajorRune.AddMinorRune(newMinorRune.transform);		
 	}
 
-	public void addToStrokeTrail(Vector3 p)
+	/// <summary>
+	/// Returns the MajorRune script of a gameObject. If it doesn't have one, it creates a new one.
+	/// The gameobject can be a scene prop or a major rune. 
+	/// The hit is the position and direction where the major rune will appear.
+	/// </summary>
+	private MajorRune GetRuneFromTarget(Transform _newTarget, RaycastHit hit)
+	{
+		MajorRune majorRuneToReturn = null;
+
+		MajorRune runeScript = _newTarget.GetComponent<MajorRune>();
+		PhysicObject objectScript = _newTarget.GetComponent<PhysicObject>();
+
+		if (runeScript != null)
+		{
+			//If the target is a rune then get it.
+			majorRuneToReturn = runeScript;
+		}
+		else if (objectScript != null)
+		{
+			//If the target is an object, then add a major rune to it.
+			GameObject newRune = Instantiate(majorRunePrefab, hit.point, Quaternion.LookRotation(hit.normal));
+			objectScript.AttachMajorRune(newRune.transform);
+			majorRuneToReturn = newRune.GetComponent<MajorRune>();		
+		}
+		else
+		{
+			Debug.LogWarning("The selected object is not magicable");
+		}
+
+		if (majorRuneToReturn == null)
+			Debug.LogWarning("There is no rune to attach");
+
+		return majorRuneToReturn;		
+	}
+
+	/// <summary>
+	/// Utility function. Add a point to the drawing of the player
+	/// </summary>
+	private void addToStrokeTrail(Vector3 p)
 	{
 		GameObject star_instance = Instantiate(starPrefab);
 		GameObject star = new GameObject("stroke_" + stroke_index++);
@@ -206,48 +218,15 @@ public class RuneCreator : MonoBehaviour
 	}
 
 
-
+	public void SetIsDrawing(bool draw) {
+		isDrawing = draw;
+	}
 	public void SetTarget(Transform _newTarget, RaycastHit hit)
 	{
 		targetObject = _newTarget;
 		targetHit = hit;
-		targetRune = null;
+		targetMajorRune = null;
 	}
 
 
-	public void GetRuneFromTarget(Transform _newTarget, RaycastHit hit)
-	{
-		MajorRune runeToAttach = null;
-
-		MajorRune runeScript = _newTarget.GetComponent<MajorRune>();
-		PhysicObject objectScript = _newTarget.GetComponent<PhysicObject>();
-
-		if (runeScript != null)
-		{
-			//If the target is a rune then get it.
-			runeToAttach = runeScript;
-		}
-		else if (objectScript != null)
-		{
-			//If the target is an object, then add a rune to it.
-			
-			GameObject newRune = Instantiate(runePrefab, hit.point, Quaternion.LookRotation(hit.normal));
-			objectScript.AttachMajorRune(newRune.transform);
-			runeToAttach = newRune.GetComponent<MajorRune>();		
-		}
-		else
-		{
-			Debug.LogWarning("The selected object is not magicable");
-		}
-
-		if (runeToAttach == null)
-			Debug.LogWarning("There is no rune to attach");
-
-		targetRune = runeToAttach;
-		
-	}
-
-	public void SetIsDrawing(bool draw) {
-		isDrawing = draw;
-	}
 }
