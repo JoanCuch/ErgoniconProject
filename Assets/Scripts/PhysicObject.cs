@@ -7,16 +7,29 @@ public class PhysicObject : EnergyInteractable
 
 	private List<MajorRune> attachedRunes;
 
+	public Material ownMaterial;
+	private Renderer renderer;
+
+	private float origianlIntensity;
+
+
     // Start is called before the first frame update
     void Start()
     {
 		attachedRunes = new List<MajorRune>();
+		ownMaterial = GetComponent<MeshRenderer>().material;
     }
+	
 
     // Update is called once per frame
     void Update()
     {
     }
+
+	private void LateUpdate()
+	{
+		ModifyEmision();
+	}
 
 	public bool hasRune()
 	{
@@ -40,4 +53,15 @@ public class PhysicObject : EnergyInteractable
 		Destroy(_oldRune.gameObject);
 
 	}
+
+	//This function goes on the rune
+	private void ModifyEmision()
+	{
+		Color newColor = ownMaterial.GetColor("_EmissionColor") * (GetHeat()*0.001f+1);
+		ownMaterial.SetColor("_EmissionColor", newColor);
+
+	}
+
+
+
 }
