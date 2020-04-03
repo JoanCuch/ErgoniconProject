@@ -12,7 +12,8 @@ public class RunesIdealWorld : MonoBehaviour
 	public GameObject prefabDirect;
 	public GameObject prefabHeat;
 	public GameObject prefabForce;
-
+	public GameObject prefabGravitational;
+	public GameObject prefabAtract;
 
 	// Start is called before the first frame update
 	void Start()
@@ -60,6 +61,14 @@ public class RunesIdealWorld : MonoBehaviour
 				runeToReturn = prefabForce;
 				break;
 
+			case "attraction":
+				runeToReturn = prefabAtract;
+				break;
+
+			case "spring":
+				runeToReturn = prefabGravitational;
+				break;
+		
 			default:
 				Debug.LogWarning("Couldn't find the minor rune: " + runeName);
 				break;
@@ -69,6 +78,8 @@ public class RunesIdealWorld : MonoBehaviour
 		{
 			Debug.LogWarning("Returning a null rune from the warehouse");
 		}
+
+		Debug.Log(runeName);
 
 		return runeToReturn;
 	}

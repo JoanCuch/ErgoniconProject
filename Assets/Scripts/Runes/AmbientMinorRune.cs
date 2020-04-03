@@ -36,7 +36,6 @@ public class AmbientMinorRune : MinorRune
 		{
 			float newE = environment.AbsorbEnergy(energyFlow * Time.deltaTime);
 
-			Debug.Log("tranfered energy: " + newE);
 			AddEnergy(newE);
 		}
 	}

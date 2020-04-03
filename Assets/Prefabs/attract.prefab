@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6796488033413302
+--- !u!1 &9015326284793306471
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,37 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9051072931530251792}
-  - component: {fileID: 3022043561625767691}
-  - component: {fileID: -7213962984462040432}
+  - component: {fileID: 7758040522731536604}
+  - component: {fileID: 9008074850812908923}
+  - component: {fileID: 2558663309446577973}
   m_Layer: 0
-  m_Name: force
+  m_Name: atract
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9051072931530251792
+--- !u!4 &7758040522731536604
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6796488033413302}
+  m_GameObject: {fileID: 9015326284793306471}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.687, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3022043561625767691
+--- !u!212 &9008074850812908923
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6796488033413302}
+  m_GameObject: {fileID: 9015326284793306471}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -70,27 +70,27 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c5c5b686699a95c46b52392e0fe62a3c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0992b512150d0104295f1ae7d61e05b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.02, y: 1.76}
+  m_Size: {x: 0.94, y: 1.91}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-7213962984462040432
+--- !u!114 &2558663309446577973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6796488033413302}
+  m_GameObject: {fileID: 9015326284793306471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e06c80717a21ef34a90f57f12e5ebbe5, type: 3}
+  m_Script: {fileID: 11500000, guid: e8296c92474125d42b1566087abdf84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _heat: 0
@@ -98,9 +98,3 @@ MonoBehaviour:
   force: {x: 0, y: 0, z: 0}
   _fatigue: 0
   runeType: 1
-  sourceRune: {fileID: 0}
-  target: {fileID: 0}
-  energyFlow: 1
-  conversionRateEnergyToForce: 1
-  forceFlow: 1
-  forceExtra: 500

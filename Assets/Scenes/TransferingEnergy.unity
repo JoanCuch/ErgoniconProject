@@ -348,7 +348,7 @@ MonoBehaviour:
     type: 3}
   majorRunePrefab: {fileID: 865398363205789207, guid: 12957cbaba19a844cbd9607a74e328db,
     type: 3}
-  file_load_gestures: Assets/GestureRecognition/SavedGestures/minorRunes4.dat
+  file_load_gestures: Assets/Gestures/minorRunes6.dat
 --- !u!4 &408531819 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6707313601647293276, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
@@ -592,7 +592,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &1129181939
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -816,6 +816,10 @@ MonoBehaviour:
     type: 3}
   prefabForce: {fileID: 6796488033413302, guid: b3c83bc448ec1cd4f908623adfc1fa81,
     type: 3}
+  prefabGravitational: {fileID: 8785132799884486001, guid: 086a10a711baafb46bdf11e9bf2bc223,
+    type: 3}
+  prefabAtract: {fileID: 9015326284793306471, guid: 29f05716d79a1fc4e98953b83ee5d808,
+    type: 3}
 --- !u!114 &1649100140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,11 +914,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1386617354}
     m_Modifications:
-    - target: {fileID: 6707313601647293274, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8f3ca957214358f49827757c239cd195, type: 2}
     - target: {fileID: 6707313601647293276, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
         type: 3}
       propertyPath: m_LocalPosition.x

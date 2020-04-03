@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8961359516116428091}
   - component: {fileID: 420113958147652164}
-  - component: {fileID: 33179486603718925}
+  - component: {fileID: 3939639916416800940}
   m_Layer: 0
   m_Name: object
   m_TagString: Untagged
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &33179486603718925
+--- !u!114 &3939639916416800940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,7 +90,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8758175775533306495}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8296c92474125d42b1566087abdf84c, type: 3}
+  m_Script: {fileID: 11500000, guid: a2a75b9c04ca9204294b008d1a242834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _heat: 0
+  _energy: 0
+  force: {x: 0, y: 0, z: 0}
+  _fatigue: 0
   runeType: 0
+  source: {fileID: 0}
+  energyFlow: 1
