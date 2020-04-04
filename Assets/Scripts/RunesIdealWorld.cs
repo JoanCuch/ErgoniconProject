@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RunesIdealWorld : MonoBehaviour
 {
+	//Plato <3
 
 	public GameObject prefabBase;
 	public GameObject prefabInverse;
