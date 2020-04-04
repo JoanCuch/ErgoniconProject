@@ -18,6 +18,8 @@ public class PhysicObject : EnergyInteractable
     // Start is called before the first frame update
     void Start()
     {
+		//potato
+
 		attachedRunes = new List<MajorRune>();
 		ownMaterial = GetComponent<MeshRenderer>().material;
     }
