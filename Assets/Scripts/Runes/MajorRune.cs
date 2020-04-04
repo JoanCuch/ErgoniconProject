@@ -19,7 +19,7 @@ public class MajorRune : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-
+		attachedObject = transform.parent.GetComponent<EnergyInteractable>();
 	}
 
 	// Update is called once per frame

@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 		gameState = GameStates.selectMode;
 
 		gameManager = this;
-		leftHandIndex = GameObject.FindGameObjectWithTag("LEFTHANDINDEX").transform;
+		//leftHandIndex = GameObject.FindGameObjectWithTag("LEFTHANDINDEX").transform;
         
     }
 

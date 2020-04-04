@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7758040522731536604}
+  - component: {fileID: 1027617543573414726}
   - component: {fileID: 9008074850812908923}
-  - component: {fileID: 2558663309446577973}
+  - component: {fileID: -9093136678122985053}
   m_Layer: 0
-  m_Name: atract
-  m_TagString: Untagged
+  m_Name: attract
+  m_TagString: MinorRune_Atraction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,6 +33,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1027617543573414726
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9015326284793306471}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.94, y: 1.91, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &9008074850812908923
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -81,7 +95,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2558663309446577973
+--- !u!114 &-9093136678122985053
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,7 +104,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9015326284793306471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8296c92474125d42b1566087abdf84c, type: 3}
+  m_Script: {fileID: 11500000, guid: ee42f07e0e91a9140a4f2789b0e3af49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _heat: 0
@@ -98,3 +112,8 @@ MonoBehaviour:
   force: {x: 0, y: 0, z: 0}
   _fatigue: 0
   runeType: 1
+  parentMajorRune: {fileID: 0}
+  twinRune: {fileID: 0}
+  detectionRadius: 10
+  forceIntensity: 50
+  distancePower: 2

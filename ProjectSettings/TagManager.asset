@@ -10,6 +10,8 @@ TagManager:
   - LEFTHANDINDEX
   - ENVIRONMENT
   - STRINGMINORRUNE
+  - MinorRune_Atraction
+  - MinorRune_String
   layers:
   - Default
   - TransparentFX

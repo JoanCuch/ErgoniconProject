@@ -8,7 +8,7 @@ public class MinorRune : EnergyInteractable
 	public enum RuneTypes { source, transformation, complement, basic}
 	[SerializeField]private RuneTypes runeType;
 
-	protected MajorRune parentMajorRune;
+	[SerializeField ] [ReadOnly]protected MajorRune parentMajorRune;
 
 
 	// Start is called before the first frame update
