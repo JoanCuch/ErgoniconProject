@@ -56,7 +56,7 @@ public class ObjectSelector : MonoBehaviour
 
 		if (Physics.Raycast(ray, out hit))
 		{
-			hitObject = hit.transform;			
+			hitObject = hit.collider.transform;			
 		}
 
 		externalHit = hit;

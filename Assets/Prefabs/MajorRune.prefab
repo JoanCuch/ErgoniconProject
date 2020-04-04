@@ -130,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 865398363205789206}
   - component: {fileID: 865398363205789205}
+  - component: {fileID: 8359509756666443129}
   m_Layer: 0
   m_Name: MajorRune
   m_TagString: Untagged
@@ -176,3 +177,16 @@ MonoBehaviour:
   complementRune: {fileID: 0}
   basicRune: {fileID: 0}
   attachedObject: {fileID: 0}
+--- !u!65 &8359509756666443129
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865398363205789207}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3979, y: 0.3327492, z: 0.021085499}
+  m_Center: {x: 0.035219476, y: 0.0008210242, z: 0.010321969}
