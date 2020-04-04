@@ -34,9 +34,14 @@ public class MinorRune : EnergyInteractable
 		return runeType;
 	}
 
-	public void SetParent(MajorRune newParent)
+	public void SetMajorRune(MajorRune newParent)
 	{
 		parentMajorRune = newParent;
+	}
+
+	public MajorRune GetMajorRune()
+	{
+		return parentMajorRune;
 	}
 
 }

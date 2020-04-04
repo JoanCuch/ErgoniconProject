@@ -9,6 +9,7 @@ TagManager:
   - HOVERPOINT
   - LEFTHANDINDEX
   - ENVIRONMENT
+  - STRINGMINORRUNE
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - PostProcessing
   - 
-  - 
+  - IgnoreTeleporting
   - 
   - 
   - 

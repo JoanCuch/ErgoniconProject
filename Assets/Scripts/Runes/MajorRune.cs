@@ -76,7 +76,7 @@ public class MajorRune : MonoBehaviour
 		minorRune.parent = runeParent;
 		minorRune.position = runeParent.position;
 		minorRune.rotation = runeParent.rotation;
-		minorRuneScript.SetParent(this);
+		minorRuneScript.SetMajorRune(this);
 
 	}
 
