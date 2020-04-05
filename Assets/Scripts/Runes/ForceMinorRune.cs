@@ -14,7 +14,7 @@ public class ForceMinorRune : MinorRune
 	[SerializeField] private float energyFlow;
 	[SerializeField] private float conversionRateEnergyToForce;
 	[SerializeField] private float forceFlow;
-	[SerializeField] private float forceExtra;
+	[SerializeField] private float impulseMultiplier;
 
 	// Start is called before the first frame update
 	void Start()
@@ -48,7 +48,9 @@ public class ForceMinorRune : MinorRune
 		}
 
 		//Transform the energy
-		float transformedenergy = AbsorbEnergy(energyFlow * Time.deltaTime) * conversionRateEnergyToForce;
+		//float transformedEnergy = AbsorbEnergy(energyFlow * Time.deltaTime) * conversionRateEnergyToForce;
+		float transformedEnergy = energyFlow * Time.deltaTime * conversionRateEnergyToForce;
+
 
 		//Give the energy to the target
 		if (targetRigidbody == null)
@@ -61,10 +63,12 @@ public class ForceMinorRune : MinorRune
 		}
 		else
 		{
-			Debug.Log(transformedenergy);
-			Debug.Log(Vector3.right * transformedenergy * 100);
+		
+			Vector3 direction = -GetMajorRune().transform.forward;
+			float impulse = transformedEnergy * impulseMultiplier;
 
-			targetRigidbody.AddForce(Vector3.right * transformedenergy * forceExtra);
+			targetRigidbody.AddForceAtPosition(direction * transformedEnergy * impulseMultiplier, GetMajorRune().transform.position);
+
 		}
 	}
 }

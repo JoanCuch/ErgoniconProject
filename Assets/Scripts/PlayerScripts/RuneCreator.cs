@@ -130,6 +130,14 @@ public class RuneCreator : MonoBehaviour
 		Vector3 dir2 = Vector3.zero; // This will receive the minor direction of the gesture (direction of smallest expansion).
 		int gesture_id = gr.endStroke(ref similarity, ref pos, ref scale, ref dir0, ref dir1, ref dir2);
 
+		if(recordGestureId >= 0)
+		{
+			Debug.Log("i dont know why I am here");
+			return;
+		}
+
+
+
 		if (gesture_id < 0)
 		{
 			// Error trying to identify any gesture

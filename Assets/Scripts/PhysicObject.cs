@@ -61,7 +61,6 @@ public class PhysicObject : EnergyInteractable
 	{
 		Color newColor = ownMaterial.GetColor("_EmissionColor") * (GetHeat()*0.001f+1);
 		ownMaterial.SetColor("_EmissionColor", newColor);
-
 	}
 
 

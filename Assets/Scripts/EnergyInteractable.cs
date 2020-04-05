@@ -5,33 +5,24 @@ using UnityEngine;
 public class EnergyInteractable : MonoBehaviour
 {
 
-	//
-
-	[ReadOnly] [SerializeField] private float _heat;
-	[ReadOnly] [SerializeField] private float _energy;
-	[ReadOnly] [SerializeField] private Vector3 force;
-	[ReadOnly] [SerializeField] private float _fatigue;
-
-	//[SerializeField] private float coeffHeatResistance = 1;
-	//[SerializeField] private float coeffForceResistance = 1;
-	//[SerializeField] private float coeffEnergyResistance = 1;
-
-	//
+	[ReadOnly] [SerializeField] private float heat;
+	[ReadOnly] [SerializeField] private float energy;
+	[ReadOnly] [SerializeField] private Vector3 impulse;
+	[ReadOnly] [SerializeField] private float fatigue;
 
 	private float coeffFatigueHeat;
 	private float coeffFatigueForce;
 	private float coeffFatigueEnergy;
 
-	//
 
     // Start is called before the first frame update
     void Start()
     {
 		//Every child will have to assign his propierties from a seriarizable object.
 
-		_heat = 0;
-		_energy = 0;
-		force = Vector3.zero;
+		heat = 0;
+		energy = 0;
+		impulse = Vector3.zero;
 	}
 
     // Update is called once per frame
@@ -41,37 +32,37 @@ public class EnergyInteractable : MonoBehaviour
 
     }
 
-	public float GetHeat() { return _heat; }
-	public float GetEnergy() { return _energy; }
-	public float GetFatigue() { return _fatigue; }
+	public float GetHeat() { return heat; }
+	public float GetEnergy() { return energy; }
+	public float GetFatigue() { return fatigue; }
 
 	public void AddEnergy(float energyReceibed)
 	{
-		_energy += energyReceibed;
+		energy += energyReceibed;
 	}
 	public void AddHeat(float heatReceibed)
 	{
-		_heat += heatReceibed;
+		heat += heatReceibed;
 	}
-	public void AddForce(Vector3 forceReceived)
+	public void AddImpulse(Vector3 forceReceived)
 	{
-		force += forceReceived;
+		impulse += forceReceived;
 	}
 
 	public float AbsorbEnergy(float energyAsked) {
 
 		float returnedEnergy = 0;
 
-		if(energyAsked <= _energy)
+		if(energyAsked <= energy)
 		{
 			returnedEnergy = energyAsked;
 		}
 		else
 		{
-			returnedEnergy = _energy;
+			returnedEnergy = energy;
 		}
 
-		_energy -= returnedEnergy;
+		energy -= returnedEnergy;
 		return returnedEnergy;
 
 	}
@@ -80,34 +71,34 @@ public class EnergyInteractable : MonoBehaviour
 
 		float returnedEnergy = 0;
 
-		if (energyAsked <= _heat)
+		if (energyAsked <= heat)
 		{
 			returnedEnergy = energyAsked;
 		}
 		else
 		{
-			returnedEnergy = _heat;
+			returnedEnergy = heat;
 		}
 
-		_heat -= returnedEnergy;
+		heat -= returnedEnergy;
 		return returnedEnergy;
 
 	}
-	public float AbsorbForce(float energyAsked)
+	public float AbsorbImpulse(float energyAsked)
 	{
 		//Todo absorbforce
 		float returnedEnergy = 0;
 
-		if (energyAsked <= _energy)
+		if (energyAsked <= energy)
 		{
 			returnedEnergy = energyAsked;
 		}
 		else
 		{
-			returnedEnergy = _energy;
+			returnedEnergy = energy;
 		}
 
-		_energy -= returnedEnergy;
+		energy -= returnedEnergy;
 		return 0;
 
 	}
