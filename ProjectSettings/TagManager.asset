@@ -9,9 +9,9 @@ TagManager:
   - HOVERPOINT
   - LEFTHANDINDEX
   - ENVIRONMENT
-  - STRINGMINORRUNE
   - MinorRune_Atraction
   - MinorRune_String
+  - MinorRune_Inverse
   layers:
   - Default
   - TransparentFX

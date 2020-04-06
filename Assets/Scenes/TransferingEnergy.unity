@@ -127,6 +127,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1386617354}
     m_Modifications:
+    - target: {fileID: 4484887688708030328, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
+        type: 3}
+      propertyPath: minHeatColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484887688708030328, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
+        type: 3}
+      propertyPath: minHeatColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484887688708030328, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
+        type: 3}
+      propertyPath: minHeatColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484887688708030328, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
+        type: 3}
+      propertyPath: maxHeatColor.r
+      value: 0.9433962
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484887688708030328, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
+        type: 3}
+      propertyPath: maxHeatColor.g
+      value: 0.7843581
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484887688708030328, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
+        type: 3}
+      propertyPath: maxHeatColor.b
+      value: 0.29814878
+      objectReference: {fileID: 0}
+    - target: {fileID: 4484887688708030328, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
+        type: 3}
+      propertyPath: maxHeat
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667191630264948901, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6707313601647293276, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -432,7 +472,7 @@ MonoBehaviour:
     type: 3}
   majorRunePrefab: {fileID: 865398363205789207, guid: 12957cbaba19a844cbd9607a74e328db,
     type: 3}
-  file_load_gestures: Assets/Gestures/minorRunes6.dat
+  file_load_gestures: Assets/Gestures/minorRunes7.dat
 --- !u!4 &408531819 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6707313601647293276, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
@@ -652,10 +692,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff38ada56fc4fc41a849041217136ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heat: 0
-  _energy: 0
-  force: {x: 0, y: 0, z: 0}
-  _fatigue: 0
+  heat: 0
+  energy: 0
+  impulse: {x: 0, y: 0, z: 0}
+  fatigue: 0
   startEnergy: 30
 --- !u!1 &1129181938
 GameObject:
@@ -765,11 +805,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31f3899ba498b440bbed9d92dae0b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heat: 0
-  _energy: 0
-  force: {x: 0, y: 0, z: 0}
-  _fatigue: 0
+  heat: 0
+  energy: 0
+  impulse: {x: 0, y: 0, z: 0}
+  fatigue: 0
   ownMaterial: {fileID: 0}
+  minHeat: 0
+  maxHeat: 0
+  minHeatColor: {r: 0, g: 0, b: 0, a: 0}
+  maxHeatColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!54 &1129181944
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -848,6 +892,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1386617354}
     m_Modifications:
+    - target: {fileID: 6667191630264948901, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6707313601647293276, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1123,6 +1172,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1386617354}
     m_Modifications:
+    - target: {fileID: 6667191630264948901, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
+        type: 3}
+      propertyPath: m_Mass
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6707313601647293276, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
         type: 3}
       propertyPath: m_LocalPosition.x

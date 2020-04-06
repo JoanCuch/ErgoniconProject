@@ -7,8 +7,10 @@ public class AttractionRune : MinorRune
 	[SerializeField] [ReadOnly] private AttractionRune twinRune;
 
 	[SerializeField] private float detectionRadius;
-	[SerializeField] private float forceIntensity;
+	[SerializeField] private float impulseMultiplier;
 	[SerializeField] private float distancePower;
+
+
 
 	private Rigidbody attachedObjectRigidbody;
 	
@@ -52,12 +54,13 @@ public class AttractionRune : MinorRune
 
 		if (twinRune != null)
 		{
-			Vector3 forceDirection = (twinRune.transform.position - this.transform.position).normalized;
-			float distance = Vector3.Distance(twinRune.transform.position,this.transform.position);
+			Vector3 forceDirection = (twinRune.GetMajorRune().transform.position - this.GetMajorRune().transform.position).normalized;
+			float distance = Vector3.Distance(twinRune.GetMajorRune().transform.position,this.GetMajorRune().transform.position);
 
-			attachedObjectRigidbody.AddForce(forceDirection * (1/Mathf.Pow(distance, distancePower) * forceIntensity));
+			Vector3 force = forceDirection * (1 / Mathf.Pow(distance, distancePower) * impulseMultiplier);
+			Vector3 startPosition = GetMajorRune().transform.position;
 
-
+			attachedObjectRigidbody.AddForceAtPosition(force, startPosition);
 		}
 	}
 

@@ -107,13 +107,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee42f07e0e91a9140a4f2789b0e3af49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heat: 0
-  _energy: 0
-  force: {x: 0, y: 0, z: 0}
-  _fatigue: 0
+  heat: 0
+  energy: 0
+  impulse: {x: 0, y: 0, z: 0}
+  fatigue: 0
   runeType: 1
   parentMajorRune: {fileID: 0}
   twinRune: {fileID: 0}
   detectionRadius: 10
-  forceIntensity: 50
-  distancePower: 2
+  impulseMultiplier: 10
+  distancePower: 1

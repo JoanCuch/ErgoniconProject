@@ -9,6 +9,7 @@ public class MajorRune : MonoBehaviour
 	[SerializeField]  private Transform transf;
 	[SerializeField]  private Transform complement;
 	[SerializeField]  private Transform basic;
+
 	[Space]
 	[SerializeField] [ReadOnly] private MinorRune sourceRune;
 	[SerializeField] [ReadOnly] private MinorRune transformationRune;
@@ -109,9 +110,26 @@ public class MajorRune : MonoBehaviour
 
 		return runeToReturn;
 	}
+
 	public EnergyInteractable GetAttachedObject()
 	{
 		return attachedObject;
+	}
+
+	public bool CheckComplementRuneIsTypeOf(RunesIdealWorld.MinorRunesTypes type)
+	{	
+		string tagToCheck = GameManager.gameManager.runesIdealWorld.GetMinorRune(type).tag;
+		bool toReturn = false;
+
+		if (complementRune != null)
+		{
+			if (tagToCheck == complementRune.tag)
+			{
+				toReturn = true;
+			}
+		}
+
+		return toReturn;
 	}
 
 }

@@ -160,7 +160,7 @@ public class RuneCreator : MonoBehaviour
 		//Debug.Log("Identified gesture " + gesture_name + "(" + gesture_id + ")\n(Similarity: " + similarity + ")");
 
 		//Getting the prefab of the minorRune to instantiate it
-		GameObject minorRunePrefab = runeIdealWorld.GetRuneByName(runeName);
+		GameObject minorRunePrefab = runeIdealWorld.GetMinorRune(runeName);
 		GameObject newMinorRune = Instantiate(minorRunePrefab);
 		
 		//The minor rune has to be added to a major rune script.

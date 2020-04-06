@@ -13,24 +13,32 @@ public class PhysicObject : EnergyInteractable
 	private Renderer renderer;
 
 	private float origianlIntensity;
+	private float lastHeat;
 
+	[SerializeField] private float minHeat;
+	[SerializeField] private float maxHeat;
 
-    // Start is called before the first frame update
-    void Start()
+	[SerializeField] private Color minHeatColor;
+	[SerializeField] private Color maxHeatColor;
+
+	// Start is called before the first frame update
+	void Start()
     {
 		attachedRunes = new List<MajorRune>();
 		ownMaterial = GetComponent<MeshRenderer>().material;
+		lastHeat = GetHeat();
     }
 	
 
     // Update is called once per frame
     void Update()
     {
+		
     }
 
 	private void LateUpdate()
 	{
-		ModifyEmision();
+		if (lastHeat != GetHeat()) ModifyEmision();
 	}
 
 	public bool hasRune()
@@ -59,8 +67,16 @@ public class PhysicObject : EnergyInteractable
 	//This function goes on the rune
 	private void ModifyEmision()
 	{
-		Color newColor = ownMaterial.GetColor("_EmissionColor") * (GetHeat()*0.001f+1);
+		//The object has a max heat that can not give more light. The color lerp needs a color between 0 and 1
+		//float colorHeatNumber = Mathf.Clamp(GetHeat(), minHeat, maxHeat);
+		float colorHeatNumber = Mathf.InverseLerp(minHeat, maxHeat, GetHeat());
+		Debug.Log(colorHeatNumber);
+		Color newColor = Color.Lerp(minHeatColor, maxHeatColor, colorHeatNumber);
+
 		ownMaterial.SetColor("_EmissionColor", newColor);
+
+		//Color newColor = ownMaterial.GetColor("_EmissionColor") * (GetHeat()*0.001f+1);
+		//ownMaterial.SetColor("_EmissionColor", newColor);
 	}
 
 

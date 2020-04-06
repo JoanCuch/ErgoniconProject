@@ -8,19 +8,25 @@ public class MinorRune : EnergyInteractable
 	public enum RuneTypes { source, transformation, complement, basic}
 	[SerializeField]private RuneTypes runeType;
 
-	[SerializeField ] [ReadOnly]protected MajorRune parentMajorRune;
+	[SerializeField] [ReadOnly]protected MajorRune parentMajorRune;
+	[SerializeField] [ReadOnly] protected bool energyFlowInput;
+
 
 
 	// Start is called before the first frame update
     void Start()
     {
-        
+		energyFlowInput = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+		//EnergyInteractable reverseRune = GetMajorRune().get
+
+
+
     }
 
 
@@ -43,5 +49,12 @@ public class MinorRune : EnergyInteractable
 	{
 		return parentMajorRune;
 	}
+
+	public void SetEnergyFlow(bool trueForInputEnergy)
+	{
+		energyFlowInput = trueForInputEnergy;
+	}
+
+
 
 }

@@ -16,6 +16,19 @@ public class RunesIdealWorld : MonoBehaviour
 	public GameObject prefabGravitational;
 	public GameObject prefabAtract;
 
+	public enum MinorRunesTypes
+	{
+		basic,
+		inverse,
+		physicObject,
+		ambient,
+		direct,
+		heat,
+		force,
+		gravitation,
+		attraction
+	}
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -28,7 +41,7 @@ public class RunesIdealWorld : MonoBehaviour
 
 	}
 
-	public GameObject GetRuneByName(string runeName)
+	public GameObject GetMinorRune(string runeName)
 	{
 		GameObject runeToReturn = null;
 
@@ -81,6 +94,61 @@ public class RunesIdealWorld : MonoBehaviour
 		}
 
 		Debug.Log(runeName);
+
+		return runeToReturn;
+	}
+
+	public GameObject GetMinorRune(MinorRunesTypes variation)
+	{
+		GameObject runeToReturn = null;
+
+		switch (variation)
+		{
+			case MinorRunesTypes.basic:
+				runeToReturn = prefabBase;
+				break;
+
+			case MinorRunesTypes.inverse:
+				runeToReturn = prefabInverse;
+				break;
+
+			case MinorRunesTypes.physicObject:
+				runeToReturn = prefabObject;
+				break;
+
+			case MinorRunesTypes.ambient:
+				runeToReturn = prefabAmbient;
+				break;
+
+			case MinorRunesTypes.direct:
+				runeToReturn = prefabDirect;
+				break;
+
+			case MinorRunesTypes.heat:
+				runeToReturn = prefabHeat;
+				break;
+
+			case MinorRunesTypes.force:
+				runeToReturn = prefabForce;
+				break;
+
+			case MinorRunesTypes.attraction:
+				runeToReturn = prefabAtract;
+				break;
+
+			case MinorRunesTypes.gravitation:
+				runeToReturn = prefabGravitational;
+				break;
+
+			default:
+				Debug.LogWarning("Couldn't find the minor rune: " + variation);
+				break;
+		}
+
+		if (runeToReturn == null)
+		{
+			Debug.LogWarning("Returning a null rune from the warehouse");
+		}
 
 		return runeToReturn;
 	}

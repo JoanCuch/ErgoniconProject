@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6963840821219007766}
   m_Layer: 0
   m_Name: inverse
-  m_TagString: Untagged
+  m_TagString: MinorRune_Inverse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,4 +93,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8296c92474125d42b1566087abdf84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heat: 0
+  energy: 0
+  impulse: {x: 0, y: 0, z: 0}
+  fatigue: 0
   runeType: 2
+  parentMajorRune: {fileID: 0}
+  EnergyFlowInput: 0

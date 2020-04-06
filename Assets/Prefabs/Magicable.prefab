@@ -124,11 +124,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31f3899ba498b440bbed9d92dae0b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heat: 0
-  _energy: 0
-  force: {x: 0, y: 0, z: 0}
-  _fatigue: 0
+  heat: 0
+  energy: 0
+  impulse: {x: 0, y: 0, z: 0}
+  fatigue: 0
   ownMaterial: {fileID: 0}
+  minHeat: 0
+  maxHeat: 10
+  minHeatColor: {r: 0.2924528, g: 0.21353342, b: 0.026210386, a: 0}
+  maxHeatColor: {r: 0.8219898, g: 1, b: 0, a: 1}
 --- !u!114 &2012348411
 MonoBehaviour:
   m_ObjectHideFlags: 0
