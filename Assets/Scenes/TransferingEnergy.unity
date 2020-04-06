@@ -127,46 +127,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1386617354}
     m_Modifications:
-    - target: {fileID: 4484887688708030328, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
-        type: 3}
-      propertyPath: minHeatColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4484887688708030328, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
-        type: 3}
-      propertyPath: minHeatColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4484887688708030328, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
-        type: 3}
-      propertyPath: minHeatColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4484887688708030328, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
-        type: 3}
-      propertyPath: maxHeatColor.r
-      value: 0.9433962
-      objectReference: {fileID: 0}
-    - target: {fileID: 4484887688708030328, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
-        type: 3}
-      propertyPath: maxHeatColor.g
-      value: 0.7843581
-      objectReference: {fileID: 0}
-    - target: {fileID: 4484887688708030328, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
-        type: 3}
-      propertyPath: maxHeatColor.b
-      value: 0.29814878
-      objectReference: {fileID: 0}
-    - target: {fileID: 4484887688708030328, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
-        type: 3}
-      propertyPath: maxHeat
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6667191630264948901, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
-        type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6707313601647293276, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -221,21 +181,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707313601647293276, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707313601647293276, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707313601647293276, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6707313601647293277, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
         type: 3}

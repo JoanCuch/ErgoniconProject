@@ -8,36 +8,51 @@ using UnityEngine;
 public class ObjectMinorRune : MinorRune
 {
 	[SerializeField] [ReadOnly] EnergyInteractable source;
-	[Space]
 	[SerializeField] private float energyFlow;
 
 	// Start is called before the first frame update
-	void Start()
+	protected override void Start()
 	{
+		base.Start();
+
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-
-
-
-
 		if (parentMajorRune == null)
 		{
 			Debug.LogWarning("null major rune, aaaaaaarh! Kaos!");
 		}
 
-		//Get the energy from the source and add it to himself
-		if (source == null)
+		if (energyFlowInput)
 		{
-			source = parentMajorRune.GetAttachedObject();
+		
+			//Get the energy from the object and add it to himself
+			if (source == null)
+			{
+				source = parentMajorRune.GetAttachedObject();
+			}
+			else
+			{
+				float newE = source.AbsorbEnergy(energyFlow * Time.deltaTime);
+
+				AddEnergy(newE);
+			}
 		}
 		else
 		{
-			float newE = source.AbsorbEnergy(energyFlow * Time.deltaTime);
+			//Get the energy from himself and add it to the object
+			if (source == null)
+			{
+				source = parentMajorRune.GetAttachedObject();
+			}
+			else
+			{
+				float newE = AbsorbEnergy(energyFlow * Time.deltaTime);
 
-			AddEnergy(newE);
+				source.AddEnergy(newE);
+			}
 		}
 	}	
 }

@@ -15,8 +15,14 @@ public class AmbientMinorRune : MinorRune
 	[SerializeField] private string environmentTag;
 
 	// Start is called before the first frame update
-	void Start()
+	protected override void Start()
 	{
+		base.Start();
+
+		//Starting energy. temp
+		AddEnergy(30);
+
+
 	}
 
 	// Update is called once per frame
@@ -27,16 +33,34 @@ public class AmbientMinorRune : MinorRune
 			Debug.LogWarning("null major rune, aaaaaaarh! Kaos!");
 		}
 
-		//Get the energy from the source and add it to himself
-		if (environment == null)
+		if (energyFlowInput)
 		{
-			environment = FindEnvironmentAround();
+		
+			//Get the energy from the source and add it to himself
+			if (environment == null)
+			{
+				environment = FindEnvironmentAround();
+			}
+			else
+			{
+				float newE = environment.AbsorbEnergy(energyFlow * Time.deltaTime);
+
+				AddEnergy(newE);
+			}
 		}
 		else
 		{
-			float newE = environment.AbsorbEnergy(energyFlow * Time.deltaTime);
+			//Get the energy from himself and add it to the source
+			if (environment == null)
+			{
+				environment = FindEnvironmentAround();
+			}
+			else
+			{
+				float newE = AbsorbEnergy(energyFlow * Time.deltaTime);
 
-			AddEnergy(newE);
+				environment.AddEnergy(newE);
+			}
 		}
 	}
 

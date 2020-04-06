@@ -27,6 +27,10 @@ public class PhysicObject : EnergyInteractable
 		attachedRunes = new List<MajorRune>();
 		ownMaterial = GetComponent<MeshRenderer>().material;
 		lastHeat = GetHeat();
+
+
+		//temp hardcoded
+		AddEnergy(30);
     }
 	
 
