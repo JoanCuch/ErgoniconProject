@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6481193805409856772}
   - component: {fileID: 6951955610738789047}
-  - component: {fileID: 6963840821219007766}
+  - component: {fileID: 2170575138160127242}
   m_Layer: 0
   m_Name: inverse
   m_TagString: MinorRune_Inverse
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6963840821219007766
+--- !u!114 &2170575138160127242
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4138891008394126575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8296c92474125d42b1566087abdf84c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2977a6a676b32334c8c65202cd90f860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   heat: 0
@@ -99,4 +99,4 @@ MonoBehaviour:
   fatigue: 0
   runeType: 2
   parentMajorRune: {fileID: 0}
-  EnergyFlowInput: 0
+  energyFlowInput: 0

@@ -14,10 +14,10 @@ public class MinorRune : EnergyInteractable
 
 
 	// Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
 		energyFlowInput = true;
-    }
+	}
 
     // Update is called once per frame
     void Update()
@@ -55,6 +55,7 @@ public class MinorRune : EnergyInteractable
 		energyFlowInput = trueForInputEnergy;
 	}
 
+	
 
 
 }

@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 6707313601647293277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.53, y: 0.54999995, z: -2.47}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -104,7 +104,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6707313601647293277}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -131,8 +131,8 @@ MonoBehaviour:
   ownMaterial: {fileID: 0}
   minHeat: 0
   maxHeat: 10
-  minHeatColor: {r: 0.2924528, g: 0.21353342, b: 0.026210386, a: 0}
-  maxHeatColor: {r: 0.8219898, g: 1, b: 0, a: 1}
+  minHeatColor: {r: 0, g: 0, b: 0, a: 0}
+  maxHeatColor: {r: 0.9433962, g: 0.7843581, b: 0.29814878, a: 1}
 --- !u!114 &2012348411
 MonoBehaviour:
   m_ObjectHideFlags: 0

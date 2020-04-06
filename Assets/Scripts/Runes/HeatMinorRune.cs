@@ -17,13 +17,16 @@ public class HeatMinorRune : MinorRune
 	[SerializeField] private float heatFlow;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+	// Start is called before the first frame update
 
-    // Update is called once per frame
-    void Update()
+	protected override void Start()
+	{
+		base.Start();
+	}
+
+
+	// Update is called once per frame
+	void Update()
     {
 		if(parentMajorRune == null)
 		{
@@ -31,7 +34,7 @@ public class HeatMinorRune : MinorRune
 		}
 
 		//Check if the energy is inverse //TODO this is inverse rune job
-		SetEnergyFlow(!GetMajorRune().CheckComplementRuneIsTypeOf(RunesIdealWorld.MinorRunesTypes.inverse));
+		//SetEnergyFlow(!GetMajorRune().CheckComplementRuneIsTypeOf(RunesIdealWorld.MinorRunesTypes.inverse));
 
 		if (energyFlowInput) //The energy flows is energy -> heat
 		{

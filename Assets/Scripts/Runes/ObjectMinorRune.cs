@@ -19,6 +19,10 @@ public class ObjectMinorRune : MinorRune
 	// Update is called once per frame
 	void Update()
 	{
+
+
+
+
 		if (parentMajorRune == null)
 		{
 			Debug.LogWarning("null major rune, aaaaaaarh! Kaos!");
