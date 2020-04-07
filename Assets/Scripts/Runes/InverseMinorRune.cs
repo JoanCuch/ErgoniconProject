@@ -19,11 +19,9 @@ public class InverseMinorRune : MinorRune
 		{
 			parentRune = GetMajorRune();
 		}
+
+		ChangeEnergyFlowDirection(false);
 		
-		parentRune.GetAttachedRuneOfType(RuneTypes.basic).SetEnergyFlow(false);
-		parentRune.GetAttachedRuneOfType(RuneTypes.complement).SetEnergyFlow(false);
-		parentRune.GetAttachedRuneOfType(RuneTypes.source).SetEnergyFlow(false);
-		parentRune.GetAttachedRuneOfType(RuneTypes.transformation).SetEnergyFlow(false);
 	}
 
 	private void OnDestroy()
@@ -33,10 +31,34 @@ public class InverseMinorRune : MinorRune
 		{
 			parentRune = GetMajorRune();
 		}
-		parentRune.GetAttachedRuneOfType(RuneTypes.basic).SetEnergyFlow(true);
-		parentRune.GetAttachedRuneOfType(RuneTypes.complement).SetEnergyFlow(true);
-		parentRune.GetAttachedRuneOfType(RuneTypes.source).SetEnergyFlow(true);
-		parentRune.GetAttachedRuneOfType(RuneTypes.transformation).SetEnergyFlow(true);
+
+		ChangeEnergyFlowDirection(true);
+	}
+
+	private void ChangeEnergyFlowDirection(bool condition)
+	{
+		//If the condition is true, the energy flow direction will be from source to the target.
+		//If the condition is false, the energy flow direction will be from targe to source.
+
+		EnergyInteractable basic = parentRune.GetAttachedRuneOfType(RuneTypes.basic);
+		EnergyInteractable complement = parentRune.GetAttachedRuneOfType(RuneTypes.complement);
+		EnergyInteractable source = parentRune.GetAttachedRuneOfType(RuneTypes.source);
+		EnergyInteractable transformation = parentRune.GetAttachedRuneOfType(RuneTypes.transformation);
+
+		if(basic != null)
+			parentRune.GetAttachedRuneOfType(RuneTypes.basic).SetEnergyFlow(condition);
+
+		if(complement != null)
+			parentRune.GetAttachedRuneOfType(RuneTypes.complement).SetEnergyFlow(condition);
+
+		if(source != null)
+			parentRune.GetAttachedRuneOfType(RuneTypes.source).SetEnergyFlow(condition);
+
+		if(transformation != null)
+			parentRune.GetAttachedRuneOfType(RuneTypes.transformation).SetEnergyFlow(condition);
+
+
+
 	}
 
 
