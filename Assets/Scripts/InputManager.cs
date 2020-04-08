@@ -9,19 +9,26 @@ public class InputManager : MonoBehaviour
 
 	private GameManager gameManager;
 
-	public SteamVR_Action_Boolean Click;
-	public SteamVR_Action_Boolean A;
-	public SteamVR_Action_Boolean B;
-	public SteamVR_Action_Boolean TouchPad;
+
+	[SerializeField] private string leftControllerTag;
+	[SerializeField] private string rightControllerTag;
+
+	[SerializeField] private SteamVR_Action_Boolean Click;
+	[SerializeField] private SteamVR_Action_Boolean A;
+	[SerializeField] private SteamVR_Action_Boolean B;
+	[SerializeField] private SteamVR_Action_Boolean TouchPad;
+
+
+	public enum PlayerActions { draw}
 
 	//Temp and hardcoded
 	private GameObject leftController;
-
+	private GameObject rightController;
 
 	// Start is called before the first frame update
 	void Start()
     {
-		leftController = GameObject.FindGameObjectWithTag("LEFTHAND");
+		FindControllers();
 		gameManager = GameManager.gameManager;
     }
     // Update is called once per frame
@@ -37,8 +44,75 @@ public class InputManager : MonoBehaviour
 
     }
 
+	public bool IsDoingAction(PlayerActions _action)
+	{
+		bool isDoingIt = false;
 
-	public bool IsChangingToSelectMode()
+		switch (_action)
+		{
+			case PlayerActions.draw:
+
+				if (Click[SteamVR_Input_Sources.LeftHand].stateDown)
+				{
+					isDoingIt = true;
+				}
+				if (Click[SteamVR_Input_Sources.RightHand].stateDown)
+				{
+					isDoingIt = true;
+				}
+				break;
+
+			default:
+				break;
+		}
+		return isDoingIt;
+	}
+
+	public void GetActiveControllers(PlayerActions _action,out GameObject _leftController, out GameObject _rightController)
+	{
+		if(leftController == null || rightController == null) { FindControllers(); }
+
+
+		_leftController = null;
+		_rightController = null;
+
+		switch (_action)
+		{
+			case PlayerActions.draw:
+
+				if (Click[SteamVR_Input_Sources.LeftHand].state)
+				{
+					_leftController = leftController;
+				}
+
+				if (Click[SteamVR_Input_Sources.RightHand].state)
+				{
+					_rightController = rightController;
+				}
+				break;
+
+			default:
+				break;
+		}		
+	}
+
+	private void FindControllers()
+	{
+		leftController = GameObject.FindGameObjectWithTag(leftControllerTag);
+		rightController = GameObject.FindGameObjectWithTag(rightControllerTag);
+
+		Debug.Log("searching for controllers: " + leftController + " " + rightController);
+
+
+	}
+
+
+
+
+
+
+
+	/*public bool IsChangingToSelectMode()
 	{
 		return A[SteamVR_Input_Sources.LeftHand].state;
 	}
@@ -63,7 +137,7 @@ public class InputManager : MonoBehaviour
 	{
 		//Todo remove hardcoded on left hand
 		return leftController;
-	}
+	}*/
 
 
 

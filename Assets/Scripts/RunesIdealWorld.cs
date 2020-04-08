@@ -16,6 +16,12 @@ public class RunesIdealWorld : MonoBehaviour
 	public GameObject prefabGravitational;
 	public GameObject prefabAtract;
 
+	public string OpenRuneEditingModeShapeName;
+	public string CloseRuneEditingModeShapeName;
+
+
+
+
 	public enum MinorRunesTypes
 	{
 		basic,

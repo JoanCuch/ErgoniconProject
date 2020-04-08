@@ -11,112 +11,160 @@ public class GameManager : MonoBehaviour
 	public InputManager inputManager;
 	public RuneCreator runeCreator;
 	public ObjectSelector objectSelector;
+	public ShapesManager shapesManager;
 
 	private Transform leftHandIndex;
 
-	public enum GameStates { drawMode, selectMode}
-	private GameStates gameState;
-
-
-	//Target
-
-
+	public enum GameStates { inital, interactionWaiting, interactionDrawing, runeWaiting, runeDrawing}
+	private GameStates currentState;
 
     // Start is called before the first frame update
     void Start()
     {
-		gameState = GameStates.selectMode;
-
-		gameManager = this;
-		//leftHandIndex = GameObject.FindGameObjectWithTag("LEFTHANDINDEX").transform;
-        
+		currentState = GameStates.inital;
+		gameManager = this;	      
     }
 
     // Update is called once per frame
     void Update()
     {
-
 		UpdateState();
-
     }
 
+	#region FSM
 
 	private void UpdateState()
 	{
-		bool _changeStateNecessary = false;
-		GameStates _newState = GameStates.selectMode;
-
-		//Check if it is necesary a state change
-		switch (gameState)
+		//Change to newState if necessary
+		switch (currentState)
 		{
-			case GameStates.drawMode:
-				if (inputManager.IsChangingToSelectMode())
+			case GameStates.inital:
+				ChangeState(GameStates.interactionWaiting);
+				break;
+
+			case GameStates.interactionWaiting:
+				if (inputManager.IsDoingAction(InputManager.PlayerActions.draw))
 				{
-					_changeStateNecessary = true;
-					_newState = GameStates.selectMode;
+					ChangeState(GameStates.interactionDrawing);
+				}					
+				break;
+
+			case GameStates.interactionDrawing:
+				UpdateShapesManager();
+
+				if (shapesManager.GetLastShapeName() == null)
+				{
+					
+					//the rune is being drawn, do nothing
+				}
+				else if (shapesManager.GetLastShapeName() == runesIdealWorld.OpenRuneEditingModeShapeName)
+				{
+					//the player made the gesture to edit a rune
+					ChangeState(GameStates.runeWaiting);
+				}
+				else
+				{
+					//The player ended drawing but not any shape he can use now. Return to wait for more shape input.
+					ChangeState(newState: GameStates.interactionWaiting);				
 				}
 				break;
 
-			case GameStates.selectMode:
-				if (inputManager.IsChangingToDrawMode())
+			case GameStates.runeWaiting:
+				if (inputManager.IsDoingAction(InputManager.PlayerActions.draw))
 				{
-					_changeStateNecessary = true;
-					_newState = GameStates.drawMode;
+					ChangeState(GameStates.runeDrawing);
+				}
+				break;
+
+			case GameStates.runeDrawing:
+				UpdateShapesManager();
+
+				if (shapesManager.GetLastShapeName() == null)
+				{
+					//the rune is being drawn		
+				}
+				else if (shapesManager.GetLastShapeName() == runesIdealWorld.CloseRuneEditingModeShapeName)
+				{
+					//the player made the gesture to close the rune editing
+					ChangeState(GameStates.interactionWaiting);
+				}
+				else
+				{
+					//The player ended drawing but not any shape he can use now. Return to wait for more shape input.
+					ChangeState(newState: GameStates.runeWaiting);
 				}
 				break;
 
 			default:
+				Debug.LogWarning("null game state");
 				break;
-		}
-
-		//Change the state
-		if (_changeStateNecessary)
-		{
-			_changeStateNecessary = false;
-			ChangeState(_newState);
-		}
-		else { //Or continue checking on the state
-			switch (gameState)
-			{
-				case GameStates.drawMode:
-					bool drawing = inputManager.CheckDrawRune();
-					runeCreator.SetIsDrawing(drawing);
-					break;
-
-				case GameStates.selectMode:
-					bool selecting = inputManager.IsSelectingTarget();
-					objectSelector.SetIsSelecting(selecting);
-
-					break;
-
-				default:
-					break;
-			}
 		}
 	}
 
 
 	private void ChangeState(GameStates newState)
 	{
-		
-		switch (newState)
-		{
-			case GameStates.drawMode:
-				objectSelector.SetIsSelecting(false);
-				break;
+		OnExitState(currentState);
+		OnEnterState(newState);
+		currentState = newState;
 
-			case GameStates.selectMode:
-				runeCreator.SetIsDrawing(false);
-				break;
-
-			default:
-				break;
-		}
-
-		gameState = newState;
+		Debug.Log("Change state to: " + newState);
 
 	}
 
+	private void OnExitState(GameStates _currentState)
+	{
+		switch (_currentState)
+		{
+			case GameStates.inital:
+				break;
+			case GameStates.interactionWaiting:
+				break;
+			case GameStates.interactionDrawing:
+				break;
+			case GameStates.runeWaiting:
+				break;
+			case GameStates.runeDrawing:
+				break;
+			default:
+				break;
+		}
+	}
+
+	private void OnEnterState(GameStates _nextState)
+	{
+		switch (_nextState)
+		{
+			case GameStates.inital:
+				break;
+			case GameStates.interactionWaiting:
+				break;
+			case GameStates.interactionDrawing:
+				break;
+			case GameStates.runeWaiting:
+				break;
+			case GameStates.runeDrawing:
+				break;
+			default:
+				break;
+		}
+	}
+
+	#endregion
+
+	#region otherFunctions
+
+	private void UpdateShapesManager()
+	{
+		GameObject leftController;
+		GameObject righController;
+
+		inputManager.GetActiveControllers(InputManager.PlayerActions.draw, out leftController, out righController);
+
+		shapesManager.SetActiveController(leftController, righController);
+
+		shapesManager.GestureUpdate();
+	}
 
 	public Transform GetSelectedObject()
 	{
@@ -144,10 +192,6 @@ public class GameManager : MonoBehaviour
 		return leftHandIndex;
 	}
 
-
-	public void TryingToSelect() {
-
-	}
-
+	#endregion
 
 }

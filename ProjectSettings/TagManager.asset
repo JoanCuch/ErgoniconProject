@@ -4,14 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - LEFTHAND
-  - RIGHTHAND
   - HOVERPOINT
   - LEFTHANDINDEX
   - ENVIRONMENT
   - MinorRune_Atraction
   - MinorRune_String
   - MinorRune_Inverse
+  - STRINGMINORRUNE
+  - LeftHand
+  - RightHand
   layers:
   - Default
   - TransparentFX

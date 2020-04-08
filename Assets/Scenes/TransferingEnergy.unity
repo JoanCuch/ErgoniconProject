@@ -210,11 +210,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 144230, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_TagString
-      value: LEFTHAND
+      value: LeftHand
       objectReference: {fileID: 0}
     - target: {fileID: 160596, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_TagString
-      value: RIGHTHAND
+      value: RightHand
       objectReference: {fileID: 0}
     - target: {fileID: 165334, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_TagString
@@ -413,11 +413,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a0e98d1194d1c4881d316d50b49129, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starPrefab: {fileID: 4160627421305400185, guid: 8a971a90b8a215b43aff3fc71dd4b5ec,
-    type: 3}
   majorRunePrefab: {fileID: 865398363205789207, guid: 12957cbaba19a844cbd9607a74e328db,
     type: 3}
-  file_load_gestures: Assets/Gestures/minorRunes7.dat
 --- !u!4 &408531819 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6707313601647293276, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
@@ -618,12 +615,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110581002}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.39, y: 0, z: -2.64}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.7412553, y: 1.912684, z: 0.16278028}
   m_LocalScale: {x: 5, y: 50, z: 5}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 1386617354}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1110581007
 MonoBehaviour:
@@ -775,61 +772,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &1217030677
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1217030679}
-  - component: {fileID: 1217030678}
-  m_Layer: 0
-  m_Name: InputManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1217030678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1217030677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 492929460a53b33499df207eb0e4c0e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Click:
-    actionPath: /actions/default/in/InteractUI
-    needsReinit: 0
-  A:
-    actionPath: /actions/default/in/AClick
-    needsReinit: 0
-  B:
-    actionPath: /actions/default/in/BClick
-    needsReinit: 0
-  TouchPad:
-    actionPath: /actions/default/in/TrackpadTouchInput
-    needsReinit: 0
---- !u!4 &1217030679
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1217030677}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1224678004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -950,6 +892,7 @@ Transform:
   - {fileID: 408531819}
   - {fileID: 1992966719}
   - {fileID: 1547513836}
+  - {fileID: 1110581006}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -970,6 +913,8 @@ GameObject:
   - component: {fileID: 1649100141}
   - component: {fileID: 1649100140}
   - component: {fileID: 1649100139}
+  - component: {fileID: 1649100143}
+  - component: {fileID: 1649100142}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1007,6 +952,8 @@ MonoBehaviour:
     type: 3}
   prefabAtract: {fileID: 9015326284793306471, guid: 29f05716d79a1fc4e98953b83ee5d808,
     type: 3}
+  OpenRuneEditingModeShapeName: OpenHands
+  CloseRuneEditingModeShapeName: CloseHands
 --- !u!114 &1649100140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1020,9 +967,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runesIdealWorld: {fileID: 1649100139}
-  inputManager: {fileID: 1217030678}
+  inputManager: {fileID: 1649100142}
   runeCreator: {fileID: 392978691}
   objectSelector: {fileID: 392978689}
+  shapesManager: {fileID: 1649100143}
 --- !u!4 &1649100141
 Transform:
   m_ObjectHideFlags: 0
@@ -1037,6 +985,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1649100142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649100138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 492929460a53b33499df207eb0e4c0e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftControllerTag: LeftHand
+  rightControllerTag: RightHand
+  Click:
+    actionPath: /actions/default/in/InteractUI
+    needsReinit: 0
+  A:
+    actionPath: /actions/default/in/AClick
+    needsReinit: 0
+  B:
+    actionPath: /actions/default/in/BClick
+    needsReinit: 0
+  TouchPad:
+    actionPath: /actions/default/in/TrackpadTouchInput
+    needsReinit: 0
+--- !u!114 &1649100143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649100138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee3f5d89d5e29694898782908f17e17f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starPrefab: {fileID: 4160627421305400185, guid: 8a971a90b8a215b43aff3fc71dd4b5ec,
+    type: 3}
+  OneHandedGesturesPath: Assets/Gestures/minorRunes7.dat
+  TwoHandedGesturesPath: Assets/Gestures/handControls1.dat
 --- !u!1001 &1801540732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1191,6 +1181,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7208817863142941020, guid: 0ea2c7160addab441aa646d9e766da11,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7208817864192202152, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
       propertyPath: m_Name
@@ -1239,7 +1234,7 @@ PrefabInstance:
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
