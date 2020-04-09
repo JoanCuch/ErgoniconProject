@@ -34,11 +34,15 @@ using System.Runtime.InteropServices;
 using AOT;
 using UnityEngine.UI;
 using UnityEngine.XR;
+using Valve.VR;
 
 public class GestureManager : MonoBehaviour
 {
-    // Fields to be controlled by the editor:
-    public int numberOfParts = 2;
+
+	public SteamVR_Action_Boolean Click;
+
+	// Fields to be controlled by the editor:
+	public int numberOfParts = 2;
 
     public string file_load_combinations = "Assets/GestureRecognition/Sample_TwoHanded_Gestures.dat";
     public string file_load_subgestures = "Assets/GestureRecognition/Sample_TwoHanded_GesturesLeft.dat";
@@ -111,7 +115,8 @@ public class GestureManager : MonoBehaviour
                       + "Please use the Inspector for the XR rig.";
 
         me = GCHandle.Alloc(this);
-        
+
+		/*
         GameObject controller_oculus_left = GameObject.Find("controller_oculus_left");
         GameObject controller_oculus_right = GameObject.Find("controller_oculus_right");
         GameObject controller_vive_left = GameObject.Find("controller_vive_left");
@@ -121,7 +126,8 @@ public class GestureManager : MonoBehaviour
         GameObject controller_dummy_left = GameObject.Find("controller_dummy_left");
         GameObject controller_dummy_right = GameObject.Find("controller_dummy_right");
 
-        controller_oculus_left.SetActive(false);
+		
+		controller_oculus_left.SetActive(false);
         controller_oculus_right.SetActive(false);
         controller_vive_left.SetActive(false);
         controller_vive_right.SetActive(false);
@@ -129,8 +135,13 @@ public class GestureManager : MonoBehaviour
         controller_microsoft_right.SetActive(false);
         controller_dummy_left.SetActive(false);
         controller_dummy_right.SetActive(false);
+		*/
 
-        if (XRDevice.model.Length >= 6 && XRDevice.model.Substring(0, 6) == "Oculus")
+		GameObject controller_vive_left = GameObject.Find("LeftHand");
+		GameObject controller_vive_right = GameObject.Find("RightHand");
+
+		/*
+		if (XRDevice.model.Length >= 6 && XRDevice.model.Substring(0, 6) == "Oculus")
         {
             controller_oculus_left.SetActive(true);
             controller_oculus_right.SetActive(true);
@@ -148,8 +159,7 @@ public class GestureManager : MonoBehaviour
         {
             controller_dummy_left.SetActive(true);
             controller_dummy_right.SetActive(true);
-        }
-    }
+        }*/    }
 
 
     // Update:
@@ -175,6 +185,24 @@ public class GestureManager : MonoBehaviour
         float trigger_left = Input.GetAxis("LeftControllerTrigger");
         float trigger_right = Input.GetAxis("RightControllerTrigger");
 
+		if (Click[SteamVR_Input_Sources.LeftHand].state)
+		{
+			trigger_left = 1;
+		}
+		else
+		{
+			trigger_left = 0;
+		}
+
+		if (Click[SteamVR_Input_Sources.RightHand].state)
+		{
+			trigger_right = 1;
+		}
+		else
+		{
+			trigger_right = 0;
+		}
+
         // Single Gesture recognition / 1-handed operation
         if (this.gr != null)
         {
@@ -185,12 +213,12 @@ public class GestureManager : MonoBehaviour
                 if (trigger_right > 0.8)
                 {
                     // Right controller trigger pressed.
-                    active_controller = GameObject.Find("Right Hand");
+                    active_controller = GameObject.Find("RightHand");
                 }
                 else if (trigger_left > 0.8)
                 {
                     // Left controller trigger pressed.
-                    active_controller = GameObject.Find("Left Hand");
+                    active_controller = GameObject.Find("LeftHand");
                 }
                 else
                 {
@@ -199,7 +227,7 @@ public class GestureManager : MonoBehaviour
                     return;
                 }
                 // If we arrive here: either trigger was pressed, so we start the gesture.
-                GameObject hmd = GameObject.Find("Main Camera"); // alternative: Camera.main.gameObject
+                GameObject hmd = Camera.main.gameObject; // alternative: Camera.main.gameObject
                 Vector3 hmd_p = hmd.transform.localPosition;
                 Quaternion hmd_q = hmd.transform.localRotation;
                 gr.startStroke(hmd_p, hmd_q, record_gesture_id);
@@ -268,7 +296,7 @@ public class GestureManager : MonoBehaviour
             {
                 // Controller trigger pressed.
                 trigger_pressed_left = true;
-                GameObject hmd = GameObject.Find("Main Camera"); // alternative: Camera.main.gameObject
+                GameObject hmd = Camera.main.gameObject; // alternative: Camera.main.gameObject
                 Vector3 hmd_p = hmd.transform.localPosition;
                 Quaternion hmd_q = hmd.transform.localRotation;
                 int gesture_id = -1;
@@ -283,7 +311,7 @@ public class GestureManager : MonoBehaviour
             {
                 // Controller trigger pressed.
                 trigger_pressed_right = true;
-                GameObject hmd = GameObject.Find("Main Camera"); // alternative: Camera.main.gameObject
+				GameObject hmd = Camera.main.gameObject;// alternative: Camera.main.gameObject
                 Vector3 hmd_p = hmd.transform.localPosition;
                 Quaternion hmd_q = hmd.transform.localRotation;
                 int gesture_id = -1;
@@ -311,8 +339,8 @@ public class GestureManager : MonoBehaviour
                 }
                 else
                 {
-                    // User still dragging or still moving after trigger pressed
-                    GameObject left_hand = GameObject.Find("Left Hand");
+					// User still dragging or still moving after trigger pressed
+					GameObject left_hand = GameObject.Find("LeftHand");
                     gc.contdStrokeQ(lefthand_combination_part, left_hand.transform.position, left_hand.transform.rotation);
                     // Show the stroke by instatiating new objects
                     addToStrokeTrail(left_hand.transform.position);
@@ -330,7 +358,7 @@ public class GestureManager : MonoBehaviour
                 else
                 {
                     // User still dragging or still moving after trigger pressed
-                    GameObject right_hand = GameObject.Find("Right Hand");
+                    GameObject right_hand = GameObject.Find("RightHand");
                     gc.contdStrokeQ(righthand_combination_part, right_hand.transform.position, right_hand.transform.rotation);
                     // Show the stroke by instatiating new objects
                     addToStrokeTrail(right_hand.transform.position);

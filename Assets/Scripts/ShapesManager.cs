@@ -180,8 +180,8 @@ public class ShapesManager : MonoBehaviour
 			GameObject hmd = Camera.main.gameObject;
 			Vector3 hmd_p = hmd.transform.localPosition;
 			Quaternion hmd_q = hmd.transform.localRotation;
-			gestureCombinations.startStroke(0, hmd_p, hmd_q);
-			gestureCombinations.startStroke(1, hmd_p, hmd_q);
+			gestureCombinations.startStroke(0, hmd_p, hmd_q); //leff hand
+			gestureCombinations.startStroke(1, hmd_p, hmd_q); //right hand
 			gestureStarted = true;
 			oneHandedGesture = false;
 			Debug.Log("#### Start two-handed gesture");

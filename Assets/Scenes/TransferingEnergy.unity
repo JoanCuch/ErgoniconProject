@@ -1037,7 +1037,7 @@ MonoBehaviour:
   starPrefab: {fileID: 4160627421305400185, guid: 8a971a90b8a215b43aff3fc71dd4b5ec,
     type: 3}
   OneHandedGesturesPath: Assets/Gestures/minorRunes7.dat
-  TwoHandedGesturesPath: Assets/Gestures/handControls1.dat
+  TwoHandedGesturesPath: Assets/Gestures/handControls2.dat
 --- !u!1001 &1801540732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1048,6 +1048,10 @@ PrefabInstance:
     - target: {fileID: 153878, guid: 7a135b1a2cb9c8f488d4dd00c55ab283, type: 3}
       propertyPath: m_Name
       value: Teleporting
+      objectReference: {fileID: 0}
+    - target: {fileID: 153878, guid: 7a135b1a2cb9c8f488d4dd00c55ab283, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 475244, guid: 7a135b1a2cb9c8f488d4dd00c55ab283, type: 3}
       propertyPath: m_LocalPosition.x
