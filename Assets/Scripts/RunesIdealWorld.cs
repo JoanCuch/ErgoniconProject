@@ -20,7 +20,19 @@ public class RunesIdealWorld : MonoBehaviour
 	public string CloseRuneEditingModeShapeName;
 
 
-
+	public List<string> minorRunesNames = new List<string>
+	{
+		"basic",
+		"inverse",
+		"physicObject",
+		"ambient",
+		"direct",
+		"heat",
+		"force",
+		"gravitation",
+		"attraction"
+	};
+	public string failedGestureName = "fail";
 
 	public enum MinorRunesTypes
 	{
@@ -99,7 +111,7 @@ public class RunesIdealWorld : MonoBehaviour
 			Debug.LogWarning("Returning a null rune from the warehouse");
 		}
 
-		Debug.Log(runeName);
+		Debug.Log("Preparing a rune of type:" + runeName);
 
 		return runeToReturn;
 	}

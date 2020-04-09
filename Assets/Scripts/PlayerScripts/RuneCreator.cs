@@ -49,19 +49,23 @@ public class RuneCreator : MonoBehaviour
 	/// </summary>
 	public void CreateMinorRune(string runeName)
 	{		
-		//Debug.Log("Identified gesture " + gesture_name + "(" + gesture_id + ")\n(Similarity: " + similarity + ")");
+		//For a rune
+		if (targetMajorRune == null)
+		{
+			//If there is no targetobject from to get the rune, return
+			if(targetObject == null)
+			{
+				Debug.Log("No target selected");
+				return;
+			}
+			targetMajorRune = GetRuneFromTarget(targetObject, targetHit);		
+		}
 
 		//Getting the prefab of the minorRune to instantiate it
 		GameObject minorRunePrefab = runeIdealWorld.GetMinorRune(runeName);
 		GameObject newMinorRune = Instantiate(minorRunePrefab);
-		
-		//The minor rune has to be added to a major rune script.
-		if (targetMajorRune == null)
-		{
-			targetMajorRune = GetRuneFromTarget(targetObject, targetHit);
-		}
-
-		targetMajorRune.AddMinorRune(newMinorRune.transform);		
+		targetMajorRune.AddMinorRune(newMinorRune.transform);
+		Debug.Log("creating minor rune type of: " + runeName);
 	}
 
 	/// <summary>

@@ -954,6 +954,17 @@ MonoBehaviour:
     type: 3}
   OpenRuneEditingModeShapeName: OpenHands
   CloseRuneEditingModeShapeName: CloseHands
+  minorRunesNames:
+  - basic
+  - inverse
+  - physicObject
+  - ambient
+  - direct
+  - heat
+  - force
+  - gravitation
+  - attraction
+  failedGestureName: fail
 --- !u!114 &1649100140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1181,15 +1192,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7208817863142941018, guid: 0ea2c7160addab441aa646d9e766da11,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1172.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208817863142941018, guid: 0ea2c7160addab441aa646d9e766da11,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0027504014
+      objectReference: {fileID: 0}
     - target: {fileID: 7208817863142941020, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 20
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208817864121876295, guid: 0ea2c7160addab441aa646d9e766da11,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.3523915
       objectReference: {fileID: 0}
     - target: {fileID: 7208817864192202152, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
       propertyPath: m_Name
       value: SceneLog
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208817864192202153, guid: 0ea2c7160addab441aa646d9e766da11,
+        type: 3}
+      propertyPath: _maxLogCount
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7208817864192202196, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
@@ -1209,7 +1240,7 @@ PrefabInstance:
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.661
+      value: -0.759
       objectReference: {fileID: 0}
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
@@ -1259,12 +1290,12 @@ PrefabInstance:
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.048
+      value: 1.517
       objectReference: {fileID: 0}
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1
+      value: 1.0236
       objectReference: {fileID: 0}
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
@@ -1300,6 +1331,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.09255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.09255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.09255
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ea2c7160addab441aa646d9e766da11, type: 3}

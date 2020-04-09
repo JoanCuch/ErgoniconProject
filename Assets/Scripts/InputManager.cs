@@ -19,7 +19,7 @@ public class InputManager : MonoBehaviour
 	[SerializeField] private SteamVR_Action_Boolean TouchPad;
 
 
-	public enum PlayerActions { draw}
+	public enum PlayerActions { draw, select}
 
 	//Temp and hardcoded
 	private GameObject leftController;
@@ -52,11 +52,18 @@ public class InputManager : MonoBehaviour
 		{
 			case PlayerActions.draw:
 
-				if (Click[SteamVR_Input_Sources.LeftHand].stateDown)
+				if (Click[SteamVR_Input_Sources.LeftHand].state)
 				{
 					isDoingIt = true;
 				}
-				if (Click[SteamVR_Input_Sources.RightHand].stateDown)
+				if (Click[SteamVR_Input_Sources.RightHand].state)
+				{
+					isDoingIt = true;
+				}
+				break;
+
+			case PlayerActions.select:
+				if (TouchPad[SteamVR_Input_Sources.LeftHand].stateDown)
 				{
 					isDoingIt = true;
 				}
@@ -68,13 +75,12 @@ public class InputManager : MonoBehaviour
 		return isDoingIt;
 	}
 
-	public void GetActiveControllers(PlayerActions _action,out GameObject _leftController, out GameObject _rightController)
+	public (GameObject left, GameObject right) GetActiveControllers(PlayerActions _action)
 	{
 		if(leftController == null || rightController == null) { FindControllers(); }
 
-
-		_leftController = null;
-		_rightController = null;
+		GameObject _leftController = null;
+		GameObject _rightController = null;
 
 		switch (_action)
 		{
@@ -93,7 +99,9 @@ public class InputManager : MonoBehaviour
 
 			default:
 				break;
-		}		
+		}
+
+		return (_leftController, _rightController);
 	}
 
 	private void FindControllers()

@@ -6,18 +6,12 @@ public class ObjectSelector : MonoBehaviour
 {
 
 	private GameManager gameManager;
-	private RuneCreator runeCreator;
 	private Transform target;
-
-	private bool isSelecting;
-
 
     // Start is called before the first frame update
     void Start()
     {
 		gameManager = GameManager.gameManager;
-		runeCreator = gameManager.runeCreator;
-		isSelecting = false;
     }
 
     // Update is called once per frame
@@ -26,25 +20,10 @@ public class ObjectSelector : MonoBehaviour
 		if (gameManager == null)
 		{
 			gameManager = GameManager.gameManager;
-			runeCreator = gameManager.runeCreator;
-		}
-
-
-		if (isSelecting)
-		{
-			RaycastHit hit;
-			Transform _newTarget = SelectTarget(out hit);
-			if (_newTarget != null)
-			{
-				
-				runeCreator.SetTarget(_newTarget, hit);
-				Debug.Log("Detected object: " + _newTarget.name);
-			}
-			
-		}
+		}	
     }
 
-	public Transform SelectTarget(out RaycastHit externalHit)
+	public (Transform transform, RaycastHit hit) SelectTarget()
 	{
 		Transform hitObject = null;
 		Transform indexFinger = gameManager.GetHandIndex();
@@ -56,15 +35,10 @@ public class ObjectSelector : MonoBehaviour
 
 		if (Physics.Raycast(ray, out hit))
 		{
-			hitObject = hit.collider.transform;			
+			hitObject = hit.collider.transform;
+			Debug.Log("Detected object: " + hitObject.name);
 		}
 
-		externalHit = hit;
-
-		return hitObject;
-	}
-
-	public void SetIsSelecting(bool _newState) {
-		isSelecting = _newState;
+		return (hitObject, hit);
 	}
 }

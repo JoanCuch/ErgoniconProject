@@ -74,7 +74,6 @@ public class PhysicObject : EnergyInteractable
 		//The object has a max heat that can not give more light. The color lerp needs a color between 0 and 1
 		//float colorHeatNumber = Mathf.Clamp(GetHeat(), minHeat, maxHeat);
 		float colorHeatNumber = Mathf.InverseLerp(minHeat, maxHeat, GetHeat());
-		Debug.Log(colorHeatNumber);
 		Color newColor = Color.Lerp(minHeatColor, maxHeatColor, colorHeatNumber);
 
 		ownMaterial.SetColor("_EmissionColor", newColor);

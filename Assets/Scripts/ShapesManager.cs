@@ -17,6 +17,8 @@ public class ShapesManager : MonoBehaviour
 
 	//Variables that changes constantly
 
+	private RunesIdealWorld runesIdealWorld;
+
 	private GameObject leftActiveController;
 	private GameObject rightActiveController;
 	private GameObject oneHandedActiveController;
@@ -34,6 +36,9 @@ public class ShapesManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
+
+		runesIdealWorld = GameManager.gameManager.runesIdealWorld;
+
 		gestureStarted = false;
 
 		gestureRecognition = new GestureRecognition();
@@ -77,11 +82,13 @@ public class ShapesManager : MonoBehaviour
 					{
 						// Error trying to identify any gesture
 						Debug.LogWarning("Failed to identify gesture.");
+						lastShapeName = runesIdealWorld.failedGestureName;
 					}
 					else
 					{
 						//Geting the name of the identified rune.
 						lastShapeName = gestureRecognition.getGestureName(gestureId);
+						print("@@@@ finished one-handed gesture: " + lastShapeName);
 					}
 
 					foreach (string star in stroke)
@@ -113,12 +120,14 @@ public class ShapesManager : MonoBehaviour
 					if (itendifiedGestureCombo < 0)
 					{
 						// Error trying to identify any gesture
+						lastShapeName = runesIdealWorld.failedGestureName;
 						Debug.LogWarning("Failed to identify gesture.");
 					}
 					else
 					{
 						//Geting the name of the identified rune.
 						lastShapeName = gestureCombinations.getGestureCombinationName(itendifiedGestureCombo);
+						print("@@@@ finished two-handed: " + lastShapeName);
 					}
 
 					foreach (string star in stroke)
@@ -163,6 +172,7 @@ public class ShapesManager : MonoBehaviour
 			gestureRecognition.startStroke(hmd_p, hmd_q);
 			gestureStarted = true;
 			oneHandedGesture = true;
+			Debug.Log("#### Start one-handed gesture");
 		}
 		else
 		{
@@ -174,6 +184,8 @@ public class ShapesManager : MonoBehaviour
 			gestureCombinations.startStroke(1, hmd_p, hmd_q);
 			gestureStarted = true;
 			oneHandedGesture = false;
+			Debug.Log("#### Start two-handed gesture");
+
 		}
 	}
 
@@ -186,6 +198,25 @@ public class ShapesManager : MonoBehaviour
 
 	public void SetActiveController(GameObject _leftController, GameObject _rightController)
 	{
+		if (gestureStarted)
+		{
+			if (oneHandedGesture && (_leftController != null && _rightController != null))
+			{
+				//If the player is activating both controlers in a one-handed gesture. Restart
+				finishCurentGesture();
+			}
+			/*else if (!oneHandedGesture && (_leftController == null || _rightController == null))
+			{
+				//If the player is activating only one controler in a two-handed gesture. Restart
+				finishCurentGesture();
+			}*/
+		}
+
+
+		//##############
+
+
+
 		leftActiveController = _leftController;
 		rightActiveController = _rightController;
 
@@ -201,6 +232,23 @@ public class ShapesManager : MonoBehaviour
 		{
 			oneHandedActiveController = null;
 		}
+	}
+
+	private void finishCurentGesture()
+	{
+		print("hard reset gesture");
+		gestureCombinations.endStroke(0);
+		gestureCombinations.endStroke(1);
+		gestureRecognition.endStroke();
+
+		foreach (string star in stroke)
+		{
+			Destroy(GameObject.Find(star));
+			strokeIndex = 0;
+		}
+
+		gestureStarted = false;
+		lastShapeName = "restart";
 	}
 
 

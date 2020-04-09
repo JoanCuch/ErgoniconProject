@@ -40,6 +40,11 @@ public class InverseMinorRune : MinorRune
 		//If the condition is true, the energy flow direction will be from source to the target.
 		//If the condition is false, the energy flow direction will be from targe to source.
 
+		if (parentRune == null)
+		{
+			GetMajorRune();
+		}
+
 		EnergyInteractable basic = parentRune.GetAttachedRuneOfType(RuneTypes.basic);
 		EnergyInteractable complement = parentRune.GetAttachedRuneOfType(RuneTypes.complement);
 		EnergyInteractable source = parentRune.GetAttachedRuneOfType(RuneTypes.source);

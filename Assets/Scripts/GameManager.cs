@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
 
 	private void UpdateState()
 	{
+		string lastShape = null;
+
 		//Change to newState if necessary
 		switch (currentState)
 		{
@@ -46,18 +48,34 @@ public class GameManager : MonoBehaviour
 				if (inputManager.IsDoingAction(InputManager.PlayerActions.draw))
 				{
 					ChangeState(GameStates.interactionDrawing);
+				}
+				else if (inputManager.IsDoingAction(InputManager.PlayerActions.select))
+				{			
+					var newTarget = objectSelector.SelectTarget();
+					runeCreator.SetTarget(newTarget.transform, newTarget.hit);
 				}					
 				break;
 
 			case GameStates.interactionDrawing:
-				UpdateShapesManager();
 
-				if (shapesManager.GetLastShapeName() == null)
+				var activeControllers = inputManager.GetActiveControllers(InputManager.PlayerActions.draw);
+
+				if(activeControllers.left == null && activeControllers.right == null)
 				{
-					
+					//If there are no active controllers, there is no possible action
+					ChangeState(GameStates.interactionWaiting);
+				}
+
+				shapesManager.SetActiveController(activeControllers.left, activeControllers.right);
+				shapesManager.GestureUpdate();
+
+				lastShape = shapesManager.GetLastShapeName();
+
+				if (lastShape == null)
+				{	
 					//the rune is being drawn, do nothing
 				}
-				else if (shapesManager.GetLastShapeName() == runesIdealWorld.OpenRuneEditingModeShapeName)
+				else if (lastShape == runesIdealWorld.OpenRuneEditingModeShapeName)
 				{
 					//the player made the gesture to edit a rune
 					ChangeState(GameStates.runeWaiting);
@@ -77,20 +95,47 @@ public class GameManager : MonoBehaviour
 				break;
 
 			case GameStates.runeDrawing:
-				UpdateShapesManager();
 
-				if (shapesManager.GetLastShapeName() == null)
+				var activeController = inputManager.GetActiveControllers(InputManager.PlayerActions.draw);
+
+				if (activeController.left == null && activeController.right == null)
+				{
+					//If there are no active controllers, there is no possible action
+					ChangeState(GameStates.runeWaiting);
+				}
+
+				shapesManager.SetActiveController(activeController.left, activeController.right);
+				shapesManager.GestureUpdate();
+
+				lastShape = shapesManager.GetLastShapeName();
+
+				if (lastShape == null)
 				{
 					//the rune is being drawn		
 				}
-				else if (shapesManager.GetLastShapeName() == runesIdealWorld.CloseRuneEditingModeShapeName)
+				else if (lastShape == runesIdealWorld.CloseRuneEditingModeShapeName)
 				{
 					//the player made the gesture to close the rune editing
 					ChangeState(GameStates.interactionWaiting);
 				}
 				else
 				{
-					//The player ended drawing but not any shape he can use now. Return to wait for more shape input.
+					bool shapeIsMinorRune = false;
+
+					foreach (string s in runesIdealWorld.minorRunesNames)
+					{
+						if (s == lastShape)
+						{
+							shapeIsMinorRune = true;
+							Debug.Log("shape is minor rune");
+						}
+					}
+
+					if (shapeIsMinorRune)
+					{
+						runeCreator.CreateMinorRune(lastShape);
+					}
+				
 					ChangeState(newState: GameStates.runeWaiting);
 				}
 				break;
@@ -108,7 +153,7 @@ public class GameManager : MonoBehaviour
 		OnEnterState(newState);
 		currentState = newState;
 
-		Debug.Log("Change state to: " + newState);
+		Debug.Log(string.Format("<color=#{0:X2}{1:X2}{2:X2}>{3}</color>", (byte)(Color.green.r * 255f), (byte)(Color.green.g * 255f), (byte)(Color.green.b * 255f), "Change state: " + newState));
 
 	}
 
@@ -154,17 +199,7 @@ public class GameManager : MonoBehaviour
 
 	#region otherFunctions
 
-	private void UpdateShapesManager()
-	{
-		GameObject leftController;
-		GameObject righController;
 
-		inputManager.GetActiveControllers(InputManager.PlayerActions.draw, out leftController, out righController);
-
-		shapesManager.SetActiveController(leftController, righController);
-
-		shapesManager.GestureUpdate();
-	}
 
 	public Transform GetSelectedObject()
 	{
