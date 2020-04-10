@@ -1036,8 +1036,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starPrefab: {fileID: 4160627421305400185, guid: 8a971a90b8a215b43aff3fc71dd4b5ec,
     type: 3}
-  OneHandedGesturesPath: Assets/Gestures/minorRunes7.dat
-  TwoHandedGesturesPath: Assets/Gestures/handControls2.dat
+  OneHandedGesturesPath: Assets/Gestures/minorRunes10.dat
+  TwoHandedGesturesPath: Assets/Gestures/handControls3.dat
 --- !u!1001 &1801540732
 PrefabInstance:
   m_ObjectHideFlags: 0

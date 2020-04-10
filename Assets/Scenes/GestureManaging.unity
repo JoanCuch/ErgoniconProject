@@ -761,17 +761,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068049366}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.85}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalRotation: {x: -0, y: -0.2741678, z: -0, w: 0.9616819}
+  m_LocalPosition: {x: 0, y: 0, z: 2.06}
+  m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_Children:
   - {fileID: 751816630}
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -31.825, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.67, y: 0.8}
+  m_AnchoredPosition: {x: -0.3, y: 0.8}
   m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1110581002
@@ -1173,13 +1173,13 @@ MonoBehaviour:
   Click:
     actionPath: /actions/default/in/InteractUI
     needsReinit: 0
-  numberOfParts: 2
+  numberOfParts: 1
   file_load_combinations: Assets/Gestures/handControls2.dat
   file_load_subgestures: Assets/GestureRecognition/Sample_TwoHanded_GesturesLeft.dat
   file_load_subgestures_i: 0
-  file_load_gestures: Assets/GestureRecognition/Sample_OneHanded_Gestures.dat
+  file_load_gestures: Assets/Gestures/minorRunes10.dat
   file_save_combinations: Assets/Gestures/handControls3.dat
-  file_save_gestures: Assets/GestureRecognition/Sample_OneHanded_MyGestures.dat
+  file_save_gestures: Assets/Gestures/minorRunes10.dat
   create_combination_name: (new gesture combination name)
   create_gesture_name: (new gesture name)
   create_gesture_names:
@@ -1556,7 +1556,7 @@ PrefabInstance:
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.759
+      value: -2.57
       objectReference: {fileID: 0}
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
@@ -1566,7 +1566,7 @@ PrefabInstance:
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.70710677
+      value: -0.9048556
       objectReference: {fileID: 0}
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
@@ -1576,7 +1576,7 @@ PrefabInstance:
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071069
+      value: 0.42571867
       objectReference: {fileID: 0}
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
@@ -1591,7 +1591,7 @@ PrefabInstance:
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90.00001
+      value: -129.608
       objectReference: {fileID: 0}
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
@@ -1601,7 +1601,7 @@ PrefabInstance:
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.026
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 7208817864192202197, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
