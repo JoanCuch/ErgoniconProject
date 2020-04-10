@@ -29,8 +29,8 @@ public class RunesIdealWorld : MonoBehaviour
 		"direct",
 		"heat",
 		"force",
-		"gravitation",
-		"attraction"
+		"attraction",
+		"spring"
 	};
 	public string failedGestureName = "fail";
 
@@ -65,7 +65,7 @@ public class RunesIdealWorld : MonoBehaviour
 
 		switch (runeName)
 		{
-			case "base":
+			case "basic":
 				runeToReturn = prefabBase;
 				break;
 
@@ -73,7 +73,7 @@ public class RunesIdealWorld : MonoBehaviour
 				runeToReturn = prefabInverse;
 				break;
 
-			case "object":
+			case "physicObject":
 				runeToReturn = prefabObject;
 				break;
 

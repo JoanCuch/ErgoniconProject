@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
 						if (s == lastShape)
 						{
 							shapeIsMinorRune = true;
-							Debug.Log("shape is minor rune");
+							Debug.Log(lastShape +" is a minor rune shape");
 						}
 					}
 

@@ -49,7 +49,6 @@ public class RuneCreator : MonoBehaviour
 	/// </summary>
 	public void CreateMinorRune(string runeName)
 	{		
-		//For a rune
 		if (targetMajorRune == null)
 		{
 			//If there is no targetobject from to get the rune, return
@@ -63,6 +62,13 @@ public class RuneCreator : MonoBehaviour
 
 		//Getting the prefab of the minorRune to instantiate it
 		GameObject minorRunePrefab = runeIdealWorld.GetMinorRune(runeName);
+
+		if(minorRunePrefab == null)
+		{
+			Debug.Log("No rune prefab");
+			return;
+		}
+
 		GameObject newMinorRune = Instantiate(minorRunePrefab);
 		targetMajorRune.AddMinorRune(newMinorRune.transform);
 		Debug.Log("creating minor rune type of: " + runeName);
