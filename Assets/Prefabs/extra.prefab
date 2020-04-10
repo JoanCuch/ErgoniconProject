@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 967416855358514594}
   - component: {fileID: 6138992169224627121}
   m_Layer: 0
-  m_Name: direct
+  m_Name: extra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 73bac9b85d79bf14f813733fded8764f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0694a41b3a5bb534694d869e5f413b51, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,6 +97,6 @@ MonoBehaviour:
   energy: 0
   impulse: {x: 0, y: 0, z: 0}
   fatigue: 0
-  runeType: 0
+  runeType: 2
   parentMajorRune: {fileID: 0}
   energyFlowInput: 0

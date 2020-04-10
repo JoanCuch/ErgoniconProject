@@ -7,14 +7,20 @@ public class RunesIdealWorld : MonoBehaviour
 	//Plato <3
 
 	public GameObject prefabBase;
-	public GameObject prefabInverse;
-	public GameObject prefabObject;
+
+	public GameObject prefabPhysicalObject;
 	public GameObject prefabAmbient;
 	public GameObject prefabDirect;
+
+	public GameObject prefabExtra;
+	public GameObject prefabTwin;
+	public GameObject prefabInverse;
+	
 	public GameObject prefabHeat;
 	public GameObject prefabForce;
-	public GameObject prefabGravitational;
-	public GameObject prefabAtract;
+
+	//public GameObject prefabGravitational;
+	//public GameObject prefabAtract;
 
 	public string OpenRuneEditingModeShapeName;
 	public string CloseRuneEditingModeShapeName;
@@ -23,14 +29,14 @@ public class RunesIdealWorld : MonoBehaviour
 	public List<string> minorRunesNames = new List<string>
 	{
 		"basic",
-		"inverse",
-		"physicObject",
+		"physicalObject",
 		"ambient",
 		"direct",
+		"extra",
+		"twin",
+		"inverse",
 		"heat",
-		"force",
-		"attraction",
-		"spring"
+		"force"
 	};
 	public string failedGestureName = "fail";
 
@@ -38,13 +44,13 @@ public class RunesIdealWorld : MonoBehaviour
 	{
 		basic,
 		inverse,
-		physicObject,
+		physicalObject,
 		ambient,
 		direct,
+		extra,
+		twin,
 		heat,
-		force,
-		gravitation,
-		attraction
+		force
 	}
 
 	// Start is called before the first frame update
@@ -69,12 +75,8 @@ public class RunesIdealWorld : MonoBehaviour
 				runeToReturn = prefabBase;
 				break;
 
-			case "inverse":
-				runeToReturn = prefabInverse;
-				break;
-
-			case "physicObject":
-				runeToReturn = prefabObject;
+			case "physicalObject":
+				runeToReturn = prefabPhysicalObject;
 				break;
 
 			case "ambient":
@@ -85,20 +87,24 @@ public class RunesIdealWorld : MonoBehaviour
 				runeToReturn = prefabDirect;
 				break;
 
+			case "extra":
+				runeToReturn = prefabExtra;
+				break;
+
+			case "twin":
+				runeToReturn = prefabTwin;
+				break;
+
+			case "inverse":
+				runeToReturn = prefabInverse;
+				break;
+
 			case "heat":
 				runeToReturn = prefabHeat;
 				break;
 
 			case "force":
 				runeToReturn = prefabForce;
-				break;
-
-			case "attraction":
-				runeToReturn = prefabAtract;
-				break;
-
-			case "spring":
-				runeToReturn = prefabGravitational;
 				break;
 		
 			default:
@@ -126,12 +132,8 @@ public class RunesIdealWorld : MonoBehaviour
 				runeToReturn = prefabBase;
 				break;
 
-			case MinorRunesTypes.inverse:
-				runeToReturn = prefabInverse;
-				break;
-
-			case MinorRunesTypes.physicObject:
-				runeToReturn = prefabObject;
+			case MinorRunesTypes.physicalObject:
+				runeToReturn = prefabPhysicalObject;
 				break;
 
 			case MinorRunesTypes.ambient:
@@ -142,20 +144,24 @@ public class RunesIdealWorld : MonoBehaviour
 				runeToReturn = prefabDirect;
 				break;
 
+			case MinorRunesTypes.extra:
+				runeToReturn = prefabExtra;
+				break;
+
+			case MinorRunesTypes.twin:
+				runeToReturn = prefabTwin;
+				break;
+
+			case MinorRunesTypes.inverse:
+				runeToReturn = prefabExtra;
+				break;
+
 			case MinorRunesTypes.heat:
 				runeToReturn = prefabHeat;
 				break;
 
 			case MinorRunesTypes.force:
 				runeToReturn = prefabForce;
-				break;
-
-			case MinorRunesTypes.attraction:
-				runeToReturn = prefabAtract;
-				break;
-
-			case MinorRunesTypes.gravitation:
-				runeToReturn = prefabGravitational;
 				break;
 
 			default:

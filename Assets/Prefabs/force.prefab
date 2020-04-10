@@ -70,9 +70,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c5c5b686699a95c46b52392e0fe62a3c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b2da75eed644c82489dbd736b6b2b16e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.02, y: 1.76}
@@ -99,6 +99,7 @@ MonoBehaviour:
   fatigue: 0
   runeType: 1
   parentMajorRune: {fileID: 0}
+  energyFlowInput: 0
   sourceRune: {fileID: 0}
   target: {fileID: 0}
   energyFlow: 1
