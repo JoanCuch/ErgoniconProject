@@ -19,6 +19,8 @@ public class MajorRune : MonoBehaviour
 	[SerializeField] private Transform rightPoint;
 	[SerializeField] private float runeInterspace;
 
+
+	[SerializeField] private Transform startPos;
 	/*public enum RuneFunction
 	{
 		source,
@@ -181,6 +183,7 @@ public class MajorRune : MonoBehaviour
 
 
 		Vector3 startPosition = centerPoint.position - direction * (length / 2);
+		startPos.position = startPosition;
 
 		for (int i = 0; i < runesList.Count; i++)
 		{
@@ -188,10 +191,10 @@ public class MajorRune : MonoBehaviour
 			float runeWidth = rune.GetSpriteWidth();
 
 			rune.transform.rotation = this.transform.rotation;
-			rune.transform.position = startPosition + direction * (runeWidth);
-			startPosition = startPosition + direction * ((runeWidth) + runeInterspace);
 
-			Debug.Log(rune.name + " " + runeWidth);
+			rune.transform.position = startPosition + direction * (runeWidth/2);
+			startPosition = startPosition + direction * ((runeWidth) + runeInterspace);
+			startPos.position = startPosition;
 		}
 
 		//minorRune.position = runeParent.position;

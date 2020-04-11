@@ -31,16 +31,14 @@ public class MinorRune : EnergyInteractable
 	[SerializeField] [ReadOnly]protected MajorRune parentMajorRune;
 	[SerializeField] [ReadOnly] protected bool energyFlowInput;
 
-	private float spriteWith;
 	[SerializeField] private SpriteRenderer spriteRenderer;
 
+	private float spriteUnitsWidth = 0;
 
 	// Start is called before the first frame update
     protected virtual void Start()
     {
 		energyFlowInput = true;
-	
-		spriteWith = spriteRenderer.sprite.rect.width;
 	}
 
     // Update is called once per frame
@@ -84,13 +82,25 @@ public class MinorRune : EnergyInteractable
 		energyFlowInput = trueForInputEnergy;
 	}
 
+
+	private void SetSpriteWidth()
+	{
+		float spriteWith = spriteRenderer.sprite.bounds.size.x;
+		//loat pixelPerUni = spriteRenderer.sprite.pixelsPerUnit;
+		//float unitsWidth = spriteWith / pixelPerUni * transform.lossyScale.x;
+		spriteUnitsWidth = spriteWith * transform.localScale.x;
+
+		Debug.Log(this.name + " --> spriteWith: " + spriteUnitsWidth + ", localScale: " + transform.localScale.x);
+	}
+
+
 	public float GetSpriteWidth()
 	{
-		spriteWith = spriteRenderer.sprite.rect.width;
-		float pixelPerUni = spriteRenderer.sprite.pixelsPerUnit;
-		return spriteWith/pixelPerUni * transform.localScale.x;
+		if (spriteUnitsWidth == 0)
+			SetSpriteWidth();
+
+		return spriteUnitsWidth;
+
 	}
-	
-
-
 }
+
