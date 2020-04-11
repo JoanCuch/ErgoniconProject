@@ -98,7 +98,7 @@ MonoBehaviour:
   impulse: {x: 0, y: 0, z: 0}
   fatigue: 0
   runeClassification: 2
-  runeType: 4
+  runeType: 1
   parentMajorRune: {fileID: 0}
   energyFlowInput: 0
   spriteRenderer: {fileID: 6951955610738789047}

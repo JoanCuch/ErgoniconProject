@@ -14,7 +14,7 @@ public class RuneCreator : MonoBehaviour
 	
 	//OtherScripts
 	private GameManager gameManager;
-	private RunesIdealWorld runeIdealWorld;
+	private GlobalBlackboard runeIdealWorld;
 
 	//Gameobjects prefabs
 	public GameObject majorRunePrefab;

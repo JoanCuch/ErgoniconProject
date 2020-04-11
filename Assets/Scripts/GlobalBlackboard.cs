@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RunesIdealWorld : MonoBehaviour
+public class GlobalBlackboard : MonoBehaviour
 {
 	//Plato <3
 

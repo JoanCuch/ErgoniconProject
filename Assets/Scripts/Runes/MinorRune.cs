@@ -25,6 +25,7 @@ public class MinorRune : EnergyInteractable
 		heat,
 		force
 	}
+
 	[SerializeField]private RuneClassifications runeClassification;
 	[SerializeField] private RuneTypes runeType;
 

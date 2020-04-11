@@ -17,7 +17,7 @@ public class ShapesManager : MonoBehaviour
 
 	//Variables that changes constantly
 
-	private RunesIdealWorld runesIdealWorld;
+	private GlobalBlackboard runesIdealWorld;
 
 	private GameObject leftActiveController;
 	private GameObject rightActiveController;

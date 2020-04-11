@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 	//Singletone instance
 	public static GameManager gameManager;
 
-	public RunesIdealWorld runesIdealWorld;
+	public GlobalBlackboard runesIdealWorld;
 	public InputManager inputManager;
 	public RuneCreator runeCreator;
 	public ObjectSelector objectSelector;
