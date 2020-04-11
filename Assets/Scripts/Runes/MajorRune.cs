@@ -13,7 +13,7 @@ public class MajorRune : MonoBehaviour
 
 	[SerializeField] [ReadOnly] private EnergyInteractable attachedObject;
 
-	private List<RuneSorted> runesList;
+	private List<RuneSorted> runesList = new List<RuneSorted>();
 
 	[SerializeField] private Transform centerPoint;
 	[SerializeField] private Transform rightPoint;
@@ -40,14 +40,10 @@ public class MajorRune : MonoBehaviour
 	[SerializeField] private Transform basic; //Here can only be one child
 
 
-
-
 	// Start is called before the first frame update
 	void Start()
 	{
 		attachedObject = transform.parent.GetComponent<EnergyInteractable>();
-
-		runesList = new List<RuneSorted>();
 	}
 
 	// Update is called once per frame
@@ -64,6 +60,7 @@ public class MajorRune : MonoBehaviour
 	/// </summary>
 	public void AddMinorRune(Transform minorRune)
 	{
+		
 		RuneSorted newRune = new RuneSorted();
 
 		MinorRune minorRuneScript = minorRune.GetComponent<MinorRune>();
@@ -137,8 +134,11 @@ public class MajorRune : MonoBehaviour
 		}
 
 		//Adding the rune to the list and sorting it
-		if(runesList == null)
+		if (runesList == null)
+		{
+			Debug.LogWarning("instantiating the list again");
 			runesList = new List<RuneSorted>();
+		}
 
 		runesList.Add(newRune);
 		runesList.Sort((x, y) => x.priority.CompareTo(y.priority));
@@ -155,7 +155,7 @@ public class MajorRune : MonoBehaviour
 
 		//Givin the position to all the elements on the list.
 
-		Vector3 direction = (rightPoint.position - centerPoint.position).normalized;
+		Vector3 direction = -(rightPoint.position - centerPoint.position).normalized;
 
 		float length = 0;
 		foreach(RuneSorted sorted in runesList)
