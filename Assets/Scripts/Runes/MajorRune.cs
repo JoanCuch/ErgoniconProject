@@ -14,11 +14,12 @@ public class MajorRune : MonoBehaviour
 	[SerializeField] [ReadOnly] private EnergyInteractable attachedObject;
 
 	private List<RuneSorted> runesList = new List<RuneSorted>();
+	private Transform line;
 
 	[SerializeField] private Transform centerPoint;
 	[SerializeField] private Transform rightPoint;
 	[SerializeField] private float runeInterspace;
-
+	[SerializeField] private float extraLine;
 
 	[SerializeField] private Transform startPos;
 	/*public enum RuneFunction
@@ -45,7 +46,7 @@ public class MajorRune : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		attachedObject = transform.parent.GetComponent<EnergyInteractable>();
+		attachedObject = transform.parent.GetComponent<EnergyInteractable>();		
 	}
 
 	// Update is called once per frame
@@ -197,9 +198,25 @@ public class MajorRune : MonoBehaviour
 			startPos.position = startPosition;
 		}
 
+		//Update de line;
+		if(line == null)
+		{
+			line = Instantiate(GameManager.gameManager.runesIdealWorld.GetLinePrefab().transform, this.transform);
+		}
+
+		line.position = centerPoint.position;
+		line.rotation = this.transform.rotation;
+		line.localScale = new Vector3(length + extraLine, line.localScale.y, line.localScale.z);
+
+
+
 		//minorRune.position = runeParent.position;
 		//minorRune.rotation = runeParent.rotation;
 		minorRuneScript.SetMajorRune(this);
+
+
+
+
 
 		string temp = "";
 		foreach(RuneSorted sort in runesList)

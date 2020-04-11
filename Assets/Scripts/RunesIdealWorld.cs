@@ -19,6 +19,8 @@ public class RunesIdealWorld : MonoBehaviour
 	public GameObject prefabHeat;
 	public GameObject prefabForce;
 
+	public GameObject prefabLine;
+
 	//public GameObject prefabGravitational;
 	//public GameObject prefabAtract;
 
@@ -176,4 +178,9 @@ public class RunesIdealWorld : MonoBehaviour
 
 		return runeToReturn;
 	}
+	public GameObject GetLinePrefab()
+	{
+		return prefabLine;
+	}
+
 }
