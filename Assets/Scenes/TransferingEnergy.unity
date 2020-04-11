@@ -952,8 +952,11 @@ MonoBehaviour:
     type: 3}
   prefabForce: {fileID: 6796488033413302, guid: b3c83bc448ec1cd4f908623adfc1fa81,
     type: 3}
+  prefabLine: {fileID: 1991685691280994256, guid: 56680f5435b60184b9408f70ec6440aa,
+    type: 3}
   OpenRuneEditingModeShapeName: OpenHands
   CloseRuneEditingModeShapeName: CloseHands
+  DestroyRuneShapeName: DestroyRune
   minorRunesNames:
   - basic
   - physicalObject
@@ -977,7 +980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3080f7840b77034db5bcb629817a21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runesIdealWorld: {fileID: 1649100139}
+  globalBlackboard: {fileID: 1649100139}
   inputManager: {fileID: 1649100142}
   runeCreator: {fileID: 392978691}
   objectSelector: {fileID: 392978689}
@@ -1037,7 +1040,7 @@ MonoBehaviour:
   starPrefab: {fileID: 4160627421305400185, guid: 8a971a90b8a215b43aff3fc71dd4b5ec,
     type: 3}
   OneHandedGesturesPath: Assets/Gestures/minorRunes11.dat
-  TwoHandedGesturesPath: Assets/Gestures/handControls3.dat
+  TwoHandedGesturesPath: Assets/Gestures/handControls4.dat
 --- !u!1001 &1801540732
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 	//Singletone instance
 	public static GameManager gameManager;
 
-	public GlobalBlackboard runesIdealWorld;
+	public GlobalBlackboard globalBlackboard;
 	public InputManager inputManager;
 	public RuneCreator runeCreator;
 	public ObjectSelector objectSelector;
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
 	private void UpdateState()
 	{
-		string lastShape = null;
+		string currentShape = null;
 
 		//Change to newState if necessary
 		switch (currentState)
@@ -69,13 +69,13 @@ public class GameManager : MonoBehaviour
 				shapesManager.SetActiveController(activeControllers.left, activeControllers.right);
 				shapesManager.GestureUpdate();
 
-				lastShape = shapesManager.GetLastShapeName();
+				currentShape = shapesManager.GetCurrentShapeName();
 
-				if (lastShape == null)
+				if (currentShape == null)
 				{	
 					//the rune is being drawn, do nothing
 				}
-				else if (lastShape == runesIdealWorld.OpenRuneEditingModeShapeName)
+				else if (currentShape == globalBlackboard.OpenRuneEditingModeShapeName)
 				{
 					//the player made the gesture to edit a rune
 					ChangeState(GameStates.runeWaiting);
@@ -107,33 +107,39 @@ public class GameManager : MonoBehaviour
 				shapesManager.SetActiveController(activeController.left, activeController.right);
 				shapesManager.GestureUpdate();
 
-				lastShape = shapesManager.GetLastShapeName();
+				currentShape = shapesManager.GetCurrentShapeName();
 
-				if (lastShape == null)
+				if (currentShape == null)
 				{
 					//the rune is being drawn		
 				}
-				else if (lastShape == runesIdealWorld.CloseRuneEditingModeShapeName)
+				else if (currentShape == globalBlackboard.CloseRuneEditingModeShapeName)
 				{
 					//the player made the gesture to close the rune editing
 					ChangeState(GameStates.interactionWaiting);
+				}
+				else if (currentShape == globalBlackboard.DestroyRuneShapeName)
+				{
+					MajorRune targetRune = runeCreator.GetTargetRune();
+					targetRune.DestroyLastRuneDrawn();
+					ChangeState(GameStates.runeWaiting);
 				}
 				else
 				{
 					bool shapeIsMinorRune = false;
 
-					foreach (string s in runesIdealWorld.minorRunesNames)
+					foreach (string s in globalBlackboard.minorRunesNames)
 					{
-						if (s == lastShape)
+						if (s == currentShape)
 						{
 							shapeIsMinorRune = true;
-							Debug.Log(lastShape +" is a minor rune shape");
+							Debug.Log(currentShape +" is a minor rune shape");
 						}
 					}
 
 					if (shapeIsMinorRune)
 					{
-						runeCreator.CreateMinorRune(lastShape);
+						runeCreator.CreateMinorRune(currentShape);
 					}
 				
 					ChangeState(newState: GameStates.runeWaiting);

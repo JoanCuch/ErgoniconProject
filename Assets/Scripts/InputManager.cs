@@ -19,7 +19,10 @@ public class InputManager : MonoBehaviour
 	[SerializeField] private SteamVR_Action_Boolean TouchPad;
 
 
-	public enum PlayerActions { draw, select}
+	public enum PlayerActions {
+		draw,
+		select,
+	}
 
 	//Temp and hardcoded
 	private GameObject leftController;

@@ -17,7 +17,7 @@ public class ShapesManager : MonoBehaviour
 
 	//Variables that changes constantly
 
-	private GlobalBlackboard runesIdealWorld;
+	private GlobalBlackboard globalBlackboard;
 
 	private GameObject leftActiveController;
 	private GameObject rightActiveController;
@@ -29,7 +29,7 @@ public class ShapesManager : MonoBehaviour
 	private bool gestureStarted;
 	private bool oneHandedGesture;
 
-	private string lastShapeName;
+	private string currentShapeName;
 
 
 
@@ -37,7 +37,7 @@ public class ShapesManager : MonoBehaviour
 	void Start()
 	{
 
-		runesIdealWorld = GameManager.gameManager.runesIdealWorld;
+		globalBlackboard = GameManager.gameManager.globalBlackboard;
 
 		gestureStarted = false;
 
@@ -82,13 +82,13 @@ public class ShapesManager : MonoBehaviour
 					{
 						// Error trying to identify any gesture
 						Debug.LogWarning("Failed to identify gesture.");
-						lastShapeName = runesIdealWorld.failedGestureName;
+						currentShapeName = globalBlackboard.failedGestureName;
 					}
 					else
 					{
 						//Geting the name of the identified rune.
-						lastShapeName = gestureRecognition.getGestureName(gestureId);
-						print("@@@@ finished one-handed gesture: " + lastShapeName);
+						currentShapeName = gestureRecognition.getGestureName(gestureId);
+						print("@@@@ finished one-handed gesture: " + currentShapeName);
 					}
 
 					foreach (string star in stroke)
@@ -120,14 +120,14 @@ public class ShapesManager : MonoBehaviour
 					if (itendifiedGestureCombo < 0)
 					{
 						// Error trying to identify any gesture
-						lastShapeName = runesIdealWorld.failedGestureName;
+						currentShapeName = globalBlackboard.failedGestureName;
 						Debug.LogWarning("Failed to identify gesture.");
 					}
 					else
 					{
 						//Geting the name of the identified rune.
-						lastShapeName = gestureCombinations.getGestureCombinationName(itendifiedGestureCombo);
-						print("@@@@ finished two-handed: " + lastShapeName);
+						currentShapeName = gestureCombinations.getGestureCombinationName(itendifiedGestureCombo);
+						print("@@@@ finished two-handed: " + currentShapeName);
 					}
 
 					foreach (string star in stroke)
@@ -189,10 +189,10 @@ public class ShapesManager : MonoBehaviour
 		}
 	}
 
-	public string GetLastShapeName()
+	public string GetCurrentShapeName()
 	{
-		string name = lastShapeName;
-		lastShapeName = null;
+		string name = currentShapeName;
+		currentShapeName = null;
 		return name;
 	}
 
@@ -248,7 +248,7 @@ public class ShapesManager : MonoBehaviour
 		}
 
 		gestureStarted = false;
-		lastShapeName = "restart";
+		currentShapeName = "restart";
 	}
 
 
@@ -269,105 +269,5 @@ public class ShapesManager : MonoBehaviour
 		star.transform.localScale = new Vector3(star_scale, star_scale, star_scale);
 		stroke.Add(star.name);
 	}
-
-
-	//Deprecated
-
-	/*
-
-
-
-		public void setActiveController()
-		{
-
-		}
-
-
-
-
-		/// <summary>
-		/// If the player is drawing, manages from start to ending of the drawing and gets the name of the resulting shape.
-		/// </summary>
-		private void GestureRuneUpdate()
-		{
-			//Starting a rune
-			if (activeDrawingController == null)
-			{
-				//If there isn't any active controller, it means that the player isn't drawing anything
-				if (isDrawing)
-				{
-					//The draw trigger of the controller is active
-					activeDrawingController = inputManager.getDrawingController();
-				}
-				else
-				{
-					return;
-				}
-
-				//If we are here, a button has been pressed
-				GameObject hmd = Camera.main.gameObject;
-				Vector3 hmd_p = hmd.transform.localPosition;
-				Quaternion hmd_q = hmd.transform.localRotation;
-				gr.startStroke(hmd_p, hmd_q, recordGestureId);
-				return;
-			}
-
-			//Continuing the rune
-
-			if (isDrawing)
-			{
-				Vector3 p = activeDrawingController.transform.position;
-				Quaternion q = activeDrawingController.transform.rotation;
-				gr.contdStrokeQ(p, q);
-				addToStrokeTrail(p);
-				return;
-			}
-
-			//Finishing the rune
-
-			activeDrawingController = null;
-
-			foreach (string star in stroke)
-			{
-				Destroy(GameObject.Find(star));
-				stroke_index = 0;
-			}
-
-			double similarity = 0; // This will receive the similarity value (0~1)
-			Vector3 pos = Vector3.zero; // This will receive the position where the gesture was performed.
-			double scale = 0; // This will receive the scale at which the gesture was performed.
-			Vector3 dir0 = Vector3.zero; // This will receive the primary direction in which the gesture was performed (greatest expansion).
-			Vector3 dir1 = Vector3.zero; // This will receive the secondary direction of the gesture.
-			Vector3 dir2 = Vector3.zero; // This will receive the minor direction of the gesture (direction of smallest expansion).
-			int gesture_id = gr.endStroke(ref similarity, ref pos, ref scale, ref dir0, ref dir1, ref dir2);
-
-			if (recordGestureId >= 0)
-			{
-				Debug.Log("i dont know why I am here");
-				return;
-			}
-
-
-
-			if (gesture_id < 0)
-			{
-				// Error trying to identify any gesture
-				Debug.LogWarning("Failed to identify gesture.");
-			}
-			else
-			{
-				//Geting the name of the identified rune.
-				string gesture_name = gr.getGestureName(gesture_id);
-				CreateMinorRune(gesture_name);
-			}
-			return;
-		}
-
-
-
-
-		*/
-
-
 
 }

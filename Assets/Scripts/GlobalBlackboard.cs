@@ -26,6 +26,7 @@ public class GlobalBlackboard : MonoBehaviour
 
 	public string OpenRuneEditingModeShapeName;
 	public string CloseRuneEditingModeShapeName;
+	public string DestroyRuneShapeName;
 
 
 	public List<string> minorRunesNames = new List<string>

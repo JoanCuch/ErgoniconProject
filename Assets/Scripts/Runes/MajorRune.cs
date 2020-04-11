@@ -7,13 +7,18 @@ public class MajorRune : MonoBehaviour
 {
 	[SerializeField] [ReadOnly] private EnergyInteractable attachedObject;
 
-	private List<RuneSorted> runesList = new List<RuneSorted>();
-	private Transform line;
-
 	[SerializeField] private Transform centerPoint;
 	[SerializeField] private Transform rightPoint;
 	[SerializeField] private float runeInterspace;
 	[SerializeField] private float extraLine;
+
+	private List<RuneSorted> runesList = new List<RuneSorted>();
+	private Transform line;
+
+	private RuneSorted lastRuneDrawn;
+
+
+
 
 	void Start()
 	{
@@ -32,8 +37,8 @@ public class MajorRune : MonoBehaviour
 	/// Adds an already instantiated to the major rune.
 	/// </summary>
 	public void AddMinorRune(Transform minorRune)
-	{	
-		
+	{
+
 		MinorRune minorRuneScript = minorRune.GetComponent<MinorRune>();
 		MinorRune.RuneClassifications runeClassification = minorRuneScript.GetRuneClassification();
 		MinorRune.RuneTypes runeType = minorRuneScript.GetRuneType();
@@ -41,7 +46,6 @@ public class MajorRune : MonoBehaviour
 		//Creating the struct that will be used to save the rune.
 		RuneSorted newRune = new RuneSorted();
 		newRune.runeScript = minorRuneScript;
-
 
 		/*
 		 * CURRENT SORT PRIORITY ORDER OF MINOR RUNES
@@ -142,13 +146,21 @@ public class MajorRune : MonoBehaviour
 		minorRune.parent = this.gameObject.transform;
 
 		runesList.Add(newRune);
+		SortAndUpdateRunePositions();
+
+		//If everything went correct
+		lastRuneDrawn = newRune;
+	}
+
+	private void SortAndUpdateRunePositions()
+	{
 		runesList.Sort((x, y) => x.priority.CompareTo(y.priority));
 
 		//Givin the position to all the elements on the list.
 		Vector3 direction = -(rightPoint.position - centerPoint.position).normalized;
 
 		float length = 0;
-		foreach(RuneSorted sorted in runesList)
+		foreach (RuneSorted sorted in runesList)
 		{
 			length += sorted.runeScript.GetSpriteWidth();
 			length += runeInterspace;
@@ -164,22 +176,24 @@ public class MajorRune : MonoBehaviour
 
 			rune.transform.rotation = this.transform.rotation;
 
-			rune.transform.position = startPosition + direction * (runeWidth/2);
+			rune.transform.position = startPosition + direction * (runeWidth / 2);
 			startPosition = startPosition + direction * ((runeWidth) + runeInterspace);
 		}
 
 		//Update de line.
-		if(line == null)
+		if (line == null)
 		{
-			line = Instantiate(GameManager.gameManager.runesIdealWorld.GetLinePrefab().transform, this.transform);
+			line = Instantiate(GameManager.gameManager.globalBlackboard.GetLinePrefab().transform, this.transform);
 		}
+
+		float extra = extraLine;
+		if (length == 0)
+			extra = 0;
 
 		line.position = centerPoint.position;
 		line.rotation = this.transform.rotation;
-		line.localScale = new Vector3(length + extraLine, line.localScale.y, line.localScale.z);
+		line.localScale = new Vector3(length + extra, line.localScale.y, line.localScale.z);
 	}
-
-	
 
 	public MinorRune GetAttachedRuneOfType(MinorRune.RuneClassifications runeType)
 	{
@@ -202,10 +216,30 @@ public class MajorRune : MonoBehaviour
 		return attachedObject;
 	}
 
+	public void DestroyLastRuneDrawn()
+	{
+		if (lastRuneDrawn.isFake == false)
+		{
+			runesList.Remove(lastRuneDrawn);
+			Destroy(lastRuneDrawn.runeScript.gameObject);
+			SortAndUpdateRunePositions();
+			lastRuneDrawn = new RuneSorted();
+			lastRuneDrawn.isFake = true;
+		}
+	}
+
 }
 
-public struct RuneSorted
+
+
+public class RuneSorted
 {
 	public MinorRune runeScript;
 	public int priority;
+	public bool isFake;
+
+	public RuneSorted()
+	{
+		isFake = false;
+	}
 }

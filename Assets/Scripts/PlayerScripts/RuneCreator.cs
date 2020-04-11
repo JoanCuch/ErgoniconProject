@@ -28,7 +28,7 @@ public class RuneCreator : MonoBehaviour
 	void Start()
     {
 		gameManager = GameManager.gameManager;
-		runeIdealWorld = gameManager.runesIdealWorld;
+		runeIdealWorld = gameManager.globalBlackboard;
 
 		targetObject = null;
 		targetMajorRune = null;
@@ -114,6 +114,11 @@ public class RuneCreator : MonoBehaviour
 		targetObject = _newTarget;
 		targetHit = hit;
 		targetMajorRune = null;
+	}
+
+	public MajorRune GetTargetRune()
+	{
+		return targetMajorRune;
 	}
 
 
