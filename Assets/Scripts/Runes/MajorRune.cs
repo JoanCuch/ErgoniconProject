@@ -1,27 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class MajorRune : MonoBehaviour
 {
+	//[SerializeField] [ReadOnly] private MinorRune sourceRune;
+	//[SerializeField] [ReadOnly] private MinorRune transformationRune;
+	//[SerializeField] [ReadOnly] private MinorRune basicRune;
 
-	[SerializeField] private Transform source;
-	[SerializeField] private Transform transf;
-	[SerializeField] private Transform complement;
-	[SerializeField] private Transform basic;
-
-	[SerializeField] [ReadOnly] private MinorRune sourceRune;
-	[SerializeField] [ReadOnly] private MinorRune transformationRune;
-	[SerializeField] [ReadOnly] private MinorRune basicRune;
-
-	[SerializeField] [ReadOnly] private List<MinorRune> complementRunes;
+	//[SerializeField] [ReadOnly] private List<MinorRune> complementRunes;
 
 	[SerializeField] [ReadOnly] private EnergyInteractable attachedObject;
+
+	private List<RuneSorted> runesList;
+
+	[SerializeField] private Transform centerPoint;
+	[SerializeField] private Transform rightPoint;
+	[SerializeField] private float runeInterspace;
+
+	/*public enum RuneFunction
+	{
+		source,
+		sourceExtra,
+		inverse,
+		basic,
+		transformationExtra,
+		transformation,
+		twin
+	}
+
+	[SerializeField] private List<RuneFunction> runesPriority;*/
+
+
+	//The child objects of the rune. Perfect to get them in any moment
+	[SerializeField] private Transform source; //Here can only be one child
+	[SerializeField] private Transform transf; //Here can only be one child
+	[SerializeField] private Transform complement; //
+	[SerializeField] private Transform basic; //Here can only be one child
+
+
+
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		attachedObject = transform.parent.GetComponent<EnergyInteractable>();
+
+		runesList = new List<RuneSorted>();
 	}
 
 	// Update is called once per frame
@@ -38,57 +64,141 @@ public class MajorRune : MonoBehaviour
 	/// </summary>
 	public void AddMinorRune(Transform minorRune)
 	{
-		MinorRune minorRuneScript = minorRune.GetComponent<MinorRune>();
+		RuneSorted newRune = new RuneSorted();
 
+		MinorRune minorRuneScript = minorRune.GetComponent<MinorRune>();
+		newRune.runeScript = minorRuneScript;
+
+		MinorRune.RuneClassifications runeClassification = minorRuneScript.GetRuneClassification();
 		MinorRune.RuneTypes runeType = minorRuneScript.GetRuneType();
 
 		Transform runeParent = null;
 
-		switch (runeType)
+		//Transform runeParent = null;
+		/*
+		source, 0
+		sourceExtra, 1
+		inverse, 2
+		basic, 3
+		transformationExtra, 4
+		transformation, 5
+		twin 6
+		 */
+
+		switch (runeClassification)
 		{
-			case MinorRune.RuneTypes.source:
+			case MinorRune.RuneClassifications.source:
 				runeParent = source;
-				sourceRune = minorRuneScript;
+				newRune.priority = 0;
 				break;
 
-			case MinorRune.RuneTypes.transformation:
+			case MinorRune.RuneClassifications.transformation:
 				runeParent = transf;
-				transformationRune = minorRuneScript;
+				newRune.priority = 5;
 				break;
-			case MinorRune.RuneTypes.complement:
+			case MinorRune.RuneClassifications.complement:
 				runeParent = complement;
-				AddComplementRune(minorRuneScript);
+				newRune.priority = 1;
 				break;
 
-			case MinorRune.RuneTypes.basic:
+			case MinorRune.RuneClassifications.basic:
 				runeParent = basic;
-				basicRune = minorRuneScript;
+				newRune.priority = 3;
 				break;
 
 			default:
-				Debug.LogWarning("minor rune type not detected: " + runeType);
+				Debug.LogWarning("minor rune type not detected: " + runeClassification);
+				break;
+		}
+		switch (runeType)
+		{
+			case MinorRune.RuneTypes.basic:
+				break;
+			case MinorRune.RuneTypes.inverse:
+				newRune.priority = 2;
+				break;
+			case MinorRune.RuneTypes.physicalObject:
+				break;
+			case MinorRune.RuneTypes.ambient:
+				break;
+			case MinorRune.RuneTypes.direct:
+				break;
+			case MinorRune.RuneTypes.extra:
+				break;
+			case MinorRune.RuneTypes.twin:
+				newRune.priority = 6;
+				break;
+			case MinorRune.RuneTypes.heat:
+				break;
+			case MinorRune.RuneTypes.force:
+				break;
+			default:
 				break;
 		}
 
-		if (runeType != MinorRune.RuneTypes.complement)
+		//Adding the rune to the list and sorting it
+		if(runesList == null)
+			runesList = new List<RuneSorted>();
+
+		runesList.Add(newRune);
+		runesList.Sort((x, y) => x.priority.CompareTo(y.priority));
+
+		//Checking that can only be one source, transf and basic
+		if (runeClassification != MinorRune.RuneClassifications.complement)
 		{
 			foreach (Transform child in runeParent)
 			{
 				Destroy(child.gameObject);
 			}
 		}
-
 		minorRune.parent = runeParent;
-		minorRune.position = runeParent.position;
-		minorRune.rotation = runeParent.rotation;
+
+		//Givin the position to all the elements on the list.
+
+		Vector3 direction = (rightPoint.position - centerPoint.position).normalized;
+
+		float length = 0;
+		foreach(RuneSorted sorted in runesList)
+		{
+			length += sorted.runeScript.GetSpriteWidth();
+			length += runeInterspace;
+		}
+		length -= runeInterspace;
+
+
+		Vector3 startPosition = centerPoint.position - direction * (length / 2);
+
+		for (int i = 0; i < runesList.Count; i++)
+		{
+			MinorRune rune = runesList[i].runeScript;
+			float runeWidth = rune.GetSpriteWidth();
+
+			rune.transform.rotation = this.transform.rotation;
+			rune.transform.position = startPosition + direction * (runeWidth / 2);
+			startPosition = startPosition + direction * ((runeWidth / 2) + runeInterspace);
+		}
+
+		//minorRune.position = runeParent.position;
+		//minorRune.rotation = runeParent.rotation;
 		minorRuneScript.SetMajorRune(this);
+
+		string temp = "";
+		foreach(RuneSorted sort in runesList)
+		{
+			temp += sort.runeScript.name + " ";
+		}
+
+		Debug.Log("runesList: "+ temp);
 
 	}
 
-	public MinorRune GetAttachedRuneOfType(MinorRune.RuneTypes runeType)
+	
+
+	public MinorRune GetAttachedRuneOfType(MinorRune.RuneClassifications runeType)
 	{
 		MinorRune runeToReturn = null;
 
+		/*
 		switch (runeType)
 		{
 			case MinorRune.RuneTypes.source:
@@ -110,6 +220,13 @@ public class MajorRune : MonoBehaviour
 			default:
 				Debug.LogWarning("Error with selecting a rune type");
 				break;
+		}*/
+		foreach(RuneSorted rune in runesList)
+		{
+			if(rune.runeScript.GetRuneClassification()== runeType)
+			{
+				runeToReturn = rune.runeScript;
+			}
 		}
 
 		return runeToReturn;
@@ -120,7 +237,12 @@ public class MajorRune : MonoBehaviour
 		return attachedObject;
 	}
 
-	private void AddComplementRune(MinorRune minorRuneScript)
+
+
+
+
+
+	/*private void AddComplementRune(MinorRune minorRuneScript)
 	{
 		bool AlreadyExists = false;
 
@@ -137,9 +259,9 @@ public class MajorRune : MonoBehaviour
 		{
 			complementRunes.Add(minorRuneScript);
 		}
-	}
+	}*/
 
-	private MinorRune GetComplementRune()
+	/*private MinorRune GetComplementRune()
 	{
 		MinorRune inverseRune = null;
 		
@@ -151,9 +273,9 @@ public class MajorRune : MonoBehaviour
 			}
 		}
 		return inverseRune;
-	}
+	}*/
 
-	public bool CheckComplementRuneIsTypeOf(RunesIdealWorld.MinorRunesTypes type)
+	/*public bool CheckComplementRuneIsTypeOf(RunesIdealWorld.MinorRunesTypes type)
 	{	
 		string tagToCheck = GameManager.gameManager.runesIdealWorld.GetMinorRune(type).tag;
 		bool toReturn = false;
@@ -167,6 +289,12 @@ public class MajorRune : MonoBehaviour
 		}
 
 		return toReturn;
-	}
+	}*/
 
+}
+
+public struct RuneSorted
+{
+	public MinorRune runeScript;
+	public int priority;
 }

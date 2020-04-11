@@ -41,7 +41,7 @@ public class ForceMinorRune : MinorRune
 		//Get the energy from the source and add it to himself
 		if (sourceRune == null)
 		{
-			sourceRune = parentMajorRune.GetAttachedRuneOfType(RuneTypes.source);
+			sourceRune = parentMajorRune.GetAttachedRuneOfType(RuneClassifications.source);
 		}
 		else
 		{

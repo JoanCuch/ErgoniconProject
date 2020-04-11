@@ -5,11 +5,33 @@ using UnityEngine;
 public class MinorRune : EnergyInteractable
 {
 
-	public enum RuneTypes { source, transformation, complement, basic}
-	[SerializeField]private RuneTypes runeType;
+	public enum RuneClassifications
+	{
+		source,
+		transformation,
+		complement,
+		basic
+	}
+
+	public enum RuneTypes
+	{
+		basic,
+		inverse,
+		physicalObject,
+		ambient,
+		direct,
+		extra,
+		twin,
+		heat,
+		force
+	}
+	[SerializeField]private RuneClassifications runeClassification;
+	[SerializeField] private RuneTypes runeType;
 
 	[SerializeField] [ReadOnly]protected MajorRune parentMajorRune;
 	[SerializeField] [ReadOnly] protected bool energyFlowInput;
+
+	private float spriteWith;
 
 
 
@@ -17,6 +39,7 @@ public class MinorRune : EnergyInteractable
     protected virtual void Start()
     {
 		energyFlowInput = true;
+		spriteWith = GetComponent<SpriteRenderer>().bounds.size.x;
 	}
 
     // Update is called once per frame
@@ -35,10 +58,15 @@ public class MinorRune : EnergyInteractable
 		Debug.LogWarning("This minor rune is doing nothing");
 	}
 
+	public RuneClassifications GetRuneClassification()
+	{
+		return runeClassification;
+	}
 	public RuneTypes GetRuneType()
 	{
 		return runeType;
 	}
+
 
 	public void SetMajorRune(MajorRune newParent)
 	{
@@ -55,6 +83,10 @@ public class MinorRune : EnergyInteractable
 		energyFlowInput = trueForInputEnergy;
 	}
 
+	public float GetSpriteWidth()
+	{
+		return spriteWith;
+	}
 	
 
 

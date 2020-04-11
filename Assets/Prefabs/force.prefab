@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b2da75eed644c82489dbd736b6b2b16e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 136a935f0d408fa49a52f47d31a83cc9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -97,7 +97,8 @@ MonoBehaviour:
   energy: 0
   impulse: {x: 0, y: 0, z: 0}
   fatigue: 0
-  runeType: 1
+  runeClassification: 1
+  runeType: 8
   parentMajorRune: {fileID: 0}
   energyFlowInput: 0
   sourceRune: {fileID: 0}
