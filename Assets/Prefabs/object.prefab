@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 8758175775533306495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -101,5 +101,6 @@ MonoBehaviour:
   runeType: 2
   parentMajorRune: {fileID: 0}
   energyFlowInput: 0
+  spriteRenderer: {fileID: 420113958147652164}
   source: {fileID: 0}
   energyFlow: 1

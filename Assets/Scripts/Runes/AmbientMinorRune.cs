@@ -80,11 +80,6 @@ public class AmbientMinorRune : MinorRune
 			}
 		}
 
-		if (envi == null)
-		{
-			Debug.LogWarning("Error 404: Environment not found");
-		}
-
 		return envi;
 	}
 }

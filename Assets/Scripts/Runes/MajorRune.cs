@@ -133,25 +133,39 @@ public class MajorRune : MonoBehaviour
 				break;
 		}
 
+
 		//Adding the rune to the list and sorting it
 		if (runesList == null)
 		{
 			Debug.LogWarning("instantiating the list again");
 			runesList = new List<RuneSorted>();
 		}
-
-		runesList.Add(newRune);
-		runesList.Sort((x, y) => x.priority.CompareTo(y.priority));
-
+		
 		//Checking that can only be one source, transf and basic
-		if (runeClassification != MinorRune.RuneClassifications.complement)
+		if (runeClassification != MinorRune.RuneClassifications.complement ||
+			runeType == MinorRune.RuneTypes.inverse ||
+			runeType == MinorRune.RuneTypes.twin)
 		{
 			foreach (Transform child in runeParent)
 			{
+				foreach (RuneSorted sort in runesList)
+				{
+					if (sort.runeScript.gameObject == child.gameObject)
+					{
+						runesList.Remove(sort);
+						break;
+					}
+				}
 				Destroy(child.gameObject);
 			}
 		}
 		minorRune.parent = runeParent;
+
+
+		
+
+		runesList.Add(newRune);
+		runesList.Sort((x, y) => x.priority.CompareTo(y.priority));
 
 		//Givin the position to all the elements on the list.
 
@@ -174,8 +188,10 @@ public class MajorRune : MonoBehaviour
 			float runeWidth = rune.GetSpriteWidth();
 
 			rune.transform.rotation = this.transform.rotation;
-			rune.transform.position = startPosition + direction * (runeWidth / 2);
-			startPosition = startPosition + direction * ((runeWidth / 2) + runeInterspace);
+			rune.transform.position = startPosition + direction * (runeWidth);
+			startPosition = startPosition + direction * ((runeWidth) + runeInterspace);
+
+			Debug.Log(rune.name + " " + runeWidth);
 		}
 
 		//minorRune.position = runeParent.position;

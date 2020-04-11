@@ -32,14 +32,15 @@ public class MinorRune : EnergyInteractable
 	[SerializeField] [ReadOnly] protected bool energyFlowInput;
 
 	private float spriteWith;
-
+	[SerializeField] private SpriteRenderer spriteRenderer;
 
 
 	// Start is called before the first frame update
     protected virtual void Start()
     {
 		energyFlowInput = true;
-		spriteWith = GetComponent<SpriteRenderer>().bounds.size.x;
+	
+		spriteWith = spriteRenderer.sprite.rect.width;
 	}
 
     // Update is called once per frame
@@ -85,7 +86,9 @@ public class MinorRune : EnergyInteractable
 
 	public float GetSpriteWidth()
 	{
-		return spriteWith;
+		spriteWith = spriteRenderer.sprite.rect.width;
+		float pixelPerUni = spriteRenderer.sprite.pixelsPerUnit;
+		return spriteWith/pixelPerUni * transform.localScale.x;
 	}
 	
 

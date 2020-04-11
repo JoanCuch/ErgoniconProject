@@ -173,7 +173,7 @@ MonoBehaviour:
   attachedObject: {fileID: 0}
   centerPoint: {fileID: 4045609052363818673}
   rightPoint: {fileID: 6346469359044382982}
-  runeInterspace: 0.05
+  runeInterspace: 0
   source: {fileID: 865398362504447875}
   transf: {fileID: 865398362718669402}
   complement: {fileID: 865398361643240985}
