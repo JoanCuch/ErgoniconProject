@@ -10,13 +10,15 @@ public class InputManager : MonoBehaviour
 	private GameManager gameManager;
 
 
-	[SerializeField] private string leftControllerTag;
-	[SerializeField] private string rightControllerTag;
+	[TagSelector] [SerializeField] private string leftControllerTag;
+	[TagSelector] [SerializeField] private string rightControllerTag;
+	[TagSelector] [SerializeField] private string leftIndexFingerTag;
+	[TagSelector] [SerializeField] private string rightIndexFingerTag;
 
-	[SerializeField] private SteamVR_Action_Boolean Click;
-	[SerializeField] private SteamVR_Action_Boolean A;
-	[SerializeField] private SteamVR_Action_Boolean B;
-	[SerializeField] private SteamVR_Action_Boolean TouchPad;
+	[SerializeField] private SteamVR_Action_Boolean DrawAction;
+	//[SerializeField] private SteamVR_Action_Boolean A;
+	//[SerializeField] private SteamVR_Action_Boolean B;
+	[SerializeField] private SteamVR_Action_Boolean SelectAction;
 
 
 	public enum PlayerActions {
@@ -27,6 +29,8 @@ public class InputManager : MonoBehaviour
 	//Temp and hardcoded
 	private GameObject leftController;
 	private GameObject rightController;
+	private GameObject leftIndexFinger;
+	private GameObject rightIndexFinger;
 
 	// Start is called before the first frame update
 	void Start()
@@ -55,18 +59,19 @@ public class InputManager : MonoBehaviour
 		{
 			case PlayerActions.draw:
 
-				if (Click[SteamVR_Input_Sources.LeftHand].state)
+				if (DrawAction[SteamVR_Input_Sources.LeftHand].state)
 				{
 					isDoingIt = true;
 				}
-				if (Click[SteamVR_Input_Sources.RightHand].state)
+				if (DrawAction[SteamVR_Input_Sources.RightHand].state)
 				{
 					isDoingIt = true;
 				}
 				break;
 
 			case PlayerActions.select:
-				if (TouchPad[SteamVR_Input_Sources.LeftHand].stateDown)
+				if (SelectAction[SteamVR_Input_Sources.LeftHand].stateDown ||
+					SelectAction[SteamVR_Input_Sources.RightHand].stateDown)
 				{
 					isDoingIt = true;
 				}
@@ -80,8 +85,6 @@ public class InputManager : MonoBehaviour
 
 	public (GameObject left, GameObject right) GetActiveControllers(PlayerActions _action)
 	{
-		if(leftController == null || rightController == null) { FindControllers(); }
-
 		GameObject _leftController = null;
 		GameObject _rightController = null;
 
@@ -89,20 +92,48 @@ public class InputManager : MonoBehaviour
 		{
 			case PlayerActions.draw:
 
-				if (Click[SteamVR_Input_Sources.LeftHand].state)
+				if (leftController == null || rightController == null)
+				{
+					FindControllers();
+				}
+
+				if (DrawAction[SteamVR_Input_Sources.LeftHand].state)
 				{
 					_leftController = leftController;
 				}
 
-				if (Click[SteamVR_Input_Sources.RightHand].state)
+				if (DrawAction[SteamVR_Input_Sources.RightHand].state)
 				{
 					_rightController = rightController;
+				}
+				break;
+
+			case PlayerActions.select:
+
+				if(leftIndexFinger == null || rightIndexFinger == null)
+				{
+					FindIndexFingers();
+					Debug.Log(leftIndexFinger + " " + rightIndexFinger);
+				}
+
+
+				if (SelectAction[SteamVR_Input_Sources.LeftHand].state)
+				{
+					_leftController = leftIndexFinger;
+				}
+
+				if (SelectAction[SteamVR_Input_Sources.RightHand].state)
+				{
+					_rightController = rightIndexFinger;
 				}
 				break;
 
 			default:
 				break;
 		}
+
+		if (_leftController == null && _rightController == null)
+			Debug.LogWarning("Returning null both controllers from inputManager");
 
 		return (_leftController, _rightController);
 	}
@@ -111,10 +142,12 @@ public class InputManager : MonoBehaviour
 	{
 		leftController = GameObject.FindGameObjectWithTag(leftControllerTag);
 		rightController = GameObject.FindGameObjectWithTag(rightControllerTag);
+	}
 
-		Debug.Log("searching for controllers: " + leftController + " " + rightController);
-
-
+	private void FindIndexFingers()
+	{
+		leftIndexFinger = GameObject.FindGameObjectWithTag(leftIndexFingerTag);
+		rightIndexFinger = GameObject.FindGameObjectWithTag(rightIndexFingerTag);
 	}
 
 

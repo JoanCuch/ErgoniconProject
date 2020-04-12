@@ -50,8 +50,12 @@ public class GameManager : MonoBehaviour
 					ChangeState(GameStates.interactionDrawing);
 				}
 				else if (inputManager.IsDoingAction(InputManager.PlayerActions.select))
-				{			
-					var newTarget = objectSelector.SelectTarget();
+				{
+					//Getting the controllers that are activating the correct input and setting the target.
+					var fingers = inputManager.GetActiveControllers(InputManager.PlayerActions.select);
+					GameObject finger = fingers.left == null ? fingers.right : fingers.left;
+
+					var newTarget = objectSelector.SelectTarget(finger);
 					runeCreator.SetTarget(newTarget.transform, newTarget.hit);
 				}					
 				break;

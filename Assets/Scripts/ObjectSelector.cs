@@ -4,34 +4,36 @@ using UnityEngine;
 
 public class ObjectSelector : MonoBehaviour
 {
-
-	private GameManager gameManager;
 	private Transform target;
 
-    // Start is called before the first frame update
-    void Start()
+	[TagSelector] [SerializeField] private string leftIndexFingerTag;
+	// Start is called before the first frame update
+	void Start()
     {
-		gameManager = GameManager.gameManager;
     }
 
     // Update is called once per frame
     void Update()
-    {
-		if (gameManager == null)
-		{
-			gameManager = GameManager.gameManager;
-		}	
+    {	
     }
 
-	public (Transform transform, RaycastHit hit) SelectTarget()
+	public (Transform transform, RaycastHit hit) SelectTarget(GameObject _indexFinger)
 	{
 		Transform hitObject = null;
-		Transform indexFinger = gameManager.GetHandIndex();
+		Transform indexFinger = _indexFinger.transform;
 
 		RaycastHit hit;
 		Ray ray;
 
-		ray = new Ray(indexFinger.position, Vector3.Normalize(-indexFinger.right));
+
+		Vector3 direction = indexFinger.right;
+
+		if (_indexFinger.tag == leftIndexFingerTag) direction *= -1;
+
+		ray = new Ray(indexFinger.position, Vector3.Normalize(direction));
+
+		
+
 
 		if (Physics.Raycast(ray, out hit))
 		{
