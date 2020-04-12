@@ -24,5 +24,10 @@ public class ExtraMinorRune : MinorRune
 		targetClassifications = _classification;
 	}
 
+	public RuneClassifications GetTargetClassification()
+	{
+		return targetClassifications;
+	}
+
 
 }

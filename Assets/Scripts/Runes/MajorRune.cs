@@ -90,6 +90,21 @@ public class MajorRune : MonoBehaviour
 			case MinorRune.RuneTypes.direct:
 				break;
 			case MinorRune.RuneTypes.extra:
+				ExtraMinorRune extraScript = (ExtraMinorRune)newRune.runeScript;
+				if(extraScript.GetTargetClassification() == MinorRune.RuneClassifications.source)
+				{
+					Debug.Log("extra source rune");
+					newRune.priority = 1;
+				}
+				else if (extraScript.GetTargetClassification() == MinorRune.RuneClassifications.transformation)
+				{
+					Debug.Log("extra transformation rune");
+					newRune.priority = 4;
+				}
+				else
+				{
+					Debug.LogWarning("extra rune with no priority");
+				}
 				break;
 			case MinorRune.RuneTypes.twin:
 				newRune.priority = 6;

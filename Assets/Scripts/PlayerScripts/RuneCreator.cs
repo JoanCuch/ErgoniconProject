@@ -96,8 +96,9 @@ public class RuneCreator : MonoBehaviour
 			//Instantiate last rune
 			GameObject extraRunePrefab = globalBlackboard.GetMinorRune(GlobalBlackboard.MinorRunesTypes.extra);
 			GameObject extraRune = Instantiate(extraRunePrefab);
-			extraRunePrefab.GetComponent<ExtraMinorRune>().SetTargetClassification(currentRuneClassification);
-			targetMajorRune.AddMinorRune(extraRunePrefab.transform);
+
+			extraRune.GetComponent<ExtraMinorRune>().SetTargetClassification(currentRuneClassification);
+			targetMajorRune.AddMinorRune(extraRune.transform);
 			lastRune = null;
 			Debug.Log("creating extra minor rune");
 		}
