@@ -69,6 +69,12 @@ public class RuneCreator : MonoBehaviour
 			return;
 		}
 
+
+
+
+
+
+
 		GameObject newMinorRune = Instantiate(minorRunePrefab);
 		targetMajorRune.AddMinorRune(newMinorRune.transform);
 		Debug.Log("creating minor rune type of: " + runeName);

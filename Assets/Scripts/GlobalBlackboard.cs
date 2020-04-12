@@ -20,6 +20,7 @@ public class GlobalBlackboard : MonoBehaviour
 	public GameObject prefabForce;
 
 	public GameObject prefabLine;
+	public GameObject prefabDestroy;
 
 	//public GameObject prefabGravitational;
 	//public GameObject prefabAtract;
@@ -39,7 +40,8 @@ public class GlobalBlackboard : MonoBehaviour
 		"twin",
 		"inverse",
 		"heat",
-		"force"
+		"force",
+		"destroy"
 	};
 	public string failedGestureName = "fail";
 
@@ -53,7 +55,8 @@ public class GlobalBlackboard : MonoBehaviour
 		extra,
 		twin,
 		heat,
-		force
+		force,
+		destroy
 	}
 
 	// Start is called before the first frame update
@@ -109,6 +112,10 @@ public class GlobalBlackboard : MonoBehaviour
 			case "force":
 				runeToReturn = prefabForce;
 				break;
+
+			case "destroy":
+				runeToReturn = prefabDestroy;
+				break;
 		
 			default:
 				Debug.LogWarning("Couldn't find the minor rune: " + runeName);
@@ -117,10 +124,10 @@ public class GlobalBlackboard : MonoBehaviour
 
 		if (runeToReturn == null)
 		{
-			Debug.LogWarning("Returning a null rune from the warehouse");
+			Debug.LogWarning("Returning a null rune from the globalBlackboard");
 		}
 
-		Debug.Log("Preparing a rune of type:" + runeName);
+		Debug.Log("Blackboard is returning a rune type of:" + runeName);
 
 		return runeToReturn;
 	}
@@ -165,6 +172,10 @@ public class GlobalBlackboard : MonoBehaviour
 
 			case MinorRunesTypes.force:
 				runeToReturn = prefabForce;
+				break;
+
+			case MinorRunesTypes.destroy:
+				runeToReturn = prefabDestroy;
 				break;
 
 			default:

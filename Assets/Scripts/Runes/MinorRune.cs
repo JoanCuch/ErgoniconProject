@@ -10,7 +10,8 @@ public class MinorRune : EnergyInteractable
 		source,
 		transformation,
 		complement,
-		basic
+		basic,
+		noRune
 	}
 
 	public enum RuneTypes
@@ -23,7 +24,8 @@ public class MinorRune : EnergyInteractable
 		extra,
 		twin,
 		heat,
-		force
+		force,
+		destroy
 	}
 
 	[SerializeField]private RuneClassifications runeClassification;

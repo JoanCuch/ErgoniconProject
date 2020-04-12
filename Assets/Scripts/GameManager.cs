@@ -118,14 +118,9 @@ public class GameManager : MonoBehaviour
 					//the player made the gesture to close the rune editing
 					ChangeState(GameStates.interactionWaiting);
 				}
-				else if (currentShape == globalBlackboard.DestroyRuneShapeName)
-				{
-					MajorRune targetRune = runeCreator.GetTargetRune();
-					targetRune.DestroyLastRuneDrawn();
-					ChangeState(GameStates.runeWaiting);
-				}
 				else
 				{
+					Debug.Log("searching rune");
 					bool shapeIsMinorRune = false;
 
 					foreach (string s in globalBlackboard.minorRunesNames)
