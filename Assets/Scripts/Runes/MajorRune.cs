@@ -15,12 +15,6 @@ public class MajorRune : MonoBehaviour
 	private List<RuneSorted> runesList = new List<RuneSorted>();
 	private Transform line;
 
-	private RuneSorted lastRuneDrawn;
-
-
-
-
-
 	void Start()
 	{
 		attachedObject = transform.parent.GetComponent<EnergyInteractable>();		
@@ -47,29 +41,6 @@ public class MajorRune : MonoBehaviour
 		//Creating the struct that will be used to save the rune.
 		RuneSorted newRune = new RuneSorted();
 		newRune.runeScript = minorRuneScript;
-
-
-
-		//Special cases: DestroyRune
-		if(lastRuneDrawn == null)
-		{
-			lastRuneDrawn = new RuneSorted();
-		}
-
-		if (runeType == MinorRune.RuneTypes.destroy)
-		{
-			//If is a destroyRune, save it.
-			lastRuneDrawn = newRune;
-			return;
-		}
-
-		if(lastRuneDrawn.runeScript!= null && lastRuneDrawn.runeScript.GetRuneType() == MinorRune.RuneTypes.destroy)
-		{
-			//The last rune was a destroy. The current rune will be not created.
-			//Instead, will be used as template to search and destroy a rune of the same type
-			DestroyRuneTypeOf(newRune);
-			return;
-		}
 
 		//If the script is continuing, there is no special case. Create a rune normally.
 
@@ -173,10 +144,37 @@ public class MajorRune : MonoBehaviour
 
 		runesList.Add(newRune);
 		SortAndUpdateRunePositions();
-
-		//If everything went correct
-		lastRuneDrawn = newRune;
 	}
+
+	public void DestroyMinorRune(MinorRune.RuneTypes _typeToDelete)
+	{
+		//MinorRune.RuneTypes runeType = _rune.runeScript.GetRuneType();
+
+		//Destroying the destroyRune
+		//Destroy(lastRuneDrawn.runeScript.gameObject);
+
+		//Searching and destroying the desired rune
+		foreach (RuneSorted rune in runesList)
+		{
+			if (rune.runeScript.GetRuneType() == _typeToDelete)
+			{
+				runesList.Remove(rune);
+				Destroy(rune.runeScript.gameObject);
+				break;
+			}
+		}
+
+		//Destroy the template
+		//Destroy(_rune.runeScript.gameObject);
+
+		//Update positions and create a fake lastRuneDrawn
+		SortAndUpdateRunePositions();
+		//lastRuneDrawn = new RuneSorted();
+
+		Debug.Log("deleting rune type of: " + _typeToDelete);
+
+	}
+
 
 	private void SortAndUpdateRunePositions()
 	{
@@ -253,34 +251,6 @@ public class MajorRune : MonoBehaviour
 			lastRuneDrawn.isFake = true;
 		}
 	}*/
-
-	private void DestroyRuneTypeOf(RuneSorted _rune)
-	{
-		MinorRune.RuneTypes runeType = _rune.runeScript.GetRuneType();
-
-		//Destroying the destroyRune
-		Destroy(lastRuneDrawn.runeScript.gameObject);
-
-		//Searching and destroying the desired rune
-		foreach (RuneSorted rune in runesList)
-		{
-			if(rune.runeScript.GetRuneType() == runeType)
-			{
-				runesList.Remove(rune);
-				Destroy(rune.runeScript.gameObject);
-				
-				break;			
-			}
-		}
-
-		//Destroy the template
-		Destroy(_rune.runeScript.gameObject);
-
-		//Update positions and create a fake lastRuneDrawn
-		SortAndUpdateRunePositions();
-		lastRuneDrawn = new RuneSorted();
-
-	}
 
 }
 
