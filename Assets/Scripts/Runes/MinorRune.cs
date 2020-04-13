@@ -28,7 +28,7 @@ public class MinorRune : EnergyInteractable
 		destroy
 	}
 
-	[SerializeField]private RuneClassifications runeClassification;
+	[SerializeField] private RuneClassifications runeClassification;
 	[SerializeField] private RuneTypes runeType;
 
 	[SerializeField] [ReadOnly]protected MajorRune parentMajorRune;
@@ -92,8 +92,6 @@ public class MinorRune : EnergyInteractable
 		//loat pixelPerUni = spriteRenderer.sprite.pixelsPerUnit;
 		//float unitsWidth = spriteWith / pixelPerUni * transform.lossyScale.x;
 		spriteUnitsWidth = spriteWith * transform.localScale.x;
-
-		Debug.Log(this.name + " --> spriteWith: " + spriteUnitsWidth + ", localScale: " + transform.localScale.x);
 	}
 
 

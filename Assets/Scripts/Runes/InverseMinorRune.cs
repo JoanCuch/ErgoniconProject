@@ -46,22 +46,22 @@ public class InverseMinorRune : MinorRune
 		}
 		else
 		{
-			EnergyInteractable basic = parentRune.GetAttachedRuneOfType(RuneClassifications.basic);
-			EnergyInteractable complement = parentRune.GetAttachedRuneOfType(RuneClassifications.complement);
-			EnergyInteractable source = parentRune.GetAttachedRuneOfType(RuneClassifications.source);
-			EnergyInteractable transformation = parentRune.GetAttachedRuneOfType(RuneClassifications.transformation);
+			EnergyInteractable basic = parentRune.GetMinorRune(RuneClassifications.basic);
+			EnergyInteractable complement = parentRune.GetMinorRune(RuneClassifications.complement);
+			EnergyInteractable source = parentRune.GetMinorRune(RuneClassifications.source);
+			EnergyInteractable transformation = parentRune.GetMinorRune(RuneClassifications.transformation);
 
 			if (basic != null)
-				parentRune.GetAttachedRuneOfType(RuneClassifications.basic).SetEnergyFlow(condition);
+				parentRune.GetMinorRune(RuneClassifications.basic).SetEnergyFlow(condition);
 
 			if (complement != null)
-				parentRune.GetAttachedRuneOfType(RuneClassifications.complement).SetEnergyFlow(condition);
+				parentRune.GetMinorRune(RuneClassifications.complement).SetEnergyFlow(condition);
 
 			if (source != null)
-				parentRune.GetAttachedRuneOfType(RuneClassifications.source).SetEnergyFlow(condition);
+				parentRune.GetMinorRune(RuneClassifications.source).SetEnergyFlow(condition);
 
 			if (transformation != null)
-				parentRune.GetAttachedRuneOfType(RuneClassifications.transformation).SetEnergyFlow(condition);
+				parentRune.GetMinorRune(RuneClassifications.transformation).SetEnergyFlow(condition);
 
 		}
 

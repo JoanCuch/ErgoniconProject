@@ -9,12 +9,13 @@ public class ForceMinorRune : MinorRune
 
 	Rigidbody targetRigidbody;
 
-
-
 	[SerializeField] private float energyFlow;
 	[SerializeField] private float conversionRateEnergyToForce;
 	[SerializeField] private float forceFlow;
 	[SerializeField] private float impulseMultiplier;
+	[SerializeField] private float distanceSQRT;
+
+	private Transform forceTarget;
 
 	// Start is called before the first frame update
 	protected override void Start()
@@ -41,7 +42,7 @@ public class ForceMinorRune : MinorRune
 		//Get the energy from the source and add it to himself
 		if (sourceRune == null)
 		{
-			sourceRune = parentMajorRune.GetAttachedRuneOfType(RuneClassifications.source);
+			sourceRune = parentMajorRune.GetMinorRune(RuneClassifications.source);
 		}
 		else
 		{
@@ -53,7 +54,36 @@ public class ForceMinorRune : MinorRune
 		float transformedEnergy = energyFlow * Time.deltaTime * conversionRateEnergyToForce;
 
 
-		//Give the energy to the target
+	
+		//MOVEMENT TIME
+		Vector3 forceDirection = Vector3.zero;
+		float forceImpulse = 0;
+		Vector3 forcePoint = Vector3.zero;
+
+		if(forceTarget == null)
+		{
+			//There is no twin rune, the direction is the normal of the rune plane.
+			forceDirection = -GetMajorRune().transform.forward;
+
+			forceImpulse = impulseMultiplier;
+		}
+		else
+		{
+			//There is a twin rune, the direction is the twin position.
+			forceDirection = (forceTarget.position - this.GetMajorRune().transform.position).normalized;
+
+			if (energyFlowInput == false)
+				forceDirection *= -1;
+
+
+			float distance = Vector3.Distance(forceTarget.position, this.GetMajorRune().transform.position);
+			forceImpulse = (1 / Mathf.Pow(distance, distanceSQRT) * impulseMultiplier);
+		}
+			
+		//Set the forcePoint
+		forcePoint = GetMajorRune().transform.position;
+
+		//Add foce
 		if (targetRigidbody == null)
 		{
 			if (target == null)
@@ -62,14 +92,13 @@ public class ForceMinorRune : MinorRune
 			}
 			targetRigidbody = target.GetComponent<Rigidbody>();
 		}
-		else
-		{
-		
-			Vector3 direction = -GetMajorRune().transform.forward;
-			float impulse = transformedEnergy * impulseMultiplier;
 
-			targetRigidbody.AddForceAtPosition(direction * transformedEnergy * impulseMultiplier, GetMajorRune().transform.position);
-
-		}
+		targetRigidbody.AddForceAtPosition(forceDirection * forceImpulse, forcePoint);		
 	}
+
+	public void SetForceTarget(Transform _newForceTarget)
+	{
+		forceTarget = _newForceTarget;
+	}
+
 }

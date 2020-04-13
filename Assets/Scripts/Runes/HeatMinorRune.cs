@@ -41,7 +41,7 @@ public class HeatMinorRune : MinorRune
 			//Get the energy from the source and add it to himself
 			if (sourceRune == null)
 			{
-				sourceRune = parentMajorRune.GetAttachedRuneOfType(RuneClassifications.source);
+				sourceRune = parentMajorRune.GetMinorRune(RuneClassifications.source);
 			}
 			else
 			{
@@ -81,7 +81,7 @@ public class HeatMinorRune : MinorRune
 			//Give the energy to the source
 			if (sourceRune == null)
 			{
-				sourceRune = parentMajorRune.GetAttachedRuneOfType(RuneClassifications.source);
+				sourceRune = parentMajorRune.GetMinorRune(RuneClassifications.source);
 			}
 			else
 			{

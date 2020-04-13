@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5372b69e41f42094b9a6919fc8a33cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftIndexFingerTag: LeftHandIndexFinger
 --- !u!4 &392978690
 Transform:
   m_ObjectHideFlags: 0
@@ -1016,17 +1017,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftControllerTag: LeftHand
   rightControllerTag: RightHand
-  Click:
+  leftIndexFingerTag: LeftHandIndexFinger
+  rightIndexFingerTag: RightHandIndexFinger
+  DrawAction:
     actionPath: /actions/default/in/InteractUI
     needsReinit: 0
-  A:
-    actionPath: /actions/default/in/AClick
-    needsReinit: 0
-  B:
+  SelectAction:
     actionPath: /actions/default/in/BClick
-    needsReinit: 0
-  TouchPad:
-    actionPath: /actions/default/in/TrackpadTouchInput
     needsReinit: 0
 --- !u!114 &1649100143
 MonoBehaviour:

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5244787370379463276}
   - component: {fileID: 967416855358514594}
   - component: {fileID: 3040427180525628182}
+  - component: {fileID: -445787709390624868}
   m_Layer: 0
   m_Name: twin
-  m_TagString: Untagged
+  m_TagString: MinorRune_Twin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,3 +103,20 @@ MonoBehaviour:
   parentMajorRune: {fileID: 0}
   energyFlowInput: 0
   spriteRenderer: {fileID: 967416855358514594}
+  linkedTwinRune: {fileID: 0}
+  linkedTransformationRune: {fileID: 0}
+  ownTransformationRune: {fileID: 0}
+  detectionRadius: 1
+--- !u!65 &-445787709390624868
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2611400237401604716}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8400001, y: 1.6700002, z: 0.20000003}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AttractionRune : MinorRune
 {
+	/*
 	[SerializeField] [ReadOnly] private AttractionRune twinRune;
 
 	[SerializeField] private float detectionRadius;
@@ -54,13 +55,13 @@ public class AttractionRune : MinorRune
 
 		if (twinRune != null)
 		{
-			Vector3 forceDirection = (twinRune.GetMajorRune().transform.position - this.GetMajorRune().transform.position).normalized;
-			float distance = Vector3.Distance(twinRune.GetMajorRune().transform.position,this.GetMajorRune().transform.position);
+			//Vector3 forceDirection = (twinRune.GetMajorRune().transform.position - this.GetMajorRune().transform.position).normalized;
+			//float distance = Vector3.Distance(twinRune.GetMajorRune().transform.position,this.GetMajorRune().transform.position);
 
-			Vector3 force = forceDirection * (1 / Mathf.Pow(distance, distancePower) * impulseMultiplier);
-			Vector3 startPosition = GetMajorRune().transform.position;
+			//Vector3 force = forceDirection * (1 / Mathf.Pow(distance, distancePower) * impulseMultiplier);
+			//Vector3 startPosition = GetMajorRune().transform.position;
 
-			attachedObjectRigidbody.AddForceAtPosition(force, startPosition);
+			//attachedObjectRigidbody.AddForceAtPosition(force, startPosition);
 		}
 	}
 
@@ -89,6 +90,7 @@ public class AttractionRune : MinorRune
 		return otherRune;
 	}
 
+	/*
 	public void SetTwinRune(AttractionRune twin)
 	{
 		twinRune = twin;
@@ -98,7 +100,7 @@ public class AttractionRune : MinorRune
 	{
 		return twinRune;
 	}
-
+	*/
 
 
 }

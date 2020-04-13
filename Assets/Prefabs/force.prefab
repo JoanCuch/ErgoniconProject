@@ -107,4 +107,5 @@ MonoBehaviour:
   energyFlow: 1
   conversionRateEnergyToForce: 1
   forceFlow: 1
-  impulseMultiplier: 1000
+  impulseMultiplier: 100
+  distanceSQRT: 1

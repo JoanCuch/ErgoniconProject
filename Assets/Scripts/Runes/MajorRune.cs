@@ -234,13 +234,13 @@ public class MajorRune : MonoBehaviour
 		line.localScale = new Vector3(length + extra, line.localScale.y, line.localScale.z);
 	}
 
-	public MinorRune GetAttachedRuneOfType(MinorRune.RuneClassifications runeType)
+	public MinorRune GetMinorRune(MinorRune.RuneClassifications _runeClassification)
 	{
 		MinorRune runeToReturn = null;
 
 		foreach(RuneSorted rune in runesList)
 		{
-			if(rune.runeScript.GetRuneClassification()== runeType)
+			if(rune.runeScript.GetRuneClassification()== _runeClassification)
 			{
 				runeToReturn = rune.runeScript;
 				break;
