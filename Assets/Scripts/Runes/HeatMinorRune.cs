@@ -7,102 +7,72 @@ using UnityEngine;
 /// 2 Make the conversion
 /// 3 Give it to the target
 /// </summary>
-public class HeatMinorRune : MinorRune
+public class HeatMinorRune : TransformationRune
 {
-	[SerializeField] [ReadOnly] EnergyInteractable sourceRune;
-	[SerializeField] [ReadOnly] EnergyInteractable target;
-	[Space]
-	[SerializeField] private float energyFlow;
-	[SerializeField] private float conversionRateEnergyHeat;
-	[SerializeField] private float heatFlow;
-
-
-	// Start is called before the first frame update
 
 	protected override void Start()
 	{
 		base.Start();
 	}
 
+	protected override void Update()
+	{
+		base.Update();
 
-	// Update is called once per frame
-	void Update()
-    {
-		if(parentMajorRune == null)
-		{
-			Debug.LogWarning("null major rune, aaaaaaarh! Kaos!");
-		}
+		if (!GetWorkable())
+			return;
 
-		//Check if the energy is inverse //TODO this is inverse rune job
-		//SetEnergyFlow(!GetMajorRune().CheckComplementRuneIsTypeOf(RunesIdealWorld.MinorRunesTypes.inverse));
-
-		if (energyFlowInput) //The energy flows is energy -> heat
+		if (GetFlowDirection()) //The energy flows is energy -> heat
 		{
 			//Get the energy from the source and add it to himself
-			if (sourceRune == null)
+			if (GetSource() == null)
 			{
-				sourceRune = parentMajorRune.GetMinorRune(RuneClassifications.source);
+				SetSource(parentMajorRune.GetMinorRune(RuneClassifications.source));
 			}
 			else
 			{
-				AddEnergy(sourceRune.AbsorbEnergy(energyFlow * Time.deltaTime));
+				AddEnergy(GetSource().AbsorbEnergy(GetFlowRate() * Time.deltaTime));
 			}
 			//Transform the energy
-			float transformedenergy = AbsorbEnergy(energyFlow * Time.deltaTime) * conversionRateEnergyHeat;
+			float transformedenergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetTransformationEfficiency();			;
 			AddHeat(transformedenergy);
 
 			//Give the energy to the target
-			if (target == null)
+			if (GetTarget() == null)
 			{
-				target = parentMajorRune.GetAttachedObject();
+				SetTarget(parentMajorRune.GetAttachedObject());
 			}
 			else
 			{
-				target.AddHeat(AbsorbHeat(heatFlow * Time.deltaTime));
+				GetTarget().AddHeat(AbsorbHeat(GetFlowRate() * Time.deltaTime));
 			}
 
 		}
 		else //The energy flow is heat -> energy
 		{
 			//Get the heat from the target
-			if (target == null)
+			if (GetTarget() == null)
 			{
-				target = parentMajorRune.GetAttachedObject();
+				SetTarget(parentMajorRune.GetAttachedObject());
 			}
 			else
 			{
-				AddHeat(target.AbsorbHeat(heatFlow * Time.deltaTime));
+				AddHeat(GetTarget().AbsorbHeat(GetFlowRate() * Time.deltaTime));
 			}
 
 			//Transfrom the heat to energy
-			float transformedenergy = AbsorbHeat(energyFlow * Time.deltaTime) * conversionRateEnergyHeat;
+			float transformedenergy = AbsorbHeat(GetFlowRate() * Time.deltaTime) * GetTransformationEfficiency();
 			AddEnergy(transformedenergy);
 
 			//Give the energy to the source
-			if (sourceRune == null)
+			if (GetSource() == null)
 			{
-				sourceRune = parentMajorRune.GetMinorRune(RuneClassifications.source);
+				SetSource(parentMajorRune.GetMinorRune(RuneClassifications.source));
 			}
 			else
 			{
-				sourceRune.AddEnergy(AbsorbEnergy(energyFlow * Time.deltaTime));
-			}
-
-
-
-
-
-
-
-			//Get the energy from the source and add it to himself
-
-			//Transform the energy
-			
-
-			//Give the energy to the target
-			
-		}
-		
-	
+				GetSource().AddEnergy(AbsorbEnergy(GetFlowRate() * Time.deltaTime));
+			}			
+		}	
     }
 }

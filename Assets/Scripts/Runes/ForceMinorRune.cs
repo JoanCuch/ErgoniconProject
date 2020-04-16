@@ -2,20 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForceMinorRune : MinorRune
+public class ForceMinorRune : TransformationRune
 {
-	[SerializeField] [ReadOnly] EnergyInteractable sourceRune;
-	[SerializeField] [ReadOnly] EnergyInteractable target;
-
 	Rigidbody targetRigidbody;
-
-	[SerializeField] private float energyFlow;
-	[SerializeField] private float conversionRateEnergyToForce;
-	[SerializeField] private float forceFlow;
 	[SerializeField] private float impulseMultiplier;
 	[SerializeField] private float distanceSQRT;
 
-	private Transform forceTarget;
+	//private Transform forceTarget;
 
 	// Start is called before the first frame update
 	protected override void Start()
@@ -24,43 +17,40 @@ public class ForceMinorRune : MinorRune
 	}
 
 	// Update is called once per frame
-	void Update()
+	protected override void Update()
 	{
+		base.Update();
 
-
-
+		if (!GetWorkable())
+			return;
 	}
 
 
 	private void FixedUpdate()
 	{
-		if (parentMajorRune == null)
-		{
-			Debug.LogWarning("null major rune, aaaaaaarh! Kaos!");
-		}
+		if (!GetWorkable())
+			return;
 
 		//Get the energy from the source and add it to himself
-		if (sourceRune == null)
+		if (GetSource() == null)
 		{
-			sourceRune = parentMajorRune.GetMinorRune(RuneClassifications.source);
+			SetSource(parentMajorRune.GetMinorRune(RuneClassifications.source));
 		}
 		else
 		{
-			AddEnergy(sourceRune.AbsorbEnergy(energyFlow * Time.deltaTime));
+			AddEnergy(GetSource().AbsorbEnergy(GetFlowRate()* Time.deltaTime));
 		}
 
 		//Transform the energy
-		//float transformedEnergy = AbsorbEnergy(energyFlow * Time.deltaTime) * conversionRateEnergyToForce;
-		float transformedEnergy = energyFlow * Time.deltaTime * conversionRateEnergyToForce;
+		float transformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetTransformationEfficiency();
 
 
-	
 		//MOVEMENT TIME
 		Vector3 forceDirection = Vector3.zero;
 		float forceImpulse = 0;
 		Vector3 forcePoint = Vector3.zero;
 
-		if(forceTarget == null)
+		if(GetLinkedRune() == null)
 		{
 			//There is no twin rune, the direction is the normal of the rune plane.
 			forceDirection = -GetMajorRune().transform.forward;
@@ -69,14 +59,16 @@ public class ForceMinorRune : MinorRune
 		}
 		else
 		{
-			//There is a twin rune, the direction is the twin position.
-			forceDirection = (forceTarget.position - this.GetMajorRune().transform.position).normalized;
+			Transform linked = GetLinkedRune().transform;
 
-			if (energyFlowInput == false)
+			//There is a twin rune, the direction is the twin position.
+			forceDirection = (linked.position - this.GetMajorRune().transform.position).normalized;
+
+			if (GetFlowDirection() == false)
 				forceDirection *= -1;
 
 
-			float distance = Vector3.Distance(forceTarget.position, this.GetMajorRune().transform.position);
+			float distance = Vector3.Distance(linked.position, this.GetMajorRune().transform.position);
 			forceImpulse = (1 / Mathf.Pow(distance, distanceSQRT) * impulseMultiplier);
 		}
 			
@@ -86,19 +78,19 @@ public class ForceMinorRune : MinorRune
 		//Add foce
 		if (targetRigidbody == null)
 		{
-			if (target == null)
+			if (GetTarget() == null)
 			{
-				target = parentMajorRune.GetAttachedObject();
+				SetTarget(parentMajorRune.GetAttachedObject());
 			}
-			targetRigidbody = target.GetComponent<Rigidbody>();
+			targetRigidbody = GetTarget().GetComponent<Rigidbody>();
 		}
 
 		targetRigidbody.AddForceAtPosition(forceDirection * forceImpulse, forcePoint);		
 	}
 
-	public void SetForceTarget(Transform _newForceTarget)
+	/*public void SetForceTarget(Transform _newForceTarget)
 	{
 		forceTarget = _newForceTarget;
-	}
+	}*/
 
 }

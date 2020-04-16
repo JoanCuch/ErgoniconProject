@@ -5,10 +5,10 @@ using UnityEngine;
 /// <summary>
 /// 1. Get the energy from the attached object
 /// </summary>
-public class ObjectMinorRune : MinorRune
+public class ObjectMinorRune : SourceRune
 {
 	[SerializeField] [ReadOnly] EnergyInteractable source;
-	[SerializeField] private float energyFlow;
+	//[SerializeField] private float energyFlow;
 
 	// Start is called before the first frame update
 	protected override void Start()
@@ -18,41 +18,31 @@ public class ObjectMinorRune : MinorRune
 	}
 
 	// Update is called once per frame
-	void Update()
+	protected override void Update()
 	{
-		if (parentMajorRune == null)
-		{
-			Debug.LogWarning("null major rune, aaaaaaarh! Kaos!");
-		}
+		base.Update();
 
-		if (energyFlowInput)
-		{
-		
-			//Get the energy from the object and add it to himself
-			if (source == null)
-			{
-				source = parentMajorRune.GetAttachedObject();
-			}
-			else
-			{
-				float newE = source.AbsorbEnergy(energyFlow * Time.deltaTime);
+		if (!GetWorkable())
+			return;
 
-				AddEnergy(newE);
-			}
+		if (source == null)
+		{
+			source = parentMajorRune.GetAttachedObject();
 		}
 		else
 		{
-			//Get the energy from himself and add it to the object
-			if (source == null)
+			if (GetFlowDirection())
 			{
-				source = parentMajorRune.GetAttachedObject();
+				float newE = source.AbsorbEnergy(GetFlowRate() * Time.deltaTime);
+
+				AddEnergy(newE);
 			}
 			else
 			{
-				float newE = AbsorbEnergy(energyFlow * Time.deltaTime);
+				float newE = AbsorbEnergy(GetFlowRate() * Time.deltaTime);
 
 				source.AddEnergy(newE);
 			}
-		}
+		}		
 	}	
 }

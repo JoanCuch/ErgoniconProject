@@ -6,8 +6,8 @@ public class TwinMinorRune : MinorRune
 {
 
 	[SerializeField] [ReadOnly] private TwinMinorRune linkedTwinRune;
-	[SerializeField] [ReadOnly] private MinorRune linkedTransformationRune;
-	[SerializeField] [ReadOnly] private MinorRune ownTransformationRune;
+	[SerializeField] [ReadOnly] private TransformationRune linkedTransformationRune;
+	[SerializeField] [ReadOnly] private TransformationRune ownTransformationRune;
 
 	[SerializeField] private float detectionRadius;
 
@@ -19,25 +19,27 @@ public class TwinMinorRune : MinorRune
 	}
 
 	// Update is called once per frame
-	void Update()
-    {
+	protected override void Update()
+	{
+		base.Update();
+		if (!GetWorkable())
+			return;
 		//Get the transformation rune of the same major rune
-		if(ownTransformationRune == null)
+		if (ownTransformationRune == null)
 		{
-			ownTransformationRune = GetMajorRune().GetMinorRune(RuneClassifications.transformation);
+			ownTransformationRune = (TransformationRune)GetMajorRune().GetMinorRune(RuneClassifications.transformation);
 		}
 
 		if (linkedTwinRune == null)
 		{
 			//If there is no twin rune, search for une
 			TwinMinorRune possibleRune = FindTwinRune();
+
 			if (possibleRune != null)
 			{
 				Debug.Log("Twin linked");
 				this.SetLinkedTwinRune(possibleRune);
-				possibleRune.SetLinkedTwinRune(this);
-				//GameObject attachedObject = GetMajorRune().GetAttachedObject().gameObject;
-				//GameObject twinOBject = twinRune.GetMajorRune().GetAttachedObject().gameObject;		
+				possibleRune.SetLinkedTwinRune(this);	
 			}
 		}
 		else
@@ -48,11 +50,11 @@ public class TwinMinorRune : MinorRune
 
 				//TODO superharcoded. This should be a subclasse
 				if(linkedTransformationRune != null &&
-					ownTransformationRune != null &&
-					ownTransformationRune.GetRuneType() == RuneTypes.force)
+					ownTransformationRune != null)
 				{
-					ForceMinorRune forceRune = (ForceMinorRune)ownTransformationRune;
-					forceRune.SetForceTarget(linkedTransformationRune.transform);
+					//ForceMinorRune forceRune = (ForceMinorRune)ownTransformationRune;
+					//forceRune.SetForceTarget(linkedTransformationRune.transform);
+					ownTransformationRune.SetLinkedRune(linkedTransformationRune);
 				}
 			}
 		}
@@ -72,10 +74,11 @@ public class TwinMinorRune : MinorRune
 			
 				TwinMinorRune possibleTwin = col.GetComponent<TwinMinorRune>();
 
-				if (possibleTwin.GetLinkedTwinRune() == null)
+				if (possibleTwin.GetLinkedTwinRune() == null &&
+					GetOwnTransformationRune().GetType() == possibleTwin.GetLinkedTwinRune().GetOwnTransformationRune().GetType())
 				{
 					linkedRune = possibleTwin;
-					Debug.Log("twin selected");
+					Debug.Log("twin selected with the same rune type");
 				}
 			}
 		}
@@ -87,20 +90,24 @@ public class TwinMinorRune : MinorRune
 		if (linkedTransformationRune != null)
 		{
 			//TODO superharcoded. This should be a subclasse
+			ownTransformationRune.SetLinkedRune(null);
+
+
+			/*
 			if (ownTransformationRune.GetRuneType() == RuneTypes.force)
 			{
 				ForceMinorRune forceRune = (ForceMinorRune)ownTransformationRune;
 				forceRune.SetForceTarget(null);
-			}
+			}*/
 		}
 	}
 
 
-	public MinorRune GetLinkedTwinRune() { return linkedTwinRune; }
-	public MinorRune GetOwnTransformationRune() { return ownTransformationRune; }
+	public TwinMinorRune GetLinkedTwinRune() { return linkedTwinRune; }
+	public TransformationRune GetOwnTransformationRune() { return ownTransformationRune; }
 
 	public void SetLinkedTwinRune(TwinMinorRune _newTwin) {
-		linkedTwinRune = (TwinMinorRune)_newTwin;
+		linkedTwinRune = _newTwin;
 
 
 	}

@@ -32,32 +32,32 @@ public class MinorRune : EnergyInteractable
 	[SerializeField] private RuneTypes runeType;
 
 	[SerializeField] [ReadOnly]protected MajorRune parentMajorRune;
-	[SerializeField] [ReadOnly] protected bool energyFlowInput;
+	//[SerializeField] [ReadOnly] protected bool energyFlowInput;
 
 	[SerializeField] private SpriteRenderer spriteRenderer;
+
+	[SerializeField] [ReadOnly] private bool isWorkable;
 
 	private float spriteUnitsWidth = 0;
 
 	// Start is called before the first frame update
     protected virtual void Start()
     {
-		energyFlowInput = true;
+		//energyFlowInput = true;
+		isWorkable = false;
 	}
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
-        
+		
+
+		if (parentMajorRune == null)
+		{
+			Debug.LogWarning("Null major rune on: " + this.name);
+		}
+	
 		//EnergyInteractable reverseRune = GetMajorRune().get
-
-
-
-    }
-
-
-	public virtual void UpdateEnergy()
-	{
-		Debug.LogWarning("This minor rune is doing nothing");
 	}
 
 	public RuneClassifications GetRuneClassification()
@@ -74,16 +74,15 @@ public class MinorRune : EnergyInteractable
 	{
 		parentMajorRune = newParent;
 	}
-
 	public MajorRune GetMajorRune()
 	{
 		return parentMajorRune;
 	}
 
-	public void SetEnergyFlow(bool trueForInputEnergy)
+	/*public void SetEnergyFlow(bool trueForInputEnergy)
 	{
 		energyFlowInput = trueForInputEnergy;
-	}
+	}*/
 
 
 	private void SetSpriteWidth()
@@ -103,5 +102,8 @@ public class MinorRune : EnergyInteractable
 		return spriteUnitsWidth;
 
 	}
+
+	public void SetWorkable(bool _isWorkable) { isWorkable = _isWorkable; }
+	public bool GetWorkable () { return isWorkable; }
 }
 

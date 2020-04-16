@@ -249,6 +249,7 @@ public class MajorRune : MonoBehaviour
 
 		return runeToReturn;
 	}
+	public List<RuneSorted> GetAllMinorRunes() { return runesList; }
 
 	public EnergyInteractable GetAttachedObject()
 	{

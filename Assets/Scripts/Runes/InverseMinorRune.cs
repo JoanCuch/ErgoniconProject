@@ -6,15 +6,18 @@ public class InverseMinorRune : MinorRune
 {
 
 	MajorRune parentRune;
-    // Start is called before the first frame update
-    void Start()
-    {
+	// Start is called before the first frame update
+	protected override void Start()
+	{
+		base.Start();
 		parentRune = GetMajorRune();
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
+	// Update is called once per frame
+	protected override void Update()
+	{
+		base.Update();
+
 		if(parentRune == null)
 		{
 			parentRune = GetMajorRune();
@@ -46,22 +49,24 @@ public class InverseMinorRune : MinorRune
 		}
 		else
 		{
-			EnergyInteractable basic = parentRune.GetMinorRune(RuneClassifications.basic);
-			EnergyInteractable complement = parentRune.GetMinorRune(RuneClassifications.complement);
-			EnergyInteractable source = parentRune.GetMinorRune(RuneClassifications.source);
-			EnergyInteractable transformation = parentRune.GetMinorRune(RuneClassifications.transformation);
+			//EnergyInteractable basic = parentRune.GetMinorRune(RuneClassifications.basic);
+			//EnergyInteractable complement = parentRune.GetMinorRune(RuneClassifications.complement);
+			SourceRune source = (SourceRune)parentRune.GetMinorRune(RuneClassifications.source);
+			TransformationRune transformation = (TransformationRune)parentRune.GetMinorRune(RuneClassifications.transformation);
 
-			if (basic != null)
-				parentRune.GetMinorRune(RuneClassifications.basic).SetEnergyFlow(condition);
+			//if (basic != null)
+			//	parentRune.GetMinorRune(RuneClassifications.basic).SetEnergyFlow(condition);
 
-			if (complement != null)
-				parentRune.GetMinorRune(RuneClassifications.complement).SetEnergyFlow(condition);
+			//if (complement != null)
+			//parentRune.GetMinorRune(RuneClassifications.complement).SetEnergyFlow(condition);
 
 			if (source != null)
-				parentRune.GetMinorRune(RuneClassifications.source).SetEnergyFlow(condition);
+				source.SetFlowDirection(condition);
+			//parentRune.GetMinorRune(RuneClassifications.source).(condition);
 
 			if (transformation != null)
-				parentRune.GetMinorRune(RuneClassifications.transformation).SetEnergyFlow(condition);
+				//parentRune.GetMinorRune(RuneClassifications.transformation).SetEnergyFlow(condition);
+				transformation.SetFlowDirection(condition);
 
 		}
 

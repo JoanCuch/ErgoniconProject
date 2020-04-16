@@ -100,7 +100,9 @@ MonoBehaviour:
   runeClassification: 0
   runeType: 2
   parentMajorRune: {fileID: 0}
-  energyFlowInput: 0
   spriteRenderer: {fileID: 420113958147652164}
+  isWorkable: 0
+  range: 1
+  flowRate: 1
+  flowDirection: 0
   source: {fileID: 0}
-  energyFlow: 1

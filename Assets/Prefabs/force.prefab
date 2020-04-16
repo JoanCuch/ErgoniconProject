@@ -100,12 +100,13 @@ MonoBehaviour:
   runeClassification: 1
   runeType: 8
   parentMajorRune: {fileID: 0}
-  energyFlowInput: 0
   spriteRenderer: {fileID: 3022043561625767691}
+  isWorkable: 0
+  flowRate: 1
+  flowDirection: 0
+  transformationEfficiency: 1
   sourceRune: {fileID: 0}
   target: {fileID: 0}
-  energyFlow: 1
-  conversionRateEnergyToForce: 1
-  forceFlow: 1
+  linkedRune: {fileID: 0}
   impulseMultiplier: 100
   distanceSQRT: 1

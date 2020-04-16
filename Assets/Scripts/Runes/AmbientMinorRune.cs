@@ -5,14 +5,13 @@ using UnityEngine;
 /// <summary>
 /// 1. Get the energy from the environment
 /// </summary>
-public class AmbientMinorRune : MinorRune
+public class AmbientMinorRune : SourceRune
 {
     [SerializeField] [ReadOnly] EnergyInteractable environment;
-	[Space]
-	[SerializeField] private float energyFlow;
+	//[SerializeField] private float energyFlow;
 
-	[SerializeField] private float detectionRadius;
-	[SerializeField] private string environmentTag;
+	//[SerializeField] private float detectionRadius;
+	[SerializeField] [TagSelector] private string environmentTag;
 
 	// Start is called before the first frame update
 	protected override void Start()
@@ -26,48 +25,46 @@ public class AmbientMinorRune : MinorRune
 	}
 
 	// Update is called once per frame
-	void Update()
+	protected override void Update()
 	{
-		if (parentMajorRune == null)
+		base.Update();
+
+		if (!GetWorkable())
+			return;
+
+
+		if(environment != null && IsEnvironmentToFar())
 		{
-			Debug.LogWarning("null major rune, aaaaaaarh! Kaos!");
+			environment = null;
 		}
 
-		if (energyFlowInput)
+		if(environment == null)
 		{
-		
-			//Get the energy from the source and add it to himself
-			if (environment == null)
-			{
-				environment = FindEnvironmentAround();
-			}
-			else
-			{
-				float newE = environment.AbsorbEnergy(energyFlow * Time.deltaTime);
-
-				AddEnergy(newE);
-			}
+			environment = FindEnvironmentAround();
 		}
 		else
 		{
-			//Get the energy from himself and add it to the source
-			if (environment == null)
+			if (GetFlowDirection())
 			{
-				environment = FindEnvironmentAround();
+				//Get the energy from the source and add it to himself
+				float newE = environment.AbsorbEnergy(GetFlowRate() * Time.deltaTime);
+
+				AddEnergy(newE);
 			}
 			else
 			{
-				float newE = AbsorbEnergy(energyFlow * Time.deltaTime);
+				//Get the energy from himself and add it to the source
+				float newE = AbsorbEnergy(GetFlowRate() * Time.deltaTime);
 
 				environment.AddEnergy(newE);
 			}
-		}
+		}		
 	}
 
 
 	private EnergyInteractable FindEnvironmentAround()
 	{
-		Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius);
+		Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetRange());
 
 		EnergyInteractable envi = null;
 
@@ -82,4 +79,18 @@ public class AmbientMinorRune : MinorRune
 
 		return envi;
 	}
+	private bool IsEnvironmentToFar()
+	{
+		float distance = (transform.position - environment.transform.position).magnitude;
+
+		if(distance > GetRange())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 }
