@@ -73,9 +73,13 @@ public class TwinMinorRune : MinorRune
 			{
 			
 				TwinMinorRune possibleTwin = col.GetComponent<TwinMinorRune>();
+				Debug.Log(possibleTwin.name + " " + possibleTwin);
+				bool TempBoolA = possibleTwin.GetLinkedTwinRune() == null;
+				bool tempBoolB = GetOwnTransformationRune().GetType() == possibleTwin.GetOwnTransformationRune().GetType();
+
 
 				if (possibleTwin.GetLinkedTwinRune() == null &&
-					GetOwnTransformationRune().GetType() == possibleTwin.GetLinkedTwinRune().GetOwnTransformationRune().GetType())
+					GetOwnTransformationRune().GetType() == possibleTwin.GetOwnTransformationRune().GetType())
 				{
 					linkedRune = possibleTwin;
 					Debug.Log("twin selected with the same rune type");

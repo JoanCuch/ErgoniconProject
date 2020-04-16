@@ -42,8 +42,8 @@ public class ForceMinorRune : TransformationRune
 		}
 
 		//Transform the energy
-		float transformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetTransformationEfficiency();
-
+		float transformedEnergy = 0;
+		transformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetTransformationEfficiency();
 
 		//MOVEMENT TIME
 		Vector3 forceDirection = Vector3.zero;
@@ -55,7 +55,7 @@ public class ForceMinorRune : TransformationRune
 			//There is no twin rune, the direction is the normal of the rune plane.
 			forceDirection = -GetMajorRune().transform.forward;
 
-			forceImpulse = impulseMultiplier;
+			forceImpulse = impulseMultiplier * transformedEnergy;
 		}
 		else
 		{
@@ -69,7 +69,7 @@ public class ForceMinorRune : TransformationRune
 
 
 			float distance = Vector3.Distance(linked.position, this.GetMajorRune().transform.position);
-			forceImpulse = (1 / Mathf.Pow(distance, distanceSQRT) * impulseMultiplier);
+			forceImpulse = (1 / Mathf.Pow(distance, distanceSQRT) * impulseMultiplier * transformedEnergy);
 		}
 			
 		//Set the forcePoint

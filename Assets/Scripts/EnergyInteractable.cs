@@ -16,17 +16,17 @@ public class EnergyInteractable : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
 		//Every child will have to assign his propierties from a seriarizable object.
-
 		heat = 0;
 		energy = 0;
 		impulse = Vector3.zero;
+		
 	}
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         
 

@@ -8,13 +8,15 @@ public class Environment : EnergyInteractable
 	[SerializeField] private float startEnergy;
 	
 	// Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
 		AddEnergy(startEnergy);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+	// Update is called once per frame
+	protected override void Update()
+	{
+		base.Update();
+	}
+
 }

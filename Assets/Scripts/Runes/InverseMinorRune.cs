@@ -59,9 +59,21 @@ public class InverseMinorRune : MinorRune
 
 			//if (complement != null)
 			//parentRune.GetMinorRune(RuneClassifications.complement).SetEnergyFlow(condition);
-
-			if (source != null)
-				source.SetFlowDirection(condition);
+			
+			//TODO HARDCODED this is a very big design problem
+			if(source != null)
+			{
+				if(transformation.GetRuneType() == RuneTypes.force)
+				{
+					source.SetFlowDirection(!condition);
+				}
+				else
+				{
+					source.SetFlowDirection(condition);
+				}
+			}
+			
+				
 			//parentRune.GetMinorRune(RuneClassifications.source).(condition);
 
 			if (transformation != null)

@@ -103,10 +103,10 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3022043561625767691}
   isWorkable: 0
   flowRate: 1
-  flowDirection: 0
   transformationEfficiency: 1
+  flowDirection: 0
   sourceRune: {fileID: 0}
   target: {fileID: 0}
   linkedRune: {fileID: 0}
-  impulseMultiplier: 100
+  impulseMultiplier: 10000
   distanceSQRT: 1

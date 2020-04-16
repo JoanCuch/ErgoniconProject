@@ -41,16 +41,17 @@ public class MinorRune : EnergyInteractable
 	private float spriteUnitsWidth = 0;
 
 	// Start is called before the first frame update
-    protected virtual void Start()
+    protected override void Start()
     {
+		base.Start();
 		//energyFlowInput = true;
 		isWorkable = false;
 	}
 
     // Update is called once per frame
-    protected virtual void Update()
+    protected override void Update()
     {
-		
+		base.Update();
 
 		if (parentMajorRune == null)
 		{

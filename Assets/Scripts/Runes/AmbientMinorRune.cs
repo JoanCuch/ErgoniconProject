@@ -13,15 +13,11 @@ public class AmbientMinorRune : SourceRune
 	//[SerializeField] private float detectionRadius;
 	[SerializeField] [TagSelector] private string environmentTag;
 
+
 	// Start is called before the first frame update
 	protected override void Start()
 	{
 		base.Start();
-
-		//Starting energy. temp
-		AddEnergy(30);
-
-
 	}
 
 	// Update is called once per frame
@@ -32,30 +28,29 @@ public class AmbientMinorRune : SourceRune
 		if (!GetWorkable())
 			return;
 
-
-		if(environment != null && IsEnvironmentToFar())
+		/*if(environment != null && IsEnvironmentToFar())
 		{
 			environment = null;
-		}
+		}*/
 
 		if(environment == null)
 		{
 			environment = FindEnvironmentAround();
 		}
-		else
+
+		if(environment != null)
 		{
+
 			if (GetFlowDirection())
 			{
 				//Get the energy from the source and add it to himself
 				float newE = environment.AbsorbEnergy(GetFlowRate() * Time.deltaTime);
-
 				AddEnergy(newE);
 			}
 			else
 			{
 				//Get the energy from himself and add it to the source
 				float newE = AbsorbEnergy(GetFlowRate() * Time.deltaTime);
-
 				environment.AddEnergy(newE);
 			}
 		}		
@@ -74,13 +69,15 @@ public class AmbientMinorRune : SourceRune
 			if(col.transform.tag == environmentTag)
 			{
 				envi = col.GetComponent<EnergyInteractable>();
+				break;
 			}
 		}
 
 		return envi;
 	}
+
 	private bool IsEnvironmentToFar()
-	{
+	{	
 		float distance = (transform.position - environment.transform.position).magnitude;
 
 		if(distance > GetRange())
