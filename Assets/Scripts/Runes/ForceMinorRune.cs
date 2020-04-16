@@ -55,6 +55,9 @@ public class ForceMinorRune : TransformationRune
 			//There is no twin rune, the direction is the normal of the rune plane.
 			forceDirection = -GetMajorRune().transform.forward;
 
+			if (GetFlowDirection() == false)
+				forceDirection *= -1;
+
 			forceImpulse = impulseMultiplier * transformedEnergy;
 		}
 		else
