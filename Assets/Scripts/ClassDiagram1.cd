@@ -1,241 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="EnergyInteractable" Collapsed="true">
-    <Position X="11.75" Y="0.5" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAQAAIAAACCAAAQBAAAAACQAAABgBABgRAAAAAAQgQA=</HashCode>
-      <FileName>Assets\Scripts\EnergyInteractable.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Environment" Collapsed="true">
-    <Position X="2.75" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAACAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Environment.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ExtraMinorRune" Collapsed="true">
-    <Position X="7.25" Y="8" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAACAAAAAAAIACAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
-      <FileName>Assets\Scripts\Runes\ExtraMinorRune.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TwinMinorRune" Collapsed="true">
-    <Position X="5" Y="8" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AkQJAAAAACAAAAAAAAAIAAAAAAAAQAAAAAAAIAAgAAA=</HashCode>
-      <FileName>Assets\Scripts\Runes\TwinMinorRune.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TransformationRune" Collapsed="true">
-    <Position X="10.5" Y="8" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>KIQIgAQAACAAAEAAIIAAAAAABAACAAAAAAAAAAgIIII=</HashCode>
-      <FileName>Assets\Scripts\Runes\TransformationRune.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TransferEnergy" Collapsed="true">
-    <Position X="32.75" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAUAAABIACAAAAAEoABCAigAKEAAgAACABCAQBQBIAQ=</HashCode>
-      <FileName>Assets\Scripts\Deprecated\TransferEnergy.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="TagSelectorAttribute" Collapsed="true">
-    <Position X="32.5" Y="4.75" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Tools\TagSelectorAttribute.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SpringRune" Collapsed="true">
-    <Position X="16.25" Y="8" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AEQCAAAAQCAAAEAAAAAAAAAAAACEAAAAAAAAAAAgAAA=</HashCode>
-      <FileName>Assets\Scripts\Runes\SpringRune.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SourceRune" Collapsed="true">
-    <Position X="22" Y="8" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAgAQIACAAAEAAAIAAAAAABAAIAAAAAAgAAAgAAAA=</HashCode>
-      <FileName>Assets\Scripts\Runes\SourceRune.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ShowControllers" Collapsed="true">
-    <Position X="27.5" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Utilities\ShowControllers.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ShapesManager">
-    <Position X="30.75" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>gAQIAEAIgCAAAAIABAABABgQAAAEAQAIAIAAIAAIgAI=</HashCode>
-      <FileName>Assets\Scripts\ShapesManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RuneSorted" Collapsed="true">
-    <Position X="32.75" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Runes\MajorRune.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="RuneCreator" Collapsed="true">
-    <Position X="31" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AEQABCAAACAEIAAIAAABAAAEAAAAAAAQAAAAAAAAAAI=</HashCode>
-      <FileName>Assets\Scripts\PlayerScripts\RuneCreator.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ReadOnlyAttribute" Collapsed="true">
-    <Position X="29.25" Y="2.5" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Tools\ReadOnlyAttribute.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PlayerController" Collapsed="true">
-    <Position X="27.5" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAgAACAAAAAAAAAAAAAAAAAAARAAAAAAAAIAAAA=</HashCode>
-      <FileName>Assets\Scripts\Deprecated\PlayerController.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="PhysicObject" Collapsed="true">
-    <Position X="0.5" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>gAQAAIAAACAAAAAgACAAoAQAAAAAAAIAAJAAkEAAgAA=</HashCode>
-      <FileName>Assets\Scripts\PhysicObject.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ObjectSelector" Collapsed="true">
-    <Position X="25.75" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAACAAAAAAIAAAAAAAAAAIgAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\ObjectSelector.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="ObjectMinorRune" Collapsed="true">
-    <Position X="20.75" Y="9.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Runes\ObjectMinorRune.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="MinorRune">
-    <Position X="14" Y="2" Width="1.75" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <NestedTypes>
-      <Enum Name="MinorRune.RuneTypes" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Assets\Scripts\Runes\MinorRune.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-      <Enum Name="MinorRune.RuneClassifications" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Assets\Scripts\Runes\MinorRune.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAACAAACAEAAAAAQAAAAKAAAABAAIAAABQAAU=</HashCode>
-      <FileName>Assets\Scripts\Runes\MinorRune.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="MajorRune" Collapsed="true">
-    <Position X="32.75" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAUgIAAAACAAAgAAgAAAAAQABAIECAAAAgAAAAACAAA=</HashCode>
-      <FileName>Assets\Scripts\Runes\MajorRune.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="InverseMinorRune" Collapsed="true">
-    <Position X="18.5" Y="8" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQBAAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
-      <FileName>Assets\Scripts\Runes\InverseMinorRune.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="InputManager">
-    <Position X="27.25" Y="5.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <NestedTypes>
-      <Enum Name="InputManager.PlayerActions" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Assets\Scripts\InputManager.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
-    <TypeIdentifier>
-      <HashCode>REQAAAAACCQAAAAAAAFgAAAAAIQAgAAQQAAAAIAAAAA=</HashCode>
-      <FileName>Assets\Scripts\InputManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="HeatMinorRune" Collapsed="true">
-    <Position X="9.5" Y="9.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Runes\HeatMinorRune.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="GlobalBlackboard" Collapsed="true">
-    <Position X="29.25" Y="1.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
-    <NestedTypes>
-      <Enum Name="GlobalBlackboard.MinorRunesTypes" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Assets\Scripts\GlobalBlackboard.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
-    <TypeIdentifier>
-      <HashCode>AARgAABAACAAAAgABAAAACQAAACEAICAAGACAIAgEAA=</HashCode>
-      <FileName>Assets\Scripts\GlobalBlackboard.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="GestureRecognition" Collapsed="true">
-    <Position X="20.5" Y="4.25" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>ACAFHBipgACB8UJZRiRCAgAoA3SIAESqA3AQFQE4gCA=</HashCode>
-      <FileName>Assets\Scripts\Tools\GestureRecognition.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="GestureManagerEditor">
-    <Position X="30.75" Y="4.25" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\GestureRecognition\GestureManagerEditor.cs</FileName>
-    </TypeIdentifier>
-  </Class>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="GestureManager" Collapsed="true">
-    <Position X="32.75" Y="0.5" Width="1.5" />
+    <Position X="53.25" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQQAAAGAmCGAAAIgAAACAQAGIIBBDAgIgAAAAgAgAwA=</HashCode>
       <FileName>Assets\GestureRecognition\GestureManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GestureCombinations" Collapsed="true">
-    <Position X="31" Y="0.5" Width="1.75" />
+  <Class Name="GestureManagerEditor">
+    <Position X="55" Y="1" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAiHihCY8RnBd1AdwgZQBoQyAYYIKgigCEBRIxE2CGg=</HashCode>
-      <FileName>Assets\Scripts\GestureCombinations.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\GestureRecognition\GestureManagerEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnergyInteractable">
+    <Position X="27.75" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAACCAAAQBAAAAACQAAABgBABgRAAAAAAQgQA=</HashCode>
+      <FileName>Assets\Scripts\EnergyInteractable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Environment">
+    <Position X="17.75" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Environment.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameManager">
-    <Position X="29" Y="5.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
+    <Position X="54.25" Y="13" Width="3.25" />
     <NestedTypes>
       <Enum Name="GameManager.GameStates" Collapsed="true">
         <TypeIdentifier>
@@ -248,39 +42,235 @@
       <FileName>Assets\Scripts\GameManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ForceMinorRune" Collapsed="true">
-    <Position X="11.75" Y="9.5" Width="1.5" />
+  <Class Name="GestureCombinations" Collapsed="true">
+    <Position X="49.25" Y="1" Width="1.75" />
+    <NestedTypes>
+      <Delegate Name="GestureCombinations.MetadataCreatorFunction" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GestureCombinations.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="GestureCombinations.TrainingCallbackFunction" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GestureCombinations.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AASAAAAAAiAAAAAAAAAAAAAAAAAAAAAAAABSAAAgAAA=</HashCode>
-      <FileName>Assets\Scripts\Runes\ForceMinorRune.cs</FileName>
+      <HashCode>AAiHihCY8RnBd1AdwgZQBoQyAYYIKgigCEBRIxE2CGg=</HashCode>
+      <FileName>Assets\Scripts\GestureCombinations.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AutoDestroy" Collapsed="true">
-    <Position X="27.5" Y="0.5" Width="1.5" />
+  <Class Name="GlobalBlackboard">
+    <Position X="50.25" Y="13" Width="4" />
+    <NestedTypes>
+      <Enum Name="GlobalBlackboard.MinorRunesTypes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GlobalBlackboard.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>EAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
-      <FileName>Assets\Scripts\Utilities\AutoDestroy.cs</FileName>
+      <HashCode>AARgAABAACAAAAgABAAAACQAAACEAICAAGACAIAgEAA=</HashCode>
+      <FileName>Assets\Scripts\GlobalBlackboard.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AttractionRune" Collapsed="true">
-    <Position X="14" Y="8" Width="1.5" />
+  <Class Name="InputManager">
+    <Position X="57.5" Y="13" Width="3" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="InputManager.PlayerActions">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\InputManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Runes\AttractionRune.cs</FileName>
+      <HashCode>REQAAAAACCQAAAAAAAFgAAAAAIQAgAAQQAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\InputManager.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ApplyDamage" Collapsed="true">
-    <Position X="25.75" Y="0.5" Width="1.5" />
+  <Class Name="ObjectSelector">
+    <Position X="49.5" Y="7.25" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Deprecated\ApplyDamage.cs</FileName>
+      <HashCode>AAQAAAAAACAAAAAAIAAAAAAAAAAIgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ObjectSelector.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="AmbientMinorRune" Collapsed="true">
-    <Position X="23" Y="9.5" Width="1.75" />
+  <Class Name="PhysicObject">
+    <Position X="38" Y="6" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>gAQAAIAAACAAAAAgACAAoAQAAAAAAAIAAJAAkEAAgAA=</HashCode>
+      <FileName>Assets\Scripts\PhysicObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RuneCreator">
+    <Position X="44.5" Y="7.25" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AEQABCAAACAEIAAIAAABAAAEAAAAAAAQAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\PlayerScripts\RuneCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AmbientMinorRune">
+    <Position X="35.75" Y="15.25" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAACAAAgAAAAAAAAAAAAAACEAAAAAAACAAAAA=</HashCode>
       <FileName>Assets\Scripts\Runes\AmbientMinorRune.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BasicMinorRune">
+    <Position X="29.75" Y="12" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAACAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Runes\BasicMinorRune.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExtraMinorRune">
+    <Position X="33.25" Y="11.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAAACAAAAAAAIACCAAAAAAAAAAAAAAAEAAAAAg=</HashCode>
+      <FileName>Assets\Scripts\Runes\ExtraMinorRune.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ForceMinorRune">
+    <Position X="19.75" Y="16.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AASAAAAAAiAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Runes\ForceMinorRune.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HeatMinorRune">
+    <Position X="24.5" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Runes\HeatMinorRune.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InverseMinorRune">
+    <Position X="16.25" Y="11.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Scripts\Runes\InverseMinorRune.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MajorRune">
+    <Position X="44.25" Y="11.75" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAUgIAAAACAAAgAQgAAAAAQABAIECAAAAgAAAAACAAA=</HashCode>
+      <FileName>Assets\Scripts\Runes\MajorRune.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RuneSorted">
+    <Position X="42.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Runes\MajorRune.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MinorRune">
+    <Position X="27.5" Y="18.5" Width="3" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="MinorRune.RuneClassifications">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Runes\MinorRune.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="MinorRune.RuneTypes">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Runes\MinorRune.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAACAEAAIAAQAAAAKgAAABAAIAIABQAAU=</HashCode>
+      <FileName>Assets\Scripts\Runes\MinorRune.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectMinorRune">
+    <Position X="39.5" Y="15.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Runes\ObjectMinorRune.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SourceRune">
+    <Position X="37.75" Y="11.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAQIACAAAEAAAIAAAAAABAAIAAAAAAgAAAgAAAA=</HashCode>
+      <FileName>Assets\Scripts\Runes\SourceRune.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TransformationRune">
+    <Position X="21" Y="11.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>KIQIgAQAACAAAEAAIIAAAAAABAACAAAAAAAAAAgIIII=</HashCode>
+      <FileName>Assets\Scripts\Runes\TransformationRune.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TwinMinorRune">
+    <Position X="25.5" Y="11.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AkQJAAAAACAAAAAAAAAIAAAAAAAAQAAAAAAAIAAgAAA=</HashCode>
+      <FileName>Assets\Scripts\Runes\TwinMinorRune.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShapesManager">
+    <Position X="60.5" Y="13" Width="5.5" />
+    <TypeIdentifier>
+      <HashCode>gAQIAEAIgCAAAAIABAABABgQAAAEAQAIAIAAIAAIgAI=</HashCode>
+      <FileName>Assets\Scripts\ShapesManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GestureRecognition" Collapsed="true">
+    <Position X="51.25" Y="1" Width="1.75" />
+    <NestedTypes>
+      <Delegate Name="GestureRecognition.MetadataCreatorFunction" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Tools\GestureRecognition.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="GestureRecognition.TrainingCallbackFunction" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Tools\GestureRecognition.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACAFHBipgACB8UJZRiRCAgAoA3SIAESqA3AQFQE4gCA=</HashCode>
+      <FileName>Assets\Scripts\Tools\GestureRecognition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ReadOnlyAttribute" Collapsed="true">
+    <Position X="46.25" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Tools\ReadOnlyAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TagSelectorAttribute" Collapsed="true">
+    <Position X="46.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Tools\TagSelectorAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowControllers" Collapsed="true">
+    <Position X="46.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Utilities\ShowControllers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CustomConsole.CustomConsole" Collapsed="true">
+    <Position X="46.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAACAIAACAAAAAAEAAAoAAAAAABACAA=</HashCode>
+      <FileName>Assets\Scripts\Tools\CustomConsole.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
