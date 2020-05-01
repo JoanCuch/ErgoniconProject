@@ -83,6 +83,16 @@ public class RuneCreator : MonoBehaviour
 			lastRune = currentRune;
 			return;
 		}*/
+		if (currentRuneType == MinorRune.RuneTypes.destroy)
+		{
+			//An information rute, doesn't need for creating or destroying any rune
+			lastRune = currentRune;
+			return;
+		}
+
+
+
+
 
 		if (lastRune != null && lastRune.GetRuneType() == MinorRune.RuneTypes.destroy)
 		{

@@ -10,7 +10,8 @@ public class MinorRune : EnergyInteractable
 		source,
 		transformation,
 		complement,
-		root
+		root,
+		fakeRune
 	}
 
 	public enum RuneTypes
