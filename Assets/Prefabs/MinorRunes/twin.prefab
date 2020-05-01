@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5244787370379463276}
   - component: {fileID: 967416855358514594}
-  - component: {fileID: 6138992169224627121}
+  - component: {fileID: 3040427180525628182}
+  - component: {fileID: -445787709390624868}
   m_Layer: 0
-  m_Name: direct
-  m_TagString: Untagged
+  m_Name: twin
+  m_TagString: MinorRune_Twin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 87958fb7ac6f08044840de2a360b6098, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 49c5132391ebee246987cf6a1732b1c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6138992169224627121
+--- !u!114 &3040427180525628182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,15 +91,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 2611400237401604716}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8296c92474125d42b1566087abdf84c, type: 3}
+  m_Script: {fileID: 11500000, guid: 35a26b238b77ab74787f436210a26acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   heat: 0
   energy: 0
   impulse: {x: 0, y: 0, z: 0}
   fatigue: 0
-  runeClassification: 0
-  runeType: 4
+  runeClassification: 3
+  runeType: 9
   parentMajorRune: {fileID: 0}
-  energyFlowInput: 0
   spriteRenderer: {fileID: 967416855358514594}
+  isWorkable: 0
+  linkedTwinRune: {fileID: 0}
+  linkedTransformationRune: {fileID: 0}
+  ownTransformationRune: {fileID: 0}
+  detectionRadius: 1
+--- !u!65 &-445787709390624868
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2611400237401604716}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8400001, y: 1.6700002, z: 0.20000003}
+  m_Center: {x: 0, y: 0, z: 0}

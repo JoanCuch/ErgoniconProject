@@ -68,7 +68,7 @@ public class MajorRune : MonoBehaviour
 				newRune.priority = 1;
 				break;
 
-			case MinorRune.RuneClassifications.basic:
+			case MinorRune.RuneClassifications.root:
 				newRune.priority = 3;
 				break;
 
@@ -78,18 +78,16 @@ public class MajorRune : MonoBehaviour
 		}
 		switch (runeType)
 		{
-			case MinorRune.RuneTypes.basic:
+			case MinorRune.RuneTypes.center:
 				break;
 			case MinorRune.RuneTypes.inverse:
 				newRune.priority = 2;
-				break;
-			case MinorRune.RuneTypes.physicalObject:
 				break;
 			case MinorRune.RuneTypes.ambient:
 				break;
 			case MinorRune.RuneTypes.direct:
 				break;
-			case MinorRune.RuneTypes.extra:
+			/*case MinorRune.RuneTypes.extra:
 				ExtraMinorRune extraScript = (ExtraMinorRune)newRune.runeScript;
 				if(extraScript.GetTargetClassification() == MinorRune.RuneClassifications.source)
 				{
@@ -105,13 +103,13 @@ public class MajorRune : MonoBehaviour
 				{
 					Debug.LogWarning("extra rune with no priority");
 				}
-				break;
+				break;*/
 			case MinorRune.RuneTypes.twin:
 				newRune.priority = 6;
 				break;
-			case MinorRune.RuneTypes.heat:
+			case MinorRune.RuneTypes.thermic:
 				break;
-			case MinorRune.RuneTypes.force:
+			case MinorRune.RuneTypes.kinetic:
 				break;
 			default:
 				break;

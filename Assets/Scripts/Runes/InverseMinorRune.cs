@@ -63,7 +63,7 @@ public class InverseMinorRune : MinorRune
 			//TODO HARDCODED this is a very big design problem
 			if(source != null)
 			{
-				if(transformation.GetRuneType() == RuneTypes.force)
+				if(transformation.GetRuneType() == RuneTypes.kinetic)
 				{
 					source.SetFlowDirection(!condition);
 				}

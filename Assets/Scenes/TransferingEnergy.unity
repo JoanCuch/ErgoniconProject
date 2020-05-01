@@ -2222,24 +2222,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb7515f7807b874d8929777b6069256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabBase: {fileID: 4373542282630320061, guid: 034872b47bb78eb44bad535ea8b9e827,
-    type: 3}
-  prefabPhysicalObject: {fileID: 8758175775533306495, guid: b8c97b739e1301e4ab825793a9020266,
-    type: 3}
-  prefabAmbient: {fileID: 4861901939916807851, guid: efabfc4284adb9c4887e0768b37b3509,
-    type: 3}
-  prefabDirect: {fileID: 2611400237401604716, guid: 038b10f5cf88a7842a9372f456624970,
-    type: 3}
-  prefabExtra: {fileID: 2611400237401604716, guid: bd0b56e5999f78540be78f121c3a4516,
-    type: 3}
-  prefabTwin: {fileID: 2611400237401604716, guid: 4bd7a987d6608484e90c01bbe7b7a029,
-    type: 3}
-  prefabInverse: {fileID: 4138891008394126575, guid: bba0761331e0d2b46881c851ec13ceca,
-    type: 3}
-  prefabHeat: {fileID: 3676821939921262018, guid: 7e4b688cb6e0d2043bb282e4cacec6ff,
-    type: 3}
-  prefabForce: {fileID: 6796488033413302, guid: b3c83bc448ec1cd4f908623adfc1fa81,
-    type: 3}
+  runePrefabs:
+  - name: ambient
+    prefab: {fileID: 4861901939916807851, guid: efabfc4284adb9c4887e0768b37b3509,
+      type: 3}
+  - name: direct
+    prefab: {fileID: 2611400237401604716, guid: 038b10f5cf88a7842a9372f456624970,
+      type: 3}
+  - name: thermic
+    prefab: {fileID: 3676821939921262018, guid: 7e4b688cb6e0d2043bb282e4cacec6ff,
+      type: 3}
+  - name: kinetic
+    prefab: {fileID: 6796488033413302, guid: b3c83bc448ec1cd4f908623adfc1fa81, type: 3}
+  - name: joint
+    prefab: {fileID: 6796488033413302, guid: 65867c954b80e274096f2b303f3d578c, type: 3}
+  - name: range
+    prefab: {fileID: 2611400237401604716, guid: ae3cab7bd9e817e4287fa51dc1c19b60,
+      type: 3}
+  - name: inverse
+    prefab: {fileID: 4138891008394126575, guid: bba0761331e0d2b46881c851ec13ceca,
+      type: 3}
+  - name: flow
+    prefab: {fileID: 2611400237401604716, guid: e46487c6473e4eb4196b4869d970b94a,
+      type: 3}
+  - name: center
+    prefab: {fileID: 4373542282630320061, guid: 034872b47bb78eb44bad535ea8b9e827,
+      type: 3}
+  - name: twin
+    prefab: {fileID: 0}
   prefabLine: {fileID: 1991685691280994256, guid: 56680f5435b60184b9408f70ec6440aa,
     type: 3}
   prefabDestroy: {fileID: 5303716842073149726, guid: dd279e154909352469fe326b682fe1c8,
@@ -2247,17 +2257,7 @@ MonoBehaviour:
   OpenRuneEditingModeShapeName: OpenHands
   CloseRuneEditingModeShapeName: CloseHands
   DestroyRuneShapeName: DestroyRune
-  minorRunesNames:
-  - basic
-  - physicalObject
-  - ambient
-  - direct
-  - extra
-  - twin
-  - inverse
-  - heat
-  - force
-  - destroy
+  minorRunesNames: []
   failedGestureName: fail
 --- !u!114 &1649100140
 MonoBehaviour:
@@ -2326,7 +2326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starPrefab: {fileID: 4160627421305400185, guid: 8a971a90b8a215b43aff3fc71dd4b5ec,
     type: 3}
-  OneHandedGesturesPath: Assets/Gestures/minorRunes11.dat
+  OneHandedGesturesPath: Assets/Gestures/minorRunes12.dat
   TwoHandedGesturesPath: Assets/Gestures/handControls4.dat
 --- !u!4 &1651816483 stripped
 Transform:

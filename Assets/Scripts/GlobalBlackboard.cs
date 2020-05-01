@@ -5,8 +5,23 @@ using UnityEngine;
 public class GlobalBlackboard : MonoBehaviour
 {
 	//Plato <3
+	[System.Serializable]
+	public struct RunePrefab
+	{
+		public string name;
+		public GameObject prefab;
+	}
 
-	public GameObject prefabBase;
+
+
+
+	public List<RunePrefab> runePrefabs;
+
+	public GameObject prefabLine;
+
+
+
+	/*public GameObject prefabBase;
 
 	public GameObject prefabPhysicalObject;
 	public GameObject prefabAmbient;
@@ -17,9 +32,9 @@ public class GlobalBlackboard : MonoBehaviour
 	public GameObject prefabInverse;
 	
 	public GameObject prefabHeat;
-	public GameObject prefabForce;
+	public GameObject prefabForce;*/
 
-	public GameObject prefabLine;
+
 	public GameObject prefabDestroy;
 
 	//public GameObject prefabGravitational;
@@ -30,23 +45,24 @@ public class GlobalBlackboard : MonoBehaviour
 	public string DestroyRuneShapeName;
 
 
-	public List<string> minorRunesNames = new List<string>
-	{
-		"basic",
-		"physicalObject",
-		"ambient",
-		"direct",
-		"extra",
-		"twin",
-		"inverse",
-		"heat",
-		"force",
-		"destroy"
-	};
+	public List<string> minorRunesNames;
 	public string failedGestureName = "fail";
 
-	public enum MinorRunesTypes
+	/*public enum MinorRunesTypes
 	{
+	"center",
+		"inverse",
+		"ambient",
+		"thermic",
+		"twin",
+		"direct",
+		"kinetic",
+		"joint",
+		"range",
+		"flow"
+
+
+
 		basic,
 		inverse,
 		physicalObject,
@@ -57,12 +73,17 @@ public class GlobalBlackboard : MonoBehaviour
 		heat,
 		force,
 		destroy
-	}
+	}*/
 
 	// Start is called before the first frame update
 	void Start()
 	{
+		minorRunesNames = new List<string>();
 
+		foreach (RunePrefab pref in runePrefabs)
+		{
+			minorRunesNames.Add(pref.name);
+		}
 	}
 
 	// Update is called once per frame
@@ -71,7 +92,34 @@ public class GlobalBlackboard : MonoBehaviour
 
 	}
 
+
 	public GameObject GetMinorRune(string runeName)
+	{
+		GameObject runeToReturn = null;
+
+		foreach(RunePrefab pref in runePrefabs)
+		{
+			if(pref.name == runeName)
+			{
+				runeToReturn = pref.prefab;
+				break;
+			}
+		}
+
+		if (runeToReturn == null)
+		{
+			Debug.LogWarning("Returning a null rune from the globalBlackboard");
+		}
+		else
+		{
+			Debug.Log("Blackboard is returning a rune type of:" + runeName);
+		}
+
+		return runeToReturn;
+	}
+
+
+	/*public GameObject GetMinorRune(string runeName)
 	{
 		GameObject runeToReturn = null;
 
@@ -130,9 +178,9 @@ public class GlobalBlackboard : MonoBehaviour
 		Debug.Log("Blackboard is returning a rune type of:" + runeName);
 
 		return runeToReturn;
-	}
+	}*/
 
-	public GameObject GetMinorRune(MinorRunesTypes variation)
+	/*public GameObject GetMinorRune(MinorRunesTypes variation)
 	{
 		GameObject runeToReturn = null;
 
@@ -189,10 +237,12 @@ public class GlobalBlackboard : MonoBehaviour
 		}
 
 		return runeToReturn;
-	}
+	}*/
 	public GameObject GetLinePrefab()
 	{
 		return prefabLine;
 	}
 
 }
+
+

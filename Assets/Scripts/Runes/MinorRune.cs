@@ -10,21 +10,21 @@ public class MinorRune : EnergyInteractable
 		source,
 		transformation,
 		complement,
-		basic,
-		noRune
+		root
 	}
 
 	public enum RuneTypes
 	{
-		basic,
-		inverse,
-		physicalObject,
 		ambient,
 		direct,
-		extra,
+		thermic,
+		kinetic,
+		joint,
+		range,
+		inverse,
+		flow,
+		center,
 		twin,
-		heat,
-		force,
 		destroy
 	}
 

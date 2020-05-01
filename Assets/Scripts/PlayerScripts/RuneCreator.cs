@@ -77,12 +77,12 @@ public class RuneCreator : MonoBehaviour
 		MinorRune.RuneClassifications currentRuneClassification = currentRune.GetRuneClassification();
 		MinorRune.RuneTypes currentRuneType = currentRune.GetRuneType();
 
-		if (currentRuneType == MinorRune.RuneTypes.destroy || currentRuneType == MinorRune.RuneTypes.extra)
+		/*if (currentRuneType == MinorRune.RuneTypes.destroy || currentRuneType == MinorRune.RuneTypes.extra)
 		{
 			//An information rute, doesn't need for creating or destroying any rune
 			lastRune = currentRune;
 			return;
-		}
+		}*/
 
 		if (lastRune != null && lastRune.GetRuneType() == MinorRune.RuneTypes.destroy)
 		{
@@ -91,7 +91,7 @@ public class RuneCreator : MonoBehaviour
 			lastRune = null;
 
 		}
-		else if (lastRune != null && lastRune.GetRuneType() == MinorRune.RuneTypes.extra)
+		/*else if (lastRune != null && lastRune.GetRuneType() == MinorRune.RuneTypes.extra)
 		{
 			//Instantiate last rune
 			GameObject extraRunePrefab = globalBlackboard.GetMinorRune(GlobalBlackboard.MinorRunesTypes.extra);
@@ -101,7 +101,7 @@ public class RuneCreator : MonoBehaviour
 			targetMajorRune.AddMinorRune(extraRune.transform);
 			lastRune = null;
 			Debug.Log("creating extra minor rune");
-		}
+		}*/
 		else
 		{		
 			GameObject newMinorRune = Instantiate(minorRunePrefab);
