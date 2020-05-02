@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6481193805409856772}
   - component: {fileID: 6951955610738789047}
-  - component: {fileID: 2170575138160127242}
+  - component: {fileID: 6219218651608408201}
   m_Layer: 0
   m_Name: inverse
   m_TagString: MinorRune_Inverse
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2170575138160127242
+--- !u!114 &6219218651608408201
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4138891008394126575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2977a6a676b32334c8c65202cd90f860, type: 3}
+  m_Script: {fileID: 11500000, guid: fa71f24e9eaf29a408b08db12721a405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   heat: 0
@@ -102,3 +102,4 @@ MonoBehaviour:
   parentMajorRune: {fileID: 0}
   spriteRenderer: {fileID: 6951955610738789047}
   isWorkable: 0
+  rateFlowMultiplier: 0

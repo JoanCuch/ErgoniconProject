@@ -25,6 +25,9 @@ public class RuneCreator : MonoBehaviour
 	private RaycastHit targetHit;
 
 	private MinorRune lastRune;
+	private string lastRuneName;
+
+	private MinorRune penultimateRune;
 
 
 	// Start is called before the first frame update
@@ -36,6 +39,7 @@ public class RuneCreator : MonoBehaviour
 		targetObject = null;
 		targetMajorRune = null;
 		lastRune = null;
+		lastRuneName = null;
 
 	}
 
@@ -52,10 +56,12 @@ public class RuneCreator : MonoBehaviour
 	/// Instantiates a minor rune using his name
 	/// </summary>
 	public void CreateMinorRune(string runeName)
-	{		
+	{
+
+		//If there is no targetMajorRune, get one
 		if (targetMajorRune == null)
 		{
-			//If there is no targetobject from to get the rune
+			
 			if(targetObject == null)
 			{
 				Debug.Log("No target selected");
@@ -64,7 +70,7 @@ public class RuneCreator : MonoBehaviour
 			targetMajorRune = GetRuneFromTarget(targetObject, targetHit);		
 		}
 
-		//Getting the prefab of the minorRune to instantiate it
+		//Getting the minorRune prefab to instantiate it
 		GameObject minorRunePrefab = globalBlackboard.GetMinorRune(runeName);
 
 		if(minorRunePrefab == null)
@@ -74,49 +80,61 @@ public class RuneCreator : MonoBehaviour
 		}
 
 		MinorRune currentRune = minorRunePrefab.GetComponent<MinorRune>();
-		MinorRune.RuneClassifications currentRuneClassification = currentRune.GetRuneClassification();
-		MinorRune.RuneTypes currentRuneType = currentRune.GetRuneType();
 
-		/*if (currentRuneType == MinorRune.RuneTypes.destroy || currentRuneType == MinorRune.RuneTypes.extra)
+
+		//Check special cases: destroy and complement runes, that requires two shapes to be created
+		if (currentRune.GetRuneType() == MinorRune.RuneTypes.destroy)
 		{
 			//An information rute, doesn't need for creating or destroying any rune
-			lastRune = currentRune;
-			return;
-		}*/
-		if (currentRuneType == MinorRune.RuneTypes.destroy)
-		{
-			//An information rute, doesn't need for creating or destroying any rune
+			penultimateRune = lastRune;
 			lastRune = currentRune;
 			return;
 		}
+		else if(currentRune.GetRuneClassification() == MinorRune.RuneClassifications.complement){
+			penultimateRune = lastRune;
+			lastRune = currentRune;
+			lastRuneName = runeName;
+			return;
+		}
 
-
-
-
+		//
 
 		if (lastRune != null && lastRune.GetRuneType() == MinorRune.RuneTypes.destroy)
 		{
-			//Destroy a rune
-			targetMajorRune.DestroyMinorRune(currentRuneType);
+			//Destroy a rune that is the same os the currentRune type
+			targetMajorRune.DestroyMinorRune(currentRune.GetRuneType());			
 			lastRune = null;
+			lastRuneName = null;
+			penultimateRune = null;
+		}
+		else if (lastRune != null && lastRune.GetRuneClassification() == MinorRune.RuneClassifications.complement)
+		{
+			if (penultimateRune != null && penultimateRune.GetRuneType() == MinorRune.RuneTypes.destroy)
+			{
+				//Destroy a complement rune
+				targetMajorRune.DestroyMinorRune(lastRune.GetRuneType(), currentRune.GetRuneClassification());
+			}
+			else
+			{
+				//Instantiate the last drawn complement rune attached to a rune of the same type of the currentRune
+				GameObject complementRunePrefab = globalBlackboard.GetMinorRune(lastRuneName);
+				GameObject complementRune = Instantiate(complementRunePrefab);
+
+				complementRune.GetComponent<ExtraMinorRune>().SetTargetClassification(currentRune.GetRuneClassification());
+				targetMajorRune.AddMinorRune(complementRune.transform);
+				Debug.Log("complement rune: " + lastRuneName + " attached to: " + runeName);
+			}
+			lastRune = null;
+			lastRuneName = null;
+			penultimateRune = null;
 
 		}
-		/*else if (lastRune != null && lastRune.GetRuneType() == MinorRune.RuneTypes.extra)
-		{
-			//Instantiate last rune
-			GameObject extraRunePrefab = globalBlackboard.GetMinorRune(GlobalBlackboard.MinorRunesTypes.extra);
-			GameObject extraRune = Instantiate(extraRunePrefab);
-
-			extraRune.GetComponent<ExtraMinorRune>().SetTargetClassification(currentRuneClassification);
-			targetMajorRune.AddMinorRune(extraRune.transform);
-			lastRune = null;
-			Debug.Log("creating extra minor rune");
-		}*/
 		else
 		{		
 			GameObject newMinorRune = Instantiate(minorRunePrefab);
 			targetMajorRune.AddMinorRune(newMinorRune.transform);
 			lastRune = null;
+			lastRuneName = null;
 
 			Debug.Log("creating minor rune type of: " + runeName);
 		}

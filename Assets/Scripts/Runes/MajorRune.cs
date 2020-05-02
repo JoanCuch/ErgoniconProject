@@ -42,17 +42,18 @@ public class MajorRune : MonoBehaviour
 		RuneSorted newRune = new RuneSorted();
 		newRune.runeScript = minorRuneScript;
 
-		//If the script is continuing, there is no special case. Create a rune normally.
-
 		/*
 		 * CURRENT SORT PRIORITY ORDER OF MINOR RUNES
 		 * source, 0
-		 * sourceExtra, 1
-		 * inverse, 2
-		 * basic, 3
-		 * transformationExtra, 4
-		 * transformation, 5
-		 * twin 6
+		 * source inverse 10
+		 * source range 20
+		 * source flow 30
+		 * center 40
+		 * transformation 50
+		 * transformation inverse 60
+		 * transformation range 70
+		 * transformation flow 80
+		 * twin 90
 		 */
 
 		switch (runeClassification)
@@ -62,21 +63,38 @@ public class MajorRune : MonoBehaviour
 				break;
 
 			case MinorRune.RuneClassifications.transformation:
-				newRune.priority = 5;
+				newRune.priority = 50;
 				break;
+
 			case MinorRune.RuneClassifications.complement:
-				newRune.priority = 1;
+				ExtraMinorRune extraScript = (ExtraMinorRune)newRune.runeScript;
+				if (extraScript.GetTargetClassification() == MinorRune.RuneClassifications.source)
+				{
+					if (runeType == MinorRune.RuneTypes.inverse)newRune.priority = 10;
+					else if (runeType == MinorRune.RuneTypes.range)newRune.priority = 20;
+					else if (runeType == MinorRune.RuneTypes.flow) newRune.priority = 30;
+				}
+				else if (extraScript.GetTargetClassification() == MinorRune.RuneClassifications.transformation)
+				{
+					if (runeType == MinorRune.RuneTypes.inverse)newRune.priority = 60;
+					else if (runeType == MinorRune.RuneTypes.range)newRune.priority = 70;
+					else if (runeType == MinorRune.RuneTypes.flow)newRune.priority = 80;
+				}
 				break;
 
 			case MinorRune.RuneClassifications.root:
-				newRune.priority = 3;
+
+				if (runeType == MinorRune.RuneTypes.center) newRune.priority = 40;
+				else if (runeType == MinorRune.RuneTypes.twin) newRune.priority = 90;
 				break;
 
 			default:
 				Debug.LogWarning("minor rune type not detected: " + runeClassification);
 				break;
 		}
-		switch (runeType)
+
+
+		/*switch (runeType)
 		{
 			case MinorRune.RuneTypes.center:
 				break;
@@ -87,7 +105,7 @@ public class MajorRune : MonoBehaviour
 				break;
 			case MinorRune.RuneTypes.direct:
 				break;
-			/*case MinorRune.RuneTypes.extra:
+			case MinorRune.RuneTypes.extra:
 				ExtraMinorRune extraScript = (ExtraMinorRune)newRune.runeScript;
 				if(extraScript.GetTargetClassification() == MinorRune.RuneClassifications.source)
 				{
@@ -103,7 +121,7 @@ public class MajorRune : MonoBehaviour
 				{
 					Debug.LogWarning("extra rune with no priority");
 				}
-				break;*/
+				break;
 			case MinorRune.RuneTypes.twin:
 				newRune.priority = 6;
 				break;
@@ -113,7 +131,7 @@ public class MajorRune : MonoBehaviour
 				break;
 			default:
 				break;
-		}
+		}*/
 
 
 		//Adding the rune to the list and sorting it.
@@ -137,7 +155,7 @@ public class MajorRune : MonoBehaviour
 				}
 			}
 		}
-		else if (runeType == MinorRune.RuneTypes.inverse || runeType == MinorRune.RuneTypes.twin)
+		else if (runeType == MinorRune.RuneTypes.twin)
 		{
 			foreach (RuneSorted sort in runesList)
 			{
@@ -187,6 +205,34 @@ public class MajorRune : MonoBehaviour
 		Debug.Log("deleting rune type of: " + _typeToDelete);
 
 	}
+
+	public void DestroyMinorRune(MinorRune.RuneTypes _typeToDelete, MinorRune.RuneClassifications _attachedRune)
+	{
+
+		//Searching and destroying the desired rune	
+		foreach (RuneSorted rune in runesList)
+		{
+			if (rune.runeScript != null &&
+				rune.runeScript.GetRuneType() == _typeToDelete &&
+				rune.runeScript.GetComponent<ExtraMinorRune>().GetTargetClassification() == _attachedRune)
+			{
+				runesList.Remove(rune);
+				Destroy(rune.runeScript.gameObject);
+				break;
+			}
+		}
+
+		//Destroy the template
+		//Destroy(_rune.runeScript.gameObject);
+
+		//Update positions and create a fake lastRuneDrawn
+		SortAndUpdateRunePositions();
+		//lastRuneDrawn = new RuneSorted();
+
+		Debug.Log("deleting rune type of: " + _typeToDelete);
+
+	}
+
 
 
 	private void SortAndUpdateRunePositions()

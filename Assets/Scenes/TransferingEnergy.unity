@@ -2249,7 +2249,8 @@ MonoBehaviour:
     prefab: {fileID: 4373542282630320061, guid: 034872b47bb78eb44bad535ea8b9e827,
       type: 3}
   - name: twin
-    prefab: {fileID: 0}
+    prefab: {fileID: 2611400237401604716, guid: 4bd7a987d6608484e90c01bbe7b7a029,
+      type: 3}
   - name: destroy
     prefab: {fileID: 5303716842073149726, guid: dd279e154909352469fe326b682fe1c8,
       type: 3}

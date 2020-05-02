@@ -67,6 +67,8 @@ public class GlobalBlackboard : MonoBehaviour
 		return runeToReturn;
 	}
 
+
+
 	public GameObject GetLinePrefab()
 	{
 		return prefabLine;
