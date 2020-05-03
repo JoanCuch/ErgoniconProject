@@ -7,7 +7,7 @@ using UnityEngine;
 /// 2 Make the conversion
 /// 3 Give it to the target
 /// </summary>
-public class HeatMinorRune : TransformationRune
+public class ThermicMinorRune : TransformationRune
 {
 
 	protected override void Start()
@@ -22,7 +22,7 @@ public class HeatMinorRune : TransformationRune
 		if (!GetWorkable())
 			return;
 
-		if (GetFlowDirection()) //The energy flows is energy -> heat
+		if (GetInversed()) //The energy flows is energy -> heat
 		{
 			//Get the energy from the source and add it to himself
 			if (GetSource() == null)

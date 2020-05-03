@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 1. Get the energy from the attached object
 /// </summary>
-public class ObjectMinorRune : SourceRune
+public class ObjectMinorRune : SourceMinorRune
 {
 	[SerializeField] [ReadOnly] EnergyInteractable source;
 	//[SerializeField] private float energyFlow;
@@ -22,7 +22,9 @@ public class ObjectMinorRune : SourceRune
 	{
 		base.Update();
 
-		if (!GetWorkable())
+
+		Debug.LogWarning("Using deprecated code");
+		/*if (!GetWorkable())
 			return;
 
 		if (source == null)
@@ -43,6 +45,6 @@ public class ObjectMinorRune : SourceRune
 
 				source.AddEnergy(newE);
 			}
-		}		
+		}	*/	
 	}	
 }

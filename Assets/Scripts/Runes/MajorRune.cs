@@ -67,7 +67,7 @@ public class MajorRune : MonoBehaviour
 				break;
 
 			case MinorRune.RuneClassifications.complement:
-				ExtraMinorRune extraScript = (ExtraMinorRune)newRune.runeScript;
+				ComplementMinorRune extraScript = (ComplementMinorRune)newRune.runeScript;
 				if (extraScript.GetTargetClassification() == MinorRune.RuneClassifications.source)
 				{
 					if (runeType == MinorRune.RuneTypes.inverse)newRune.priority = 10;
@@ -214,7 +214,7 @@ public class MajorRune : MonoBehaviour
 		{
 			if (rune.runeScript != null &&
 				rune.runeScript.GetRuneType() == _typeToDelete &&
-				rune.runeScript.GetComponent<ExtraMinorRune>().GetTargetClassification() == _attachedRune)
+				rune.runeScript.GetComponent<ComplementMinorRune>().GetTargetClassification() == _attachedRune)
 			{
 				runesList.Remove(rune);
 				Destroy(rune.runeScript.gameObject);

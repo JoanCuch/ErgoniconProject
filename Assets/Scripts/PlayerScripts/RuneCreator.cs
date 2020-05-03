@@ -117,12 +117,22 @@ public class RuneCreator : MonoBehaviour
 			else
 			{
 				//Instantiate the last drawn complement rune attached to a rune of the same type of the currentRune
-				GameObject complementRunePrefab = globalBlackboard.GetMinorRune(lastRuneName);
-				GameObject complementRune = Instantiate(complementRunePrefab);
+				//But first let's check that the powered rune is a correct classifaction
+				if (currentRune.GetRuneClassification() == MinorRune.RuneClassifications.source
+					|| currentRune.GetRuneClassification() == MinorRune.RuneClassifications.transformation)
+				{
+					GameObject complementRunePrefab = globalBlackboard.GetMinorRune(lastRuneName);
+					GameObject complementRune = Instantiate(complementRunePrefab);
 
-				complementRune.GetComponent<ExtraMinorRune>().SetTargetClassification(currentRune.GetRuneClassification());
-				targetMajorRune.AddMinorRune(complementRune.transform);
-				Debug.Log("complement rune: " + lastRuneName + " attached to: " + runeName);
+					ComplementMinorRune complementScript = complementRune.GetComponent<ComplementMinorRune>();
+
+					complementScript.SetTargetClassification(currentRune.GetRuneClassification());
+					targetMajorRune.AddMinorRune(complementRune.transform);
+					//complementScript.ActivateComplement(true);
+
+
+					Debug.Log("complement rune: " + lastRuneName + " attached to: " + runeName);
+				}
 			}
 			lastRune = null;
 			lastRuneName = null;

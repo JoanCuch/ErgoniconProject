@@ -10,7 +10,7 @@ public class PhysicObject : EnergyInteractable
 	private List<MajorRune> attachedRunes;
 
 	public Material ownMaterial;
-	private Renderer renderer;
+	private Renderer render;
 
 	private float origianlIntensity;
 	private float lastHeat;
@@ -22,8 +22,10 @@ public class PhysicObject : EnergyInteractable
 	[SerializeField] private Color maxHeatColor;
 
 	// Start is called before the first frame update
-	void Start()
-    {
+	protected override void Start()
+	{
+		base.Start();
+
 		attachedRunes = new List<MajorRune>();
 		ownMaterial = GetComponent<MeshRenderer>().material;
 		lastHeat = GetHeat();
@@ -32,13 +34,13 @@ public class PhysicObject : EnergyInteractable
 		//temp hardcoded
 		AddEnergy(30);
     }
-	
 
-    // Update is called once per frame
-    void Update()
-    {
-		
-    }
+
+	// Update is called once per frame
+	protected override void Update()
+	{
+		base.Update();
+	}
 
 	private void LateUpdate()
 	{

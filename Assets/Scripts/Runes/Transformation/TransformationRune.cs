@@ -7,7 +7,8 @@ public class TransformationRune : MinorRune
 
 	[SerializeField]  private float flowRate;
 	[SerializeField]  private float transformationEfficiency;
-	[SerializeField]  [ReadOnly]private bool flowDirection;
+	[SerializeField]  private float range;
+	[SerializeField]  [ReadOnly]private bool inversed;
 
 
 	[SerializeField] [ReadOnly] private EnergyInteractable sourceRune;
@@ -19,7 +20,7 @@ public class TransformationRune : MinorRune
     protected override void Start()
 	{
 		base.Start();
-		SetFlowDirection(true);
+		SetInversed(false);
 	}
 
 	// Update is called once per frame
@@ -36,10 +37,13 @@ public class TransformationRune : MinorRune
 	public void SetTarget(EnergyInteractable _newTarget) { target = _newTarget; }
 
 	public float GetFlowRate() { return flowRate; }
-	public void ChangeFlowRate(float _flowChange) { flowRate *= _flowChange; }
+	public void SetChangeFlowRate(float _flowChange) { flowRate *= _flowChange; }
 
-	public bool GetFlowDirection() { return flowDirection; }
-	public void SetFlowDirection(bool _newFlow) { flowDirection = _newFlow; }
+	public float GetRange() { return range; }
+	public void SetChangeRange(float _rangeChange) {  }
+
+	public bool GetInversed() { return inversed; }
+	public void SetInversed(bool _newFlow) { inversed = _newFlow; }
 
 	public float GetTransformationEfficiency() { return transformationEfficiency; }
 

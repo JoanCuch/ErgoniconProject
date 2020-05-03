@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForceMinorRune : TransformationRune
+public class KineticMinorRune : TransformationRune
 {
 	Rigidbody targetRigidbody;
 	[SerializeField] private float impulseMultiplier;
@@ -55,7 +55,7 @@ public class ForceMinorRune : TransformationRune
 			//There is no twin rune, the direction is the normal of the rune plane.
 			forceDirection = -GetMajorRune().transform.forward;
 
-			if (GetFlowDirection() == false)
+			if (GetInversed() == false)
 				forceDirection *= -1;
 
 			forceImpulse = impulseMultiplier * transformedEnergy;
@@ -67,7 +67,7 @@ public class ForceMinorRune : TransformationRune
 			//There is a twin rune, the direction is the twin position.
 			forceDirection = (linked.position - this.GetMajorRune().transform.position).normalized;
 
-			if (GetFlowDirection() == false)
+			if (GetInversed() == false)
 				forceDirection *= -1;
 
 

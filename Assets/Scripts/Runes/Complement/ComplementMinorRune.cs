@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExtraMinorRune : MinorRune
+public class ComplementMinorRune : MinorRune
 {
 
 	private RuneClassifications targetClassifications;
+	[SerializeField] [ReadOnly] private MinorRune poweredRune;
 
-	private MinorRune poweredRune;
-	[SerializeField] private float rateFlowMultiplier;
+
+	//private MinorRune poweredRune;
+	//[SerializeField] private float rateFlowMultiplier;
 
 	// Start is called before the first frame update
 	protected override void Start()
@@ -26,9 +28,22 @@ public class ExtraMinorRune : MinorRune
 
 		if (poweredRune == null)
 		{
-			if(targetClassifications == RuneClassifications.source)
+			poweredRune = GetMajorRune().GetMinorRune(targetClassifications);
+		}
+
+
+
+
+
+		/*if (poweredRune == null)
+		{
+
+
+
+
+			if (targetClassifications == RuneClassifications.source)
 			{
-				SourceRune newPow = (SourceRune)GetMajorRune().GetMinorRune(targetClassifications);
+				SourceMinorRune newPow = (SourceMinorRune)GetMajorRune().GetMinorRune(targetClassifications);
 				if(newPow != null)
 				{
 					newPow.ChangeFlowRate(rateFlowMultiplier);
@@ -44,16 +59,16 @@ public class ExtraMinorRune : MinorRune
 					poweredRune = newPow;
 				}
 			}		
-		}
+		}*/
 	}
 
-	private void OnDestroy()
+	/*private void OnDestroy()
 	{
 		if (poweredRune != null)
 		{
 			if (targetClassifications == RuneClassifications.source)
 			{
-				SourceRune newPow = (SourceRune)poweredRune;
+				SourceMinorRune newPow = (SourceMinorRune)poweredRune;
 				if (newPow != null)
 				{
 					newPow.ChangeFlowRate(1/rateFlowMultiplier);
@@ -68,16 +83,16 @@ public class ExtraMinorRune : MinorRune
 				}
 			}
 		}
-	}
+	}*/
 
-	public void SetTargetClassification (RuneClassifications _classification)
-	{
-		targetClassifications = _classification;
-	}
+	public void SetTargetClassification (RuneClassifications _classification) { targetClassifications = _classification; }
+	public RuneClassifications GetTargetClassification() { return targetClassifications; }
 
-	public RuneClassifications GetTargetClassification()
+	public MinorRune GetPoweredRune() { return poweredRune; }
+	
+	public virtual void ActivateComplement(bool _condition)
 	{
-		return targetClassifications;
+
 	}
 
 

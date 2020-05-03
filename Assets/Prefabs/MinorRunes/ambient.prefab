@@ -104,6 +104,7 @@ MonoBehaviour:
   isWorkable: 0
   range: 1
   flowRate: 1
-  flowDirection: 0
-  environment: {fileID: 0}
+  inversed: 0
+  source: {fileID: 0}
+  sourceUpdateDelay: 0.5
   environmentTag: ENVIRONMENT

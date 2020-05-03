@@ -5,19 +5,24 @@ using UnityEngine;
 /// <summary>
 /// 1. Get the energy from the environment
 /// </summary>
-public class AmbientMinorRune : SourceRune
+public class AmbientMinorRune : SourceMinorRune
 {
-    [SerializeField] [ReadOnly] EnergyInteractable environment;
+	[SerializeField] [ReadOnly] EnergyInteractable source;
+	[SerializeField] private float sourceUpdateDelay;
+	
+	// [SerializeField] [ReadOnly] EnergyInteractable environment;
 	//[SerializeField] private float energyFlow;
 
 	//[SerializeField] private float detectionRadius;
 	[SerializeField] [TagSelector] private string environmentTag;
 
-
 	// Start is called before the first frame update
 	protected override void Start()
 	{
 		base.Start();
+
+		StartCoroutine(UpdateSource());
+
 	}
 
 	// Update is called once per frame
@@ -28,32 +33,13 @@ public class AmbientMinorRune : SourceRune
 		if (!GetWorkable())
 			return;
 
-		/*if(environment != null && IsEnvironmentToFar())
+		//Get the energy
+		if (source != null)
 		{
-			environment = null;
-		}*/
-
-		if(environment == null)
-		{
-			environment = FindEnvironmentAround();
+			float newE = source.AbsorbEnergy(GetFlowRate() * Time.deltaTime);
+			AddEnergy(newE);
 		}
 
-		if(environment != null)
-		{
-
-			if (GetFlowDirection())
-			{
-				//Get the energy from the source and add it to himself
-				float newE = environment.AbsorbEnergy(GetFlowRate() * Time.deltaTime);
-				AddEnergy(newE);
-			}
-			else
-			{
-				//Get the energy from himself and add it to the source
-				float newE = AbsorbEnergy(GetFlowRate() * Time.deltaTime);
-				environment.AddEnergy(newE);
-			}
-		}		
 	}
 
 
@@ -76,9 +62,31 @@ public class AmbientMinorRune : SourceRune
 		return envi;
 	}
 
+
+	IEnumerator UpdateSource()
+	{
+		while (true)
+		{
+			if (GetWorkable())
+			{
+				if (GetInversed())
+				{
+					//This minor rune has attached a inverse minor rune
+					source = parentMajorRune.GetAttachedObject();
+				}
+				else
+				{
+					source = FindEnvironmentAround();
+				}
+			}
+
+			yield return new WaitForSeconds(sourceUpdateDelay);
+		}
+	}
+
 	private bool IsEnvironmentToFar()
 	{	
-		float distance = (transform.position - environment.transform.position).magnitude;
+		float distance = (transform.position - source.transform.position).magnitude;
 
 		if(distance > GetRange())
 		{

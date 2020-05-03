@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SourceRune : MinorRune
+public class SourceMinorRune : MinorRune
 {
 
 	[SerializeField]  private float range;
 	[SerializeField]  private float flowRate;
-	[SerializeField] [ReadOnly]  private bool flowDirection;
+	[SerializeField] [ReadOnly]  private bool inversed;
 
 
 	// Start is called before the first frame update
 	protected override void Start()
 	{
 		base.Start();
-		flowDirection = true;
+		inversed = false;
 	}
 
 	// Update is called once per frame
@@ -23,23 +23,23 @@ public class SourceRune : MinorRune
 		base.Update();
 	}
 
-	public bool GetFlowDirection(){ return flowDirection; }
+	public bool GetInversed() { return inversed; }
 	public float GetFlowRate() { return flowRate; }
 	public float GetRange() { return range; }
 
-	public void ChangeRange(float _rangeChange)
+	public void SetChangeRange(float _rangeChange)
 	{
 		range *= _rangeChange;
 	}
 
-	public void ChangeFlowRate(float _flowChange)
+	public void SetChangeFlowRate(float _flowChange)
 	{
 		flowRate *= _flowChange;
 	}
 
-	public void SetFlowDirection(bool _newFlow)
+	public void SetInversed(bool _newFlow)
 	{
-		flowDirection = _newFlow;
+		inversed = _newFlow;
 	}
 
 }
