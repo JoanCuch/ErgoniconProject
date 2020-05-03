@@ -22,6 +22,43 @@ public class ThermicMinorRune : TransformationRune
 		if (!GetWorkable())
 			return;
 
+		if(GetSource() == null)
+		{
+			SetSource(parentMajorRune.GetMinorRune(RuneClassifications.source));
+		}
+
+		if (GetTarget() == null)
+		{
+			SetTarget(parentMajorRune.GetAttachedObject());
+		}
+
+		//If there isn't a source or a target, the rune cannot work
+		if (GetSource() && GetTarget())
+		{
+			//Get the energy from the source and add it to himself
+			AddEnergy(GetSource().AbsorbEnergy(GetFlowRate() * Time.deltaTime));
+
+			//Transform the energy
+			float TransformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetTransformationEfficiency();
+
+			TransformedEnergy *= GetInversed() ? -1 : 1;
+
+			AddHeat(TransformedEnergy);
+
+			//Give the energy to the target
+			GetTarget().AddHeat(AbsorbHeat(GetFlowRate() * Time.deltaTime));		
+		}
+
+	
+
+
+
+
+
+
+
+
+		/*
 		if (GetInversed()) //The energy flows is energy -> heat
 		{
 			//Get the energy from the source and add it to himself
@@ -73,6 +110,6 @@ public class ThermicMinorRune : TransformationRune
 			{
 				GetSource().AddEnergy(AbsorbEnergy(GetFlowRate() * Time.deltaTime));
 			}			
-		}	
-    }
+		}*/
+	}
 }
