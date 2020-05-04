@@ -112,7 +112,7 @@ public class RuneCreator : MonoBehaviour
 			if (penultimateRune != null && penultimateRune.GetRuneType() == MinorRune.RuneTypes.destroy)
 			{
 				//Destroy a complement rune
-				targetMajorRune.DestroyMinorRune(lastRune.GetRuneType(), currentRune.GetRuneClassification());
+				targetMajorRune.DestroyComplementRune(lastRune.GetRuneType(), currentRune.GetRuneClassification());
 			}
 			else
 			{
@@ -128,10 +128,7 @@ public class RuneCreator : MonoBehaviour
 
 					complementScript.SetTargetClassification(currentRune.GetRuneClassification());
 					targetMajorRune.AddMinorRune(complementRune.transform);
-					//complementScript.ActivateComplement(true);
-
-
-					Debug.Log("complement rune: " + lastRuneName + " attached to: " + runeName);
+					//Debug.Log("complement rune: " + lastRuneName + " attached to: " + runeName);
 				}
 			}
 			lastRune = null;
@@ -145,6 +142,7 @@ public class RuneCreator : MonoBehaviour
 			targetMajorRune.AddMinorRune(newMinorRune.transform);
 			lastRune = null;
 			lastRuneName = null;
+			penultimateRune = null;
 
 			Debug.Log("creating minor rune type of: " + runeName);
 		}

@@ -102,9 +102,13 @@ MonoBehaviour:
   parentMajorRune: {fileID: 0}
   spriteRenderer: {fileID: 3022043561625767691}
   isWorkable: 0
+  initialEfficiency: 1
+  initialFlowRate: 1
+  initialRange: 1
+  inversed: 0
   flowRate: 1
-  transformationEfficiency: 1
-  flowDirection: 0
+  efficiency: 0
+  range: 0
   sourceRune: {fileID: 0}
   target: {fileID: 0}
   linkedRune: {fileID: 0}

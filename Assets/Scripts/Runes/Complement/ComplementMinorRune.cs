@@ -16,6 +16,7 @@ public class ComplementMinorRune : MinorRune
 	protected override void Start()
 	{
 		base.Start();
+		StartCoroutine(RetardedActivate());
 	}
 
 	// Update is called once per frame
@@ -84,6 +85,11 @@ public class ComplementMinorRune : MinorRune
 			}
 		}
 	}*/
+	private void OnDestroy()
+	{
+		ActivateComplement(false);
+	}
+
 
 	public void SetTargetClassification (RuneClassifications _classification) { targetClassifications = _classification; }
 	public RuneClassifications GetTargetClassification() { return targetClassifications; }
@@ -95,5 +101,14 @@ public class ComplementMinorRune : MinorRune
 
 	}
 
+	IEnumerator RetardedActivate()
+	{
+		while(GetPoweredRune() == null)
+		{
+			yield return null;
+		}
+
+		ActivateComplement(true);
+	}
 
 }

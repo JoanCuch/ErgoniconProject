@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9051072931530251792}
   - component: {fileID: 3022043561625767691}
-  - component: {fileID: 7522262153578966310}
+  - component: {fileID: 3633905099216367531}
   m_Layer: 0
   m_Name: joint
   m_TagString: Untagged
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7522262153578966310
+--- !u!114 &3633905099216367531
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,15 +90,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 6796488033413302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8296c92474125d42b1566087abdf84c, type: 3}
+  m_Script: {fileID: 11500000, guid: b481c1928e10f1e4ba28ed343a90406d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   heat: 0
   energy: 0
   impulse: {x: 0, y: 0, z: 0}
   fatigue: 0
-  runeClassification: 2
-  runeType: 7
+  runeClassification: 1
+  runeType: 4
   parentMajorRune: {fileID: 0}
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 3022043561625767691}
   isWorkable: 0
+  initialEfficiency: 1
+  initialFlowRate: 1
+  initialRange: 1
+  inversed: 0
+  flowRate: 0
+  efficiency: 0
+  range: 0
+  sourceRune: {fileID: 0}
+  target: {fileID: 0}
+  linkedRune: {fileID: 0}
+  jointForce: 1e+10

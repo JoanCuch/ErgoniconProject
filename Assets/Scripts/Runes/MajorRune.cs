@@ -94,56 +94,15 @@ public class MajorRune : MonoBehaviour
 		}
 
 
-		/*switch (runeType)
-		{
-			case MinorRune.RuneTypes.center:
-				break;
-			case MinorRune.RuneTypes.inverse:
-				newRune.priority = 2;
-				break;
-			case MinorRune.RuneTypes.ambient:
-				break;
-			case MinorRune.RuneTypes.direct:
-				break;
-			case MinorRune.RuneTypes.extra:
-				ExtraMinorRune extraScript = (ExtraMinorRune)newRune.runeScript;
-				if(extraScript.GetTargetClassification() == MinorRune.RuneClassifications.source)
-				{
-					Debug.Log("extra source rune");
-					newRune.priority = 1;
-				}
-				else if (extraScript.GetTargetClassification() == MinorRune.RuneClassifications.transformation)
-				{
-					Debug.Log("extra transformation rune");
-					newRune.priority = 4;
-				}
-				else
-				{
-					Debug.LogWarning("extra rune with no priority");
-				}
-				break;
-			case MinorRune.RuneTypes.twin:
-				newRune.priority = 6;
-				break;
-			case MinorRune.RuneTypes.thermic:
-				break;
-			case MinorRune.RuneTypes.kinetic:
-				break;
-			default:
-				break;
-		}*/
-
-
-		//Adding the rune to the list and sorting it.
 		if (runesList == null)
 		{
 			Debug.LogWarning("instantiating the list again");
 			runesList = new List<RuneSorted>();
 		}
 
-		//Checking that can only be one source, transformation or basic rune.
-		//In the case of complementRunes, can only be one inverse and one twin.
-		if (runeClassification != MinorRune.RuneClassifications.complement)
+		//In a major rune can only exist one source and one transformation rune
+		if (runeClassification == MinorRune.RuneClassifications.source ||
+			runeClassification == MinorRune.RuneClassifications.transformation)
 		{
 			foreach (RuneSorted sort in runesList)
 			{
@@ -155,7 +114,8 @@ public class MajorRune : MonoBehaviour
 				}
 			}
 		}
-		else if (runeType == MinorRune.RuneTypes.twin)
+		//In a major rune can only exist one type rune for the root runes.
+		else if (runeClassification == MinorRune.RuneClassifications.root)
 		{
 			foreach (RuneSorted sort in runesList)
 			{
@@ -179,11 +139,6 @@ public class MajorRune : MonoBehaviour
 
 	public void DestroyMinorRune(MinorRune.RuneTypes _typeToDelete)
 	{
-		//MinorRune.RuneTypes runeType = _rune.runeScript.GetRuneType();
-
-		//Destroying the destroyRune
-		//Destroy(lastRuneDrawn.runeScript.gameObject);
-
 		//Searching and destroying the desired rune
 		foreach (RuneSorted rune in runesList)
 		{
@@ -195,45 +150,33 @@ public class MajorRune : MonoBehaviour
 			}
 		}
 
-		//Destroy the template
-		//Destroy(_rune.runeScript.gameObject);
-
-		//Update positions and create a fake lastRuneDrawn
 		SortAndUpdateRunePositions();
-		//lastRuneDrawn = new RuneSorted();
-
 		Debug.Log("deleting rune type of: " + _typeToDelete);
-
 	}
 
-	public void DestroyMinorRune(MinorRune.RuneTypes _typeToDelete, MinorRune.RuneClassifications _attachedRune)
+	public void DestroyComplementRune(MinorRune.RuneTypes _typeToDelete, MinorRune.RuneClassifications _attachedRune)
 	{
-
+		Debug.Log("runes list has: " + runesList.Count + " elements");
 		//Searching and destroying the desired rune	
 		foreach (RuneSorted rune in runesList)
 		{
-			if (rune.runeScript != null &&
-				rune.runeScript.GetRuneType() == _typeToDelete &&
-				rune.runeScript.GetComponent<ComplementMinorRune>().GetTargetClassification() == _attachedRune)
+			if (rune.runeScript.GetRuneClassification() == MinorRune.RuneClassifications.complement)
 			{
-				runesList.Remove(rune);
-				Destroy(rune.runeScript.gameObject);
-				break;
+				if (rune.runeScript != null &&
+					rune.runeScript.GetRuneType() == _typeToDelete &&
+					rune.runeScript.GetComponent<ComplementMinorRune>().GetTargetClassification() == _attachedRune)
+				{
+					runesList.Remove(rune);
+					Destroy(rune.runeScript.gameObject);
+					break;
+				}
 			}
 		}
 
-		//Destroy the template
-		//Destroy(_rune.runeScript.gameObject);
-
 		//Update positions and create a fake lastRuneDrawn
 		SortAndUpdateRunePositions();
-		//lastRuneDrawn = new RuneSorted();
-
 		Debug.Log("deleting rune type of: " + _typeToDelete);
-
 	}
-
-
 
 	private void SortAndUpdateRunePositions()
 	{
@@ -299,19 +242,6 @@ public class MajorRune : MonoBehaviour
 	{
 		return attachedObject;
 	}
-
-	/*private void DestroyLastRuneDrawn()
-	{
-		/*if (lastRuneDrawn.isFake == false)
-		{
-			runesList.Remove(lastRuneDrawn);
-			Destroy(lastRuneDrawn.runeScript.gameObject);
-			SortAndUpdateRunePositions();
-			lastRuneDrawn = new RuneSorted();
-			lastRuneDrawn.isFake = true;
-		}
-	}*/
-
 }
 
 

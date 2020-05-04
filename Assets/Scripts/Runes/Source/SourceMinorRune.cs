@@ -31,12 +31,10 @@ public class SourceMinorRune : MinorRune
 	{
 		range *= _rangeChange;
 	}
-
 	public void SetChangeFlowRate(float _flowChange)
 	{
 		flowRate *= _flowChange;
 	}
-
 	public void SetInversed(bool _newFlow)
 	{
 		inversed = _newFlow;

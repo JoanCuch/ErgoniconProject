@@ -6,19 +6,12 @@ public class InverseMinorRune : ComplementMinorRune
 {
 	protected override void Start()
 	{
-		base.Start();
-		
+		base.Start();	
 	}
 
 	protected override void Update()
 	{
 		base.Update();
-		ActivateComplement(true);
-	}
-
-	private void OnDestroy()
-	{
-		ActivateComplement(false);
 	}
 
 	public override void ActivateComplement(bool _condition)
@@ -44,12 +37,7 @@ public class InverseMinorRune : ComplementMinorRune
 		}
 	}
 
-	IEnumerator RetardedActivate()
-	{
-		yield return new WaitUntil(() => GetPoweredRune() != null);
-		ActivateComplement(true);
 
-	}
 
 
 

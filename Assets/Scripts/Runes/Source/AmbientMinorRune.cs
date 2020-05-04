@@ -84,8 +84,9 @@ public class AmbientMinorRune : SourceMinorRune
 		}
 	}
 
-	private bool IsEnvironmentToFar()
-	{	
+	/*private bool IsEnvironmentToFar()
+	{
+
 		float distance = (transform.position - source.transform.position).magnitude;
 
 		if(distance > GetRange())
@@ -96,6 +97,6 @@ public class AmbientMinorRune : SourceMinorRune
 		{
 			return false;
 		}
-	}
+	}*/
 
 }

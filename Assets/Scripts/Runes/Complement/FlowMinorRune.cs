@@ -17,11 +17,6 @@ public class FlowMinorRune : ComplementMinorRune
 		base.Update();
 	}
 
-	private void OnDestroy()
-	{
-		ActivateComplement(false);
-	}
-
 	public override void ActivateComplement(bool _condition)
 	{
 		float multiplier = _condition ? (flowMultiplier) : (1 / flowMultiplier);

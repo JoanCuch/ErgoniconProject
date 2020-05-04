@@ -5,11 +5,15 @@ using UnityEngine;
 public class TransformationRune : MinorRune
 {
 
-	[SerializeField]  private float flowRate;
-	[SerializeField]  private float transformationEfficiency;
-	[SerializeField]  private float range;
-	[SerializeField]  [ReadOnly]private bool inversed;
 
+	[SerializeField] float initialEfficiency;
+	[SerializeField] float initialFlowRate;
+	[SerializeField] float initialRange;
+
+	[SerializeField] [ReadOnly] private bool inversed;
+	[SerializeField] [ReadOnly] private float flowRate;
+	[SerializeField] [ReadOnly] private float efficiency;
+	[SerializeField] [ReadOnly] private float range;
 
 	[SerializeField] [ReadOnly] private EnergyInteractable sourceRune;
 	[SerializeField] [ReadOnly] private EnergyInteractable target;
@@ -20,6 +24,9 @@ public class TransformationRune : MinorRune
     protected override void Start()
 	{
 		base.Start();
+		flowRate = initialFlowRate;
+		efficiency = initialEfficiency;
+		range = initialRange;
 		SetInversed(false);
 	}
 
@@ -28,7 +35,6 @@ public class TransformationRune : MinorRune
 	{
 		base.Update();
 	}
-
 
 	public EnergyInteractable GetSource() { return sourceRune; }
 	public void SetSource(EnergyInteractable _newSource) { sourceRune = _newSource; }
@@ -40,12 +46,12 @@ public class TransformationRune : MinorRune
 	public void SetChangeFlowRate(float _flowChange) { flowRate *= _flowChange; }
 
 	public float GetRange() { return range; }
-	public void SetChangeRange(float _rangeChange) {  }
+	public void SetChangeRange(float _rangeChange) { range *= _rangeChange;  }
 
 	public bool GetInversed() { return inversed; }
 	public void SetInversed(bool _newFlow) { inversed = _newFlow; }
 
-	public float GetTransformationEfficiency() { return transformationEfficiency; }
+	public float GetTransformationEfficiency() { return efficiency; }
 
 	public TransformationRune GetLinkedRune() { return linkedRune; }
 	public void SetLinkedRune(TransformationRune _newLinked) { linkedRune = _newLinked; }

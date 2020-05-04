@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1154384569040782817}
   - component: {fileID: 7184537189183880161}
   m_Layer: 0
-  m_Name: heat
+  m_Name: thermic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,9 +102,13 @@ MonoBehaviour:
   parentMajorRune: {fileID: 0}
   spriteRenderer: {fileID: 1154384569040782817}
   isWorkable: 0
+  initialEfficiency: 1
+  initialFlowRate: 1
+  initialRange: 1
+  inversed: 0
   flowRate: 1
-  transformationEfficiency: 1
-  flowDirection: 0
+  efficiency: 0
+  range: 0
   sourceRune: {fileID: 0}
   target: {fileID: 0}
   linkedRune: {fileID: 0}

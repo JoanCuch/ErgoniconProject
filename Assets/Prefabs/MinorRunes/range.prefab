@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5244787370379463276}
   - component: {fileID: 967416855358514594}
-  - component: {fileID: -620187504554215165}
+  - component: {fileID: 6441913761811974902}
   m_Layer: 0
   m_Name: range
   m_TagString: Untagged
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-620187504554215165
+--- !u!114 &6441913761811974902
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2611400237401604716}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa71f24e9eaf29a408b08db12721a405, type: 3}
+  m_Script: {fileID: 11500000, guid: d68ed133bbea2d84d872fd3c9f44edc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   heat: 0
@@ -102,4 +102,5 @@ MonoBehaviour:
   parentMajorRune: {fileID: 0}
   spriteRenderer: {fileID: 967416855358514594}
   isWorkable: 0
-  rateFlowMultiplier: 2
+  poweredRune: {fileID: 0}
+  rangeMultiplier: 1.2

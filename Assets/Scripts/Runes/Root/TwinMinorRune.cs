@@ -42,22 +42,31 @@ public class TwinMinorRune : MinorRune
 				possibleRune.SetLinkedTwinRune(this);	
 			}
 		}
+		else if (linkedTransformationRune != null &&
+			GetOwnTransformationRune() != null &&
+			linkedTransformationRune.GetType() != GetOwnTransformationRune().GetType()
+			)
+		{
+			linkedTwinRune.RemoveLink();
+			RemoveLink();
+		}
 		else
 		{
 			if(linkedTransformationRune == null)
 			{
 				linkedTransformationRune = linkedTwinRune.GetOwnTransformationRune();
 
-				//TODO superharcoded. This should be a subclasse
 				if(linkedTransformationRune != null &&
 					ownTransformationRune != null)
 				{
-					//ForceMinorRune forceRune = (ForceMinorRune)ownTransformationRune;
-					//forceRune.SetForceTarget(linkedTransformationRune.transform);
 					ownTransformationRune.SetLinkedRune(linkedTransformationRune);
 				}
 			}
 		}
+
+
+
+
 	}
 
 	private TwinMinorRune FindTwinRune()
@@ -71,18 +80,23 @@ public class TwinMinorRune : MinorRune
 
 			if (col.transform != this.transform && col.tag == transform.tag)
 			{
-			
 				TwinMinorRune possibleTwin = col.GetComponent<TwinMinorRune>();
-				Debug.Log(possibleTwin.name + " " + possibleTwin);
-				bool TempBoolA = possibleTwin.GetLinkedTwinRune() == null;
-				bool tempBoolB = GetOwnTransformationRune().GetType() == possibleTwin.GetOwnTransformationRune().GetType();
 
-
-				if (possibleTwin.GetLinkedTwinRune() == null &&
-					GetOwnTransformationRune().GetType() == possibleTwin.GetOwnTransformationRune().GetType())
+				//The two twins runes needs to be attached to a transformation rune
+				if (!(possibleTwin == null ||
+					possibleTwin.GetOwnTransformationRune() == null ||
+					this.GetOwnTransformationRune() == null))
 				{
-					linkedRune = possibleTwin;
-					Debug.Log("twin selected with the same rune type");
+					//bool TempBoolA = possibleTwin.GetLinkedTwinRune() == null;
+					//bool tempBoolB = GetOwnTransformationRune().GetType() == possibleTwin.GetOwnTransformationRune().GetType();
+
+					//If the other twin rune is not linked yet and they are the same type
+					if (possibleTwin.GetLinkedTwinRune() == null &&
+						GetOwnTransformationRune().GetType() == possibleTwin.GetOwnTransformationRune().GetType())
+					{
+						linkedRune = possibleTwin;
+						Debug.Log("twin selected with the same rune type");
+					}
 				}
 			}
 		}
@@ -91,19 +105,8 @@ public class TwinMinorRune : MinorRune
 
 	private void OnDestroy()
 	{
-		if (linkedTransformationRune != null)
-		{
-			//TODO superharcoded. This should be a subclasse
-			ownTransformationRune.SetLinkedRune(null);
-
-
-			/*
-			if (ownTransformationRune.GetRuneType() == RuneTypes.force)
-			{
-				ForceMinorRune forceRune = (ForceMinorRune)ownTransformationRune;
-				forceRune.SetForceTarget(null);
-			}*/
-		}
+		linkedTwinRune.RemoveLink();
+		RemoveLink();
 	}
 
 
@@ -117,4 +120,14 @@ public class TwinMinorRune : MinorRune
 	}
 
 
+	public void RemoveLink()
+	{
+		if (linkedTransformationRune != null)
+		{
+			linkedTransformationRune = null;
+			ownTransformationRune.SetLinkedRune(null);		
+			linkedTwinRune = null;
+			Debug.Log("removing twin link");
+		}
+	}
 }

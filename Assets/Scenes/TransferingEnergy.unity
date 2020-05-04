@@ -1682,7 +1682,7 @@ MonoBehaviour:
   energy: 0
   impulse: {x: 0, y: 0, z: 0}
   fatigue: 0
-  startEnergy: 3000000
+  startEnergy: 100
 --- !u!1 &1129181938
 GameObject:
   m_ObjectHideFlags: 0

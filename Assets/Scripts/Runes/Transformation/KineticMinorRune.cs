@@ -67,12 +67,12 @@ public class KineticMinorRune : TransformationRune
 			//There is a twin rune, the direction is the twin position.
 			forceDirection = (linked.position - this.GetMajorRune().transform.position).normalized;
 
-			if (GetInversed() == false)
+			if (GetInversed())
 				forceDirection *= -1;
 
 
 			float distance = Vector3.Distance(linked.position, this.GetMajorRune().transform.position);
-			forceImpulse = (1 / Mathf.Pow(distance, distanceSQRT) * impulseMultiplier * transformedEnergy);
+			forceImpulse = (GetRange() / Mathf.Pow(distance, distanceSQRT) * impulseMultiplier * transformedEnergy);
 		}
 			
 		//Set the forcePoint
