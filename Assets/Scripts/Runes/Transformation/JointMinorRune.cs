@@ -6,7 +6,9 @@ public class JointMinorRune : TransformationRune
 {
 
 	[SerializeField] float jointForce;
-	private FixedJoint joint;
+	private Vector3 allowedAxisRotation;
+	private Joint joint;
+
 	[SerializeField] private float jointForceMultiplier;
 
 
@@ -27,50 +29,63 @@ public class JointMinorRune : TransformationRune
 	private void LateUpdate()
 	{
 		
-		if (joint == null && GetLinkedRune())
+		if (joint == null)
 		{
-			if (GetSource() == null)
+			//If there isn't any joint but there is a linked twin --> Create joint if there is energy
+			if (GetLinkedRune())
 			{
-				SetSource(GetMajorRune().GetMinorRune(RuneClassifications.source));
-			}
-			else
-			{
-				AddEnergy(GetSource().AbsorbEnergy(GetFlowRate() * Time.deltaTime));
-				float transformedEnergy = 0;
-				transformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetTransformationEfficiency();
-
-				if (transformedEnergy > 0)
+				if (GetSource() == null)
 				{
-					CreateJoint();
+					SetSource(GetMajorRune().GetMinorRune(RuneClassifications.source));
+				}
+				else
+				{
+					AddEnergy(GetSource().AbsorbEnergy(GetFlowRate() * Time.deltaTime));
+					float transformedEnergy = 0;
+					transformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetTransformationEfficiency();
+
+					if (transformedEnergy > 0)
+					{
+						CreateJoint();
+					}
 				}
 			}
 		}
-
-		if(joint != null && GetLinkedRune() == false)
+		else	
 		{
-			DestroyJoint();
-		}
-
-		if (joint != null)
-		{
-			if(GetSource() == null)
+			if (GetInversed() == true  && joint.GetType() == typeof(FixedJoint) ||
+				GetInversed() == false && joint.GetType() == typeof(HingeJoint) )
 			{
-				SetSource(GetMajorRune().GetMinorRune(RuneClassifications.source));
+				//If the joint is incorrect, reinstall
+				DestroyJoint();
+				CreateJoint();
+			}
+			else if (GetLinkedRune() == false)
+			{
+				//If there is a joint but not a twin anymore --> destroy joint
+				DestroyJoint();
 			}
 			else
 			{
-				AddEnergy(GetSource().AbsorbEnergy(GetFlowRate() * Time.deltaTime));
-				float transformedEnergy = 0;
-				transformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetTransformationEfficiency();
+				//If the joint still exists update the break force.
+				if (GetSource() == null)
+				{
+					SetSource(GetMajorRune().GetMinorRune(RuneClassifications.source));
+				}
+				else
+				{
+					AddEnergy(GetSource().AbsorbEnergy(GetFlowRate() * Time.deltaTime));
+					float transformedEnergy = 0;
+					transformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetTransformationEfficiency();
 
-				//The transformed energy defines the current break force. Considering that the jointForce maximum gets when the transformed energy equals the maxFlowRate
-				joint.breakForce = transformedEnergy * jointForce / GetFlowRate();
+					//The transformed energy defines the current break force. Considering that the jointForce maximum gets when the transformed energy equals the maxFlowRate
+					joint.breakForce = transformedEnergy * jointForce / GetFlowRate();
 
-				if(transformedEnergy == 0)
-				{ DestroyJoint(); }
+					if (transformedEnergy == 0)
+					{ DestroyJoint(); }
+				}
 			}
 		}
-
 	}
 
 	private void OnJointBreak(float breakForce)
@@ -86,13 +101,30 @@ public class JointMinorRune : TransformationRune
 	private void CreateJoint()
 	{
 		GameObject attachedObject = GetMajorRune().GetAttachedObject().gameObject;
-		joint = attachedObject.AddComponent<FixedJoint>() as FixedJoint;
+
+		if (GetInversed())
+		{
+			//If there is an inverse rune, create hinge joint with Y axis rotation
+			HingeJoint tempJoint = attachedObject.AddComponent<HingeJoint>() as HingeJoint;
+			tempJoint.axis = (GetMajorRune().transform.position - GetLinkedRune().GetMajorRune().transform.position).normalized;
+			joint = tempJoint;
+			Debug.Log("Hinge joint created. Rotation allowed");
+
+		}
+		else
+		{
+			//By default, create a fixerd joint with no movement or rotation allowed
+			joint = attachedObject.AddComponent<FixedJoint>() as FixedJoint;	
+			Debug.Log("Fixed joint created");
+		}
+
 		joint.connectedBody = GetLinkedRune().GetMajorRune().GetAttachedObject().GetComponent<Rigidbody>();
 		joint.breakForce = jointForce;
-		Debug.Log("joint created");
+
+
 	}
 
-	public void DestroyJoint()
+	private void DestroyJoint()
 	{
 		Destroy(joint);
 		Debug.Log("joint broke");
