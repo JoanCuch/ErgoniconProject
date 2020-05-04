@@ -2696,6 +2696,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1386617354}
     m_Modifications:
+    - target: {fileID: 2012348411, guid: 2cedb055e40f5e54b88dabb9df44a2d7, type: 3}
+      propertyPath: handFollowTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012348411, guid: 2cedb055e40f5e54b88dabb9df44a2d7, type: 3}
+      propertyPath: hideControllerOnAttach
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012348411, guid: 2cedb055e40f5e54b88dabb9df44a2d7, type: 3}
+      propertyPath: hideHandOnAttach
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6667191630264948901, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
         type: 3}
       propertyPath: m_Mass
