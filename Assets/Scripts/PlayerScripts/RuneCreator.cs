@@ -23,6 +23,7 @@ public class RuneCreator : MonoBehaviour
 	private Transform targetObject;
 	private MajorRune targetMajorRune;
 	private RaycastHit targetHit;
+	[SerializeField] [TagSelector] private string majorRuneTag;
 
 	private MinorRune lastRune;
 	private string lastRuneName;
@@ -189,9 +190,33 @@ public class RuneCreator : MonoBehaviour
 
 	public void SetTarget(Transform _newTarget, RaycastHit hit)
 	{
+		PhysicObject oldTarget = null;
+
+
+		if (targetObject != null)
+		{
+			oldTarget = targetObject.transform.GetComponent<PhysicObject>();
+			if (oldTarget != null)
+			{
+				Debug.Log("desactivate highlight");
+				oldTarget.SetActiveHightlight(false);
+			}
+		}
+
 		targetObject = _newTarget;
 		targetHit = hit;
 		targetMajorRune = null;
+
+		if (targetObject != null)
+		{
+			oldTarget = targetObject.transform.GetComponent<PhysicObject>();
+
+			if (oldTarget != null)
+			{
+				Debug.Log("activate highlight");
+				oldTarget.SetActiveHightlight(true);
+			}
+		}
 	}
 
 	public MajorRune GetTargetRune()
@@ -201,11 +226,14 @@ public class RuneCreator : MonoBehaviour
 
 	public void ChangeTargetLayer(int _newLayer)
 	{
+		
+
 		if (targetObject != null)
 		{
-			targetObject.gameObject.layer = _newLayer;
+			Transform changingTarget = (targetObject.tag == majorRuneTag) ? targetObject.parent : targetObject;
+			changingTarget.gameObject.layer = _newLayer;
 			
-			foreach(Transform child in transform)
+			foreach(Transform child in changingTarget.transform)
 			{
 				child.gameObject.layer = _newLayer;
 

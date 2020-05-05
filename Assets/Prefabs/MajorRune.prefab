@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8359509756666443129}
   m_Layer: 0
   m_Name: MajorRune
-  m_TagString: Untagged
+  m_TagString: MajorRune
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,7 +51,6 @@ MonoBehaviour:
   rightPoint: {fileID: 6346469359044382982}
   runeInterspace: 0.005
   extraLine: 0.05
-  startPos: {fileID: 0}
 --- !u!65 &8359509756666443129
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PhysicObject : EnergyInteractable
 {
-
+	[SerializeField] private MeshRenderer meshRenderer;
+	[SerializeField] private Material highlightMaterial;
 
 	private List<MajorRune> attachedRunes;
 
@@ -26,6 +27,7 @@ public class PhysicObject : EnergyInteractable
 	{
 		base.Start();
 
+		meshRenderer = GetComponent<MeshRenderer>();
 		attachedRunes = new List<MajorRune>();
 		ownMaterial = GetComponent<MeshRenderer>().material;
 		lastHeat = GetHeat();
@@ -84,6 +86,21 @@ public class PhysicObject : EnergyInteractable
 		//ownMaterial.SetColor("_EmissionColor", newColor);
 	}
 
+	public void SetActiveHightlight(bool _active)
+	{
+		if (_active)
+		{
+			List<Material> mats = new List<Material>{ meshRenderer.material, highlightMaterial };
+			meshRenderer.materials = mats.ToArray();
+		}
+		else
+		{
+			List<Material> mats = new List<Material> { ownMaterial };
+			meshRenderer.materials = mats.ToArray();
+		}
 
+
+
+	}
 
 }

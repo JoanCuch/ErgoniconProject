@@ -128,6 +128,8 @@ MonoBehaviour:
   energy: 0
   impulse: {x: 0, y: 0, z: 0}
   fatigue: 0
+  meshRenderer: {fileID: 6707313601647293274}
+  highlightMaterial: {fileID: 2100000, guid: 19d7b82695aa1a74abc2733e945ee084, type: 2}
   ownMaterial: {fileID: 0}
   minHeat: 0
   maxHeat: 10

@@ -20,6 +20,7 @@ TagManager:
   - projectile
   - RightGlove
   - LeftGlove
+  - MajorRune
   layers:
   - Default
   - TransparentFX
