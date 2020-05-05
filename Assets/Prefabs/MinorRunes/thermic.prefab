@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5669709183765025876}
   - component: {fileID: 1154384569040782817}
   - component: {fileID: 7184537189183880161}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: thermic
   m_TagString: Untagged
   m_Icon: {fileID: 0}

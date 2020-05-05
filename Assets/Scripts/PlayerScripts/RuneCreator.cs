@@ -123,6 +123,7 @@ public class RuneCreator : MonoBehaviour
 				{
 					GameObject complementRunePrefab = globalBlackboard.GetMinorRune(lastRuneName);
 					GameObject complementRune = Instantiate(complementRunePrefab);
+					complementRune.layer = globalBlackboard.targetLayer;
 
 					ComplementMinorRune complementScript = complementRune.GetComponent<ComplementMinorRune>();
 
@@ -139,6 +140,7 @@ public class RuneCreator : MonoBehaviour
 		else
 		{		
 			GameObject newMinorRune = Instantiate(minorRunePrefab);
+			newMinorRune.layer = globalBlackboard.targetLayer;
 			targetMajorRune.AddMinorRune(newMinorRune.transform);
 			lastRune = null;
 			lastRuneName = null;
@@ -170,6 +172,7 @@ public class RuneCreator : MonoBehaviour
 		{
 			//If the target is an object, then add a major rune to it.
 			GameObject newRune = Instantiate(majorRunePrefab, hit.point, Quaternion.LookRotation(hit.normal));
+			newRune.layer = globalBlackboard.targetLayer;////////
 			objectScript.AttachMajorRune(newRune.transform);
 			majorRuneToReturn = newRune.GetComponent<MajorRune>();		
 		}
@@ -194,6 +197,25 @@ public class RuneCreator : MonoBehaviour
 	public MajorRune GetTargetRune()
 	{
 		return targetMajorRune;
+	}
+
+	public void ChangeTargetLayer(int _newLayer)
+	{
+		if (targetObject != null)
+		{
+			targetObject.gameObject.layer = _newLayer;
+			
+			foreach(Transform child in transform)
+			{
+				child.gameObject.layer = _newLayer;
+
+				foreach(Transform baby in child.transform)
+				{
+					baby.gameObject.layer = _newLayer;
+				}
+
+			}
+		}
 	}
 
 

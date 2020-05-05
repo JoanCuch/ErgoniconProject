@@ -1116,7 +1116,7 @@ GameObject:
   - component: {fileID: 137000013445226782}
   m_Layer: 0
   m_Name: vr_glove_right_slim
-  m_TagString: Untagged
+  m_TagString: LeftGlove
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

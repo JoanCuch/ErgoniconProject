@@ -14,6 +14,9 @@ public class InputManager : MonoBehaviour
 	[TagSelector] [SerializeField] private string rightControllerTag;
 	[TagSelector] [SerializeField] private string leftIndexFingerTag;
 	[TagSelector] [SerializeField] private string rightIndexFingerTag;
+	[TagSelector] [SerializeField] private string leftGloveTag;
+	[TagSelector] [SerializeField] private string rightGloveTag;
+
 
 	[SerializeField] private SteamVR_Action_Boolean DrawAction;
 	//[SerializeField] private SteamVR_Action_Boolean A;
@@ -31,6 +34,8 @@ public class InputManager : MonoBehaviour
 	private GameObject rightController;
 	private GameObject leftIndexFinger;
 	private GameObject rightIndexFinger;
+	private GameObject leftGlove;
+	private GameObject rightGlove;
 
 	// Start is called before the first frame update
 	void Start()
@@ -150,7 +155,30 @@ public class InputManager : MonoBehaviour
 		rightIndexFinger = GameObject.FindGameObjectWithTag(rightIndexFingerTag);
 	}
 
+	private void FindGloves()
+	{
+		leftGlove = GameObject.FindGameObjectWithTag(leftGloveTag);
+		rightGlove = GameObject.FindGameObjectWithTag(rightGloveTag);
+	}
 
+	public void ChangeGlovesLayer(int _newLayer)
+	{
+		if(leftGlove == null || rightGlove == null)
+		{
+			FindGloves();
+		}
+
+		Debug.Log(leftGlove);
+
+		Debug.Log(rightGlove);
+
+		if (leftGlove != null && rightGlove != null)
+		{
+			leftGlove.gameObject.layer = _newLayer;
+			rightGlove.gameObject.layer = _newLayer;
+		}
+		
+	}
 
 
 

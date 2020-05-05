@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectSelector : MonoBehaviour
 {
-	private Transform target;
+	[SerializeField] [ReadOnly]private Transform target;
 
 	[TagSelector] [SerializeField] private string leftIndexFingerTag;
 	// Start is called before the first frame update
@@ -43,4 +43,7 @@ public class ObjectSelector : MonoBehaviour
 
 		return (hitObject, hit);
 	}
+
+
+
 }

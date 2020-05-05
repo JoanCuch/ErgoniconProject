@@ -23,6 +23,9 @@ public class GlobalBlackboard : MonoBehaviour
 	public List<string> minorRunesNames;
 	public string failedGestureName = "fail";
 
+	public int defaultLayer;
+	public int targetLayer;
+
 	
 	// Start is called before the first frame update
 	void Start()

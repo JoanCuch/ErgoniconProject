@@ -13,6 +13,13 @@ TagManager:
   - STRINGMINORRUNE
   - LeftHand
   - RightHand
+  - MinorRune_Twin
+  - RightHandIndexFinger
+  - LeftHandIndexFinger
+  - FxTemporaire
+  - projectile
+  - RightGlove
+  - LeftGlove
   layers:
   - Default
   - TransparentFX
@@ -23,7 +30,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
+  - IgnorePostProcessing
   - IgnoreTeleporting
   - 
   - 

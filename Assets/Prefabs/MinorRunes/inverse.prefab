@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6481193805409856772}
   - component: {fileID: 6951955610738789047}
   - component: {fileID: 2655783305930295293}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: inverse
   m_TagString: MinorRune_Inverse
   m_Icon: {fileID: 0}

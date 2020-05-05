@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
 	public RuneCreator runeCreator;
 	public ObjectSelector objectSelector;
 	public ShapesManager shapesManager;
+
+	public RuneEditingPostProcessing runeEditingEffect;
 
 	private Transform leftHandIndex;
 
@@ -188,10 +191,17 @@ public class GameManager : MonoBehaviour
 			case GameStates.inital:
 				break;
 			case GameStates.interactionWaiting:
+				runeEditingEffect.RuneEditingEffectSetActive(false);
+				runeCreator.ChangeTargetLayer(globalBlackboard.defaultLayer);
+				inputManager.ChangeGlovesLayer(globalBlackboard.defaultLayer);
 				break;
 			case GameStates.interactionDrawing:
 				break;
 			case GameStates.runeWaiting:
+				runeEditingEffect.RuneEditingEffectSetActive(true);
+				runeCreator.ChangeTargetLayer(globalBlackboard.targetLayer);
+				inputManager.ChangeGlovesLayer(globalBlackboard.targetLayer);
+
 				break;
 			case GameStates.runeDrawing:
 				break;
