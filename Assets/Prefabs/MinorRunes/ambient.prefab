@@ -102,9 +102,14 @@ MonoBehaviour:
   parentMajorRune: {fileID: 0}
   spriteRenderer: {fileID: 2992954675747568823}
   isWorkable: 0
-  range: 1
-  flowRate: 1
+  initialEfficiency: 0.9
+  initialFlowRate: 1
+  initialRange: 1
   inversed: 0
-  source: {fileID: 0}
+  flowRate: 1
+  efficiency: 0
+  range: 1
+  environment: {fileID: 0}
   sourceUpdateDelay: 0.5
   environmentTag: ENVIRONMENT
+  source: {fileID: 0}

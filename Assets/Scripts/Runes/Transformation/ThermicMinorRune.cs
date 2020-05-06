@@ -39,11 +39,26 @@ public class ThermicMinorRune : TransformationRune
 			AddEnergy(GetSource().AbsorbEnergy(GetFlowRate() * Time.deltaTime));
 
 			//Transform the energy
-			float TransformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetTransformationEfficiency();
+			float transformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetEfficiency();
 
-			TransformedEnergy *= GetInversed() ? -1 : 1;
+			float residualEnergy = transformedEnergy * (1 - GetEfficiency());
+			transformedEnergy -= residualEnergy;
 
-			AddHeat(TransformedEnergy);
+			if (GetAttachedEnvironment() == null)
+			{
+				GetMajorRune().GetAttachedObject().AddEnergy(residualEnergy);
+			}
+			else
+			{
+				//The residual Energy that goes to the object
+				GetMajorRune().GetAttachedObject().AddEnergy(residualEnergy / 2);
+				//The residual Energy that goes to the environment
+				GetAttachedEnvironment().AddEnergy(residualEnergy / 2);
+			}
+
+			transformedEnergy *= GetInversed() ? -1 : 1;
+
+			AddHeat(transformedEnergy);
 
 			//Give the energy to the target
 			GetTarget().AddHeat(AbsorbHeat(GetFlowRate() * Time.deltaTime));		

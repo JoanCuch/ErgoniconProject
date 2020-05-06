@@ -43,7 +43,22 @@ public class KineticMinorRune : TransformationRune
 
 		//Transform the energy
 		float transformedEnergy = 0;
-		transformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetTransformationEfficiency();
+		transformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetEfficiency();
+
+		float residualEnergy = transformedEnergy * (1 - GetEfficiency());
+		transformedEnergy -= residualEnergy;
+
+		if (GetAttachedEnvironment() == null)
+		{
+			GetMajorRune().GetAttachedObject().AddEnergy(residualEnergy);
+		}
+		else
+		{
+			//The residual Energy that goes to the object
+			GetMajorRune().GetAttachedObject().AddEnergy(residualEnergy / 2);
+			//The residual Energy that goes to the environment
+			GetAttachedEnvironment().AddEnergy(residualEnergy / 2);
+		}
 
 		//MOVEMENT TIME
 		Vector3 forceDirection = Vector3.zero;

@@ -112,5 +112,8 @@ MonoBehaviour:
   sourceRune: {fileID: 0}
   target: {fileID: 0}
   linkedRune: {fileID: 0}
+  environment: {fileID: 0}
+  sourceUpdateDelay: 0.5
+  environmentTag: ENVIRONMENT
   jointForce: 1e+10
   jointForceMultiplier: 10000

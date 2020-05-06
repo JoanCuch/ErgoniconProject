@@ -42,7 +42,7 @@ public class JointMinorRune : TransformationRune
 				{
 					AddEnergy(GetSource().AbsorbEnergy(GetFlowRate() * Time.deltaTime));
 					float transformedEnergy = 0;
-					transformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetTransformationEfficiency();
+					transformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetEfficiency();
 
 					if (transformedEnergy > 0)
 					{
@@ -76,7 +76,23 @@ public class JointMinorRune : TransformationRune
 				{
 					AddEnergy(GetSource().AbsorbEnergy(GetFlowRate() * Time.deltaTime));
 					float transformedEnergy = 0;
-					transformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetTransformationEfficiency();
+					transformedEnergy = AbsorbEnergy(GetFlowRate() * Time.deltaTime) * GetEfficiency();
+
+					float residualEnergy = transformedEnergy * (1 - GetEfficiency());
+					transformedEnergy -= residualEnergy;
+
+					if (GetAttachedEnvironment() == null)
+					{
+						GetMajorRune().GetAttachedObject().AddEnergy(residualEnergy);
+					}
+					else
+					{
+						//The residual Energy that goes to the object
+						GetMajorRune().GetAttachedObject().AddEnergy(residualEnergy / 2);
+						//The residual Energy that goes to the environment
+						GetAttachedEnvironment().AddEnergy(residualEnergy / 2);
+					}
+
 
 					//The transformed energy defines the current break force. Considering that the jointForce maximum gets when the transformed energy equals the maxFlowRate
 					joint.breakForce = transformedEnergy * jointForce / GetFlowRate();

@@ -4,17 +4,29 @@ using UnityEngine;
 
 public class SourceMinorRune : MinorRune
 {
+	[SerializeField] float initialEfficiency;
+	[SerializeField] float initialFlowRate;
+	[SerializeField] float initialRange;
 
-	[SerializeField]  private float range;
-	[SerializeField]  private float flowRate;
-	[SerializeField] [ReadOnly]  private bool inversed;
+	[SerializeField] [ReadOnly] private bool inversed;
+	[SerializeField] [ReadOnly] private float flowRate;
+	[SerializeField] [ReadOnly] private float efficiency;
+	[SerializeField] [ReadOnly] private float range;
 
+	[SerializeField] [ReadOnly] private EnergyInteractable environment;
+	[SerializeField] private float sourceUpdateDelay;
+	[SerializeField] [TagSelector] private string environmentTag;
 
 	// Start is called before the first frame update
 	protected override void Start()
 	{
 		base.Start();
 		inversed = false;
+		flowRate = initialFlowRate;
+		efficiency = initialEfficiency;
+		range = initialRange;
+
+		StartCoroutine(UpdateEnvironment());
 	}
 
 	// Update is called once per frame
@@ -26,6 +38,7 @@ public class SourceMinorRune : MinorRune
 	public bool GetInversed() { return inversed; }
 	public float GetFlowRate() { return flowRate; }
 	public float GetRange() { return range; }
+	public float GetEfficiency() { return efficiency; }
 
 	public void SetChangeRange(float _rangeChange)
 	{
@@ -39,5 +52,42 @@ public class SourceMinorRune : MinorRune
 	{
 		inversed = _newFlow;
 	}
+	public void SetEfficienty(float _efficiencyChange)
+	{
+		efficiency *= _efficiencyChange;
+	}
+
+	public EnergyInteractable GetAttachedEnvironment(){ return environment; }
+	protected EnergyInteractable FindEnvironmentAround()
+	{
+		Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetRange());
+
+		EnergyInteractable envi = null;
+
+
+		foreach (Collider col in hitColliders)
+		{
+			if (col.transform.tag == environmentTag)
+			{
+				envi = col.GetComponent<EnergyInteractable>();
+				break;
+			}
+		}
+
+		return envi;
+	}
+
+	IEnumerator UpdateEnvironment()
+	{
+		while (true)
+		{
+			if (GetWorkable())
+			{
+				environment = FindEnvironmentAround();
+			}
+			yield return new WaitForSeconds(sourceUpdateDelay);
+		}
+	}
 
 }
+

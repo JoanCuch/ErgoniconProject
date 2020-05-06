@@ -17,17 +17,22 @@ public class TransformationRune : MinorRune
 
 	[SerializeField] [ReadOnly] private EnergyInteractable sourceRune;
 	[SerializeField] [ReadOnly] private EnergyInteractable target;
-
 	[SerializeField] [ReadOnly] private TransformationRune linkedRune;
 
-    // Start is called before the first frame update
-    protected override void Start()
+	[SerializeField] [ReadOnly] private EnergyInteractable environment;
+	[SerializeField] private float sourceUpdateDelay;
+	[SerializeField] [TagSelector] private string environmentTag;
+
+	// Start is called before the first frame update
+	protected override void Start()
 	{
 		base.Start();
 		flowRate = initialFlowRate;
 		efficiency = initialEfficiency;
 		range = initialRange;
 		SetInversed(false);
+
+		StartCoroutine(UpdateEnvironment());
 	}
 
 	// Update is called once per frame
@@ -37,26 +42,55 @@ public class TransformationRune : MinorRune
 	}
 
 	public EnergyInteractable GetSource() { return sourceRune; }
-	public void SetSource(EnergyInteractable _newSource) { sourceRune = _newSource; }
-
 	public EnergyInteractable GetTarget() { return target; }
-	public void SetTarget(EnergyInteractable _newTarget) { target = _newTarget; }
-
 	public float GetFlowRate() { return flowRate; }
-	public void SetChangeFlowRate(float _flowChange) { flowRate *= _flowChange; }
-
 	public float GetRange() { return range; }
-	public void SetChangeRange(float _rangeChange) { range *= _rangeChange;  }
-
 	public bool GetInversed() { return inversed; }
-	public void SetInversed(bool _newFlow) { inversed = _newFlow; }
-
-	public float GetTransformationEfficiency() { return efficiency; }
-
+	public float GetEfficiency() { return efficiency; }
 	public TransformationRune GetLinkedRune() { return linkedRune; }
-	public void SetLinkedRune(TransformationRune _newLinked) { linkedRune = _newLinked; }
 
-	
+	public void SetSource(EnergyInteractable _newSource) { sourceRune = _newSource; }	
+	public void SetTarget(EnergyInteractable _newTarget) { target = _newTarget; }
+	public void SetChangeFlowRate(float _flowChange) { flowRate *= _flowChange; }
+	public void SetChangeRange(float _rangeChange) { range *= _rangeChange;  }
+	public void SetInversed(bool _newFlow) { inversed = _newFlow; }
+	public void SetLinkedRune(TransformationRune _newLinked) { linkedRune = _newLinked; }
+	public void SetEfficiency(float _efficiencyChange) { efficiency *= _efficiencyChange; }
+
+	public EnergyInteractable GetAttachedEnvironment() { return environment; }
+	protected EnergyInteractable FindEnvironmentAround()
+	{
+		Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetRange());
+
+		EnergyInteractable envi = null;
+
+
+		foreach (Collider col in hitColliders)
+		{
+			if (col.transform.tag == environmentTag)
+			{
+				envi = col.GetComponent<EnergyInteractable>();
+				break;
+			}
+		}
+
+		return envi;
+	}
+
+	IEnumerator UpdateEnvironment()
+	{
+		while (true)
+		{
+			if (GetWorkable())
+			{
+				environment = FindEnvironmentAround();
+			}
+			yield return new WaitForSeconds(sourceUpdateDelay);
+		}
+	}
+
+
+
 
 
 

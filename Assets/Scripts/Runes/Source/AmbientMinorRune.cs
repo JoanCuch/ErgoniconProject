@@ -8,21 +8,11 @@ using UnityEngine;
 public class AmbientMinorRune : SourceMinorRune
 {
 	[SerializeField] [ReadOnly] EnergyInteractable source;
-	[SerializeField] private float sourceUpdateDelay;
-	
-	// [SerializeField] [ReadOnly] EnergyInteractable environment;
-	//[SerializeField] private float energyFlow;
-
-	//[SerializeField] private float detectionRadius;
-	[SerializeField] [TagSelector] private string environmentTag;
 
 	// Start is called before the first frame update
 	protected override void Start()
 	{
 		base.Start();
-
-		StartCoroutine(UpdateSource());
-
 	}
 
 	// Update is called once per frame
@@ -33,70 +23,32 @@ public class AmbientMinorRune : SourceMinorRune
 		if (!GetWorkable())
 			return;
 
-		//Get the energy
-		if (source != null)
+		//Check the source
+		if (GetInversed())
 		{
-			float newE = source.AbsorbEnergy(GetFlowRate() * Time.deltaTime);
-			AddEnergy(newE);
-		}
-
-	}
-
-
-	private EnergyInteractable FindEnvironmentAround()
-	{
-		Collider[] hitColliders = Physics.OverlapSphere(transform.position, GetRange());
-
-		EnergyInteractable envi = null;
-
-
-		foreach (Collider col in hitColliders)
-		{
-			if(col.transform.tag == environmentTag)
-			{
-				envi = col.GetComponent<EnergyInteractable>();
-				break;
-			}
-		}
-
-		return envi;
-	}
-
-
-	IEnumerator UpdateSource()
-	{
-		while (true)
-		{
-			if (GetWorkable())
-			{
-				if (GetInversed())
-				{
-					//This minor rune has attached a inverse minor rune
-					source = parentMajorRune.GetAttachedObject();
-				}
-				else
-				{
-					source = FindEnvironmentAround();
-				}
-			}
-
-			yield return new WaitForSeconds(sourceUpdateDelay);
-		}
-	}
-
-	/*private bool IsEnvironmentToFar()
-	{
-
-		float distance = (transform.position - source.transform.position).magnitude;
-
-		if(distance > GetRange())
-		{
-			return true;
+			//This minor rune has attached a inverse minor rune
+			source = GetMajorRune().GetAttachedObject();
 		}
 		else
 		{
-			return false;
+			source = GetAttachedEnvironment();
 		}
-	}*/
 
+		//Get the energy
+		if (source != null)
+		{
+			
+			float absorbedEnergy = source.AbsorbEnergy(GetFlowRate() * Time.deltaTime);
+			
+			float residualEnergy = absorbedEnergy * (1-GetEfficiency());
+			absorbedEnergy -= residualEnergy;
+			//The residual Energy that goes to the object
+			GetMajorRune().GetAttachedObject().AddEnergy(residualEnergy / 2);
+			//The residual Energy that goes to the environment
+			GetAttachedEnvironment().AddEnergy(residualEnergy / 2);
+			//The absorved energy
+			AddEnergy(absorbedEnergy);
+		}
+
+	}
 }
