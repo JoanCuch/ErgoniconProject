@@ -2477,7 +2477,7 @@ GameObject:
   - component: {fileID: 1735896781}
   - component: {fileID: 1735896780}
   m_Layer: 8
-  m_Name: Camera
+  m_Name: IgnoringPospoCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

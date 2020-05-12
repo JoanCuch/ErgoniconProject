@@ -175,9 +175,10 @@ public class InputManager : MonoBehaviour
 		if (leftGlove != null && rightGlove != null)
 		{
 			leftGlove.gameObject.layer = _newLayer;
+
 			rightGlove.gameObject.layer = _newLayer;
+
 		}
-		
 	}
 
 
