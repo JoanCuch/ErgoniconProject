@@ -4,23 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 0
-    path: Assets/GestureRecognition/Sample_OneHanded.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
-  - enabled: 0
-    path: Assets/GestureRecognition/GestureManager.unity
-    guid: 8d91ff346d965b042b02e8f26de1e499
-  - enabled: 0
-    path: Assets/GestureRecognition/Sample_TwoHanded.unity
-    guid: 47e3eed17990e2c4cba89062a7c0bb49
-  - enabled: 0
-    path: Assets/GestureRecognition/Sample_Military.unity
-    guid: df3ba80105f9da9449c5a1687b5b6b22
-  - enabled: 1
-    path: Assets/GestureRecognition/Sample_Pixie.unity
-    guid: af528a5b99845174fb9cf02fd8da115c
-  - enabled: 0
-    path: Assets/GestureRecognition/Sample_Phone.unity
-    guid: 0dcf345530576b944bc32f4fc7f8c0fe
+  m_Scenes: []
   m_configObjects: {}

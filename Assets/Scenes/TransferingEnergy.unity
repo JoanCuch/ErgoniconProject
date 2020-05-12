@@ -400,6 +400,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: HOVERPOINT
       objectReference: {fileID: 0}
+    - target: {fileID: 171246, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 177230, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.48
@@ -451,6 +459,10 @@ PrefabInstance:
     - target: {fileID: 2014920, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 1335
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013829830258, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
@@ -545,6 +557,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &361260905 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7208817863142941020, guid: 0ea2c7160addab441aa646d9e766da11,
+    type: 3}
+  m_PrefabInstance: {fileID: 7208817864942676758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &392978688
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,7 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  leftIndexFingerTag: LeftHandIndexFinger
+  leftIndexFingerTag: LeftHandIndex
 --- !u!4 &392978690
 Transform:
   m_ObjectHideFlags: 0
@@ -605,7 +629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   majorRunePrefab: {fileID: 865398363205789207, guid: 12957cbaba19a844cbd9607a74e328db,
     type: 3}
-  majorRuneTag: 
+  majorRuneTag: MajorRune
 --- !u!4 &408531819 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6707313601647293276, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
@@ -1729,6 +1753,8 @@ MonoBehaviour:
   energy: 0
   impulse: {x: 0, y: 0, z: 0}
   fatigue: 0
+  meshRenderer: {fileID: 0}
+  highlightMaterial: {fileID: 0}
   ownMaterial: {fileID: 0}
   minHeat: 0
   maxHeat: 0
@@ -2242,15 +2268,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftControllerTag: LeftHand
   rightControllerTag: RightHand
-  leftIndexFingerTag: LeftHandIndexFinger
-  rightIndexFingerTag: RightHandIndexFinger
+  leftIndexFingerTag: LeftHandIndex
+  rightIndexFingerTag: RightHandIndex
   leftGloveTag: LeftGlove
   rightGloveTag: RightGlove
   DrawAction:
     actionPath: /actions/default/in/InteractUI
     needsReinit: 0
   SelectAction:
-    actionPath: /actions/default/in/BClick
+    actionPath: /actions/default/in/SelectTarget
     needsReinit: 0
 --- !u!114 &1649100143
 MonoBehaviour:
@@ -3073,6 +3099,11 @@ PrefabInstance:
       propertyPath: _maxLogCount
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7208817864192202153, guid: 0ea2c7160addab441aa646d9e766da11,
+        type: 3}
+      propertyPath: _text
+      value: 
+      objectReference: {fileID: 361260905}
     - target: {fileID: 7208817864192202196, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
       propertyPath: m_Camera

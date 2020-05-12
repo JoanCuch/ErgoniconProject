@@ -2,13 +2,13 @@
   "source": "Unity",
   "applications": [
     {
-      "app_key": "application.generated.unity.shapes3.exe",
+      "app_key": "application.generated.unity.steamvrtests.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "E:\\Documents\\UnityProjects\\Shapes\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "D:\\Documents\\UnityProjects\\Shapes\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
-          "name": "Shapes 3 [Testing]"
+          "name": "SteamVRTests [Testing]"
         }
       }
     }

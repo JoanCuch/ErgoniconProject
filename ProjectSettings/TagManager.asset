@@ -4,23 +4,22 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - HOVERPOINT
-  - LEFTHANDINDEX
-  - ENVIRONMENT
-  - MinorRune_Atraction
-  - MinorRune_String
-  - MinorRune_Inverse
-  - STRINGMINORRUNE
-  - LeftHand
-  - RightHand
-  - MinorRune_Twin
-  - RightHandIndexFinger
-  - LeftHandIndexFinger
   - FxTemporaire
-  - projectile
+  - STRINGMINORRUNE
+  - MajorRune
+  - MinorRune_Atraction
+  - MinorRune_Twin
+  - MinorRune_Inverse
+  - ENVIRONMENT
+  - RightHand
+  - LeftHand
+  - HOVERPOINT
+  - MainController
+  - HoverPoint
+  - LeftHandIndex
+  - RightHandIndex
   - RightGlove
   - LeftGlove
-  - MajorRune
   layers:
   - Default
   - TransparentFX
@@ -30,9 +29,9 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
-  - IgnorePostProcessing
-  - IgnoreTeleporting
+  - 
+  - 
+  - 
   - 
   - 
   - 
