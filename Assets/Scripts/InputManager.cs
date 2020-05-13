@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
+using Telemetry;
 
 public class InputManager : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class InputManager : MonoBehaviour
 	public enum PlayerActions {
 		draw,
 		select,
+		drawStateDown
 	}
 
 	//Temp and hardcoded
@@ -52,7 +54,8 @@ public class InputManager : MonoBehaviour
 			gameManager.TryingToSelect();
 		}*/
 
-
+		if (IsDoingAction(PlayerActions.drawStateDown)) SendEvent(DataManager.Actions.draw);
+		if (IsDoingAction(PlayerActions.select)) SendEvent(DataManager.Actions.select);
 
     }
 
@@ -77,6 +80,19 @@ public class InputManager : MonoBehaviour
 			case PlayerActions.select:
 				if (SelectAction[SteamVR_Input_Sources.LeftHand].stateDown ||
 					SelectAction[SteamVR_Input_Sources.RightHand].stateDown)
+				{
+					isDoingIt = true;
+				
+				}
+				break;
+
+			case PlayerActions.drawStateDown:
+
+				if (DrawAction[SteamVR_Input_Sources.LeftHand].stateDown)
+				{
+					isDoingIt = true;
+				}
+				if (DrawAction[SteamVR_Input_Sources.RightHand].stateDown)
 				{
 					isDoingIt = true;
 				}
@@ -182,6 +198,17 @@ public class InputManager : MonoBehaviour
 	}
 
 
+	private void SendEvent(DataManager.Actions _action)
+	{
+		DataManager.dataManager.AddAction(
+			DataManager.Actors.player,
+			_action,
+			"",
+			Time.time,
+			Time.time,
+			null
+			);
+	}
 
 
 

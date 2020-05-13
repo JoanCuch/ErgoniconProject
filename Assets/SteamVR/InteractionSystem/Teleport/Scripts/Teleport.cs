@@ -7,6 +7,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using Telemetry;
 
 namespace Valve.VR.InteractionSystem
 {
@@ -903,6 +904,20 @@ namespace Valve.VR.InteractionSystem
 			}
 
 			Teleport.Player.Send( pointedAtTeleportMarker );
+
+			SendEvent();
+
+		}
+
+		private void SendEvent()
+		{
+			DataManager.dataManager.AddAction(
+				DataManager.Actors.player,
+				DataManager.Actions.teleport,
+				"null",
+				Time.time,
+				Time.time,
+				"null");
 		}
 
 

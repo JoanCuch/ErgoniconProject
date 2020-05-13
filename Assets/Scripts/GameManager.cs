@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mail;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using Valve.VR;
+using Telemetry;
 
 public class GameManager : MonoBehaviour
 {
@@ -56,6 +59,7 @@ public class GameManager : MonoBehaviour
 				}
 				else if (inputManager.IsDoingAction(InputManager.PlayerActions.select))
 				{
+					
 					//Getting the controllers that are activating the correct input and setting the target.
 					var fingers = inputManager.GetActiveControllers(InputManager.PlayerActions.select);
 					GameObject finger = fingers.left == null ? fingers.right : fingers.left;
@@ -188,6 +192,7 @@ public class GameManager : MonoBehaviour
 
 	private void OnEnterState(GameStates _nextState)
 	{
+		SendEvent(DataManager.Actions.changeState, _nextState);
 		switch (_nextState)
 		{
 			case GameStates.inital:
@@ -195,7 +200,7 @@ public class GameManager : MonoBehaviour
 			case GameStates.interactionWaiting:
 				runeEditingEffect.RuneEditingEffectSetActive(false);
 				runeCreator.ChangeTargetLayer(globalBlackboard.defaultLayer);
-				inputManager.ChangeGlovesLayer(globalBlackboard.defaultLayer);
+				inputManager.ChangeGlovesLayer(globalBlackboard.defaultLayer);		
 				break;
 			case GameStates.interactionDrawing:
 				break;
@@ -215,6 +220,19 @@ public class GameManager : MonoBehaviour
 	#endregion
 
 	#region otherFunctions
+
+
+	private void SendEvent(DataManager.Actions _action, GameStates _result )
+	{
+		DataManager.dataManager.AddAction(
+			DataManager.Actors.game,
+			_action,
+			_result.ToString("g"),
+			Time.time,
+			Time.time,
+			"null"
+			);
+	}
 
 
 

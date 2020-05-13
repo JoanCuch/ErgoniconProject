@@ -1,8 +1,9 @@
 {
-    "name": "SteamVR",
+    "name": "Ergonicon",
     "references": [
-        "SteamVR_Windows_EditorHelper",
-        "Telemetry"
+        "GUID:1fbf338ef6b952a448262a7ff7df5fe4",
+        "GUID:d60799ab2a985554ea1a39cd38695018",
+        "GUID:407ec239d04c1eb44b3b6e8836dac970"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

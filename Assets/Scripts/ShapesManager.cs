@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using UnityEditorInternal;
 using UnityEngine;
+using Telemetry;
 
 public class ShapesManager : MonoBehaviour
 {
@@ -31,11 +34,21 @@ public class ShapesManager : MonoBehaviour
 
 	private string currentShapeName;
 
-
+	//Events information
+	private double currentShapeSimilarity;
+	private double currentShapeScale;
+	private Vector3 currentShapePos;
+	private Vector3 currentShape0;
+	private Vector3 currentShape1;
+	private Vector3 currentShape2;
+	private float currentShapeStartTime;
+	private float currentShapeEndTime;
 
 	// Start is called before the first frame update
 	void Start()
 	{
+		currentShapeStartTime = Time.time;
+		currentShapeEndTime = Time.time;
 
 		globalBlackboard = GameManager.gameManager.globalBlackboard;
 
@@ -76,9 +89,19 @@ public class ShapesManager : MonoBehaviour
 				if(oneHandedActiveController == null)
 				{
 					//End one-handed gesture
-					int gestureId = gestureRecognition.endStroke();
+					int gestureId = gestureRecognition.endStroke(
+						ref currentShapeSimilarity,
+						ref currentShapePos,
+						ref currentShapeScale,
+						ref currentShape0,
+						ref currentShape1,
+						ref currentShape2
+						);
 
-					if(gestureId < 0)
+					currentShapeEndTime = Time.time;
+
+
+					if (gestureId < 0)
 					{
 						// Error trying to identify any gesture
 						Debug.LogWarning("Failed to identify gesture.");
@@ -98,7 +121,7 @@ public class ShapesManager : MonoBehaviour
 					}
 
 					gestureStarted = false;
-					DataManager.dataManager.AddAction(DataManager.Actors.player, DataManager.Actions.draw, currentShapeName, "");
+					SendEvent();
 				}
 				else
 				{
@@ -116,7 +139,13 @@ public class ShapesManager : MonoBehaviour
 					//End two-handed gesture
 					gestureCombinations.endStroke(0);
 					gestureCombinations.endStroke(1);
-					int itendifiedGestureCombo = gestureCombinations.identifyGestureCombination();
+					int itendifiedGestureCombo = gestureCombinations.identifyGestureCombination(ref currentShapeSimilarity);
+					currentShapePos = Vector3.zero;
+					currentShapeScale = 0;
+					currentShape0 = Vector3.zero;
+					currentShape1 = Vector3.zero;
+					currentShape2 = Vector3.zero;
+					currentShapeEndTime = Time.time;
 
 					if (itendifiedGestureCombo < 0)
 					{
@@ -138,7 +167,7 @@ public class ShapesManager : MonoBehaviour
 					}
 
 					gestureStarted = false;
-					DataManager.dataManager.AddAction(DataManager.Actors.player, DataManager.Actions.draw, currentShapeName, "");
+					SendEvent();
 				}
 				else
 				{
@@ -161,6 +190,8 @@ public class ShapesManager : MonoBehaviour
 	{
 		//The active controllers are given by the GameMager
 		Debug.Log("start gesture: " + leftActiveController + " " + rightActiveController);
+		currentShapeStartTime = Time.time;
+
 		if (leftActiveController == null && rightActiveController == null)
 		{
 			//Debug.LogWarning("Starting a gesture with no activeControllers");
@@ -272,4 +303,36 @@ public class ShapesManager : MonoBehaviour
 		stroke.Add(star.name);
 	}
 
+
+
+	private void SendEvent()
+	{
+		/*List<KeyValuePair<string, object>> extraInfo = new List<KeyValuePair<string, object>>
+		{
+			new KeyValuePair<string, object>("similarity", currentShapeSimilarity),
+			new KeyValuePair<string, object>("scale", currentShapeScale),
+			new KeyValuePair<string, object>("position", currentShapePos),
+			new KeyValuePair<string, object>("dir0", currentShape0),
+			new KeyValuePair<string, object>("dir1", currentShape1),
+			new KeyValuePair<string, object>("dir2", currentShape2)
+		};*/
+	
+		
+		string extra =
+			"similarity: " + currentShapeSimilarity + ", " +
+			"scale: " + currentShapeScale + ", " +
+			"position: " + currentShapePos + ", " +
+			"dir0: " + currentShape0 + ", " +
+			"dir1: " + currentShape1 + ", " +
+			"dir2: " + currentShape2 + ", ";
+			
+
+		DataManager.dataManager.AddAction(
+			DataManager.Actors.player,
+			DataManager.Actions.draw,
+			currentShapeName,
+			currentShapeStartTime,
+			currentShapeEndTime,
+			extra);
+	}
 }

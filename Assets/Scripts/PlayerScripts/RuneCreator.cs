@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Telemetry;
 
 
 /// <summary>
@@ -131,6 +132,16 @@ public class RuneCreator : MonoBehaviour
 					complementScript.SetTargetClassification(currentRune.GetRuneClassification());
 					targetMajorRune.AddMinorRune(complementRune.transform);
 					//Debug.Log("complement rune: " + lastRuneName + " attached to: " + runeName);
+
+					SendEvent(
+						DataManager.Actions.runeCreation,
+						lastRuneName,
+						currentRune.GetRuneClassification(),
+						currentRune.GetRuneType(),
+						currentRune.GetMajorRune().name
+						);
+
+
 				}
 			}
 			lastRune = null;
@@ -148,6 +159,14 @@ public class RuneCreator : MonoBehaviour
 			penultimateRune = null;
 
 			Debug.Log("creating minor rune type of: " + runeName);
+
+			SendEvent(
+						DataManager.Actions.runeCreation,
+						lastRuneName,
+						currentRune.GetRuneClassification(),
+						currentRune.GetRuneType(),
+						currentRune.GetMajorRune().name
+						);
 		}
 	
 	}
@@ -244,6 +263,29 @@ public class RuneCreator : MonoBehaviour
 
 			}
 		}
+	}
+
+	private void SendEvent(
+		DataManager.Actions _action,
+		string _result,
+		MinorRune.RuneClassifications _classification,
+		MinorRune.RuneTypes _type,
+		string _majorRune
+		)
+	{
+		string info =
+			"classification: " + _classification.ToString("g") + ", " +
+			"type: " + _type.ToString("g") + ", " +
+			"majorRuneName: " + _majorRune;
+
+		DataManager.dataManager.AddAction(
+			DataManager.Actors.game,
+			_action,
+			_result,
+			Time.time,
+			Time.time,
+			info
+			);
 	}
 
 
