@@ -98,6 +98,7 @@ public class ShapesManager : MonoBehaviour
 					}
 
 					gestureStarted = false;
+					DataManager.dataManager.AddAction(DataManager.Actors.player, DataManager.Actions.draw, currentShapeName, "");
 				}
 				else
 				{
@@ -137,6 +138,7 @@ public class ShapesManager : MonoBehaviour
 					}
 
 					gestureStarted = false;
+					DataManager.dataManager.AddAction(DataManager.Actors.player, DataManager.Actions.draw, currentShapeName, "");
 				}
 				else
 				{

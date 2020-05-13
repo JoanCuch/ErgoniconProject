@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 	public RuneCreator runeCreator;
 	public ObjectSelector objectSelector;
 	public ShapesManager shapesManager;
+	private DataManager dataManager;
 
 	public RuneEditingPostProcessing runeEditingEffect;
 
@@ -25,7 +26,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 		currentState = GameStates.inital;
-		gameManager = this;	      
+		gameManager = this;
+		dataManager = DataManager.dataManager;
     }
 
     // Update is called once per frame
