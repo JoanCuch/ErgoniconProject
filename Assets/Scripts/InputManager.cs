@@ -184,10 +184,6 @@ public class InputManager : MonoBehaviour
 			FindGloves();
 		}
 
-		Debug.Log(leftGlove);
-
-		Debug.Log(rightGlove);
-
 		if (leftGlove != null && rightGlove != null)
 		{
 			leftGlove.gameObject.layer = _newLayer;

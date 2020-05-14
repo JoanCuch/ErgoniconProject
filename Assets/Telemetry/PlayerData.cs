@@ -10,7 +10,7 @@ namespace Telemetry
     public class PlayerData
     {
 
-        public List<Action> actions = new List<Action>();
+        public List<Action> actions;
 
         [Serializable]
         public struct Action
@@ -33,6 +33,12 @@ namespace Telemetry
                 extraInfo = _extraInfo;
 
             }
+        }
+
+        public PlayerData()
+        {
+            actions = new List<Action>();
+            Debug.LogWarning("new PlayerData created");
         }
 
 

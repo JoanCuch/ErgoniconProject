@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
 	public RuneCreator runeCreator;
 	public ObjectSelector objectSelector;
 	public ShapesManager shapesManager;
-	private DataManager dataManager;
 
 	public RuneEditingPostProcessing runeEditingEffect;
 
@@ -30,7 +29,6 @@ public class GameManager : MonoBehaviour
     {
 		currentState = GameStates.inital;
 		gameManager = this;
-		dataManager = DataManager.dataManager;
     }
 
     // Update is called once per frame
@@ -192,7 +190,7 @@ public class GameManager : MonoBehaviour
 
 	private void OnEnterState(GameStates _nextState)
 	{
-		SendEvent(DataManager.Actions.changeState, _nextState);
+		//SendEvent(DataManager.Actions.changeState, _nextState);
 		switch (_nextState)
 		{
 			case GameStates.inital:
