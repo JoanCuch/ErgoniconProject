@@ -421,6 +421,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1386617354}
     m_Modifications:
+    - target: {fileID: 6707313601647293274, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8812c40e68cca4a459cacdfa5d5e1817, type: 2}
     - target: {fileID: 6707313601647293276, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2147,7 +2152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 986984364}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.01, z: 0}
+  m_LocalPosition: {x: 0, y: 0.00001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1129181942}
@@ -2641,7 +2646,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2932f9bf4aef5164e9e5d7731f5dc35b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2678,8 +2683,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129181938}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 0.0000016689, y: 0, z: 0.00000023842}
+  m_LocalScale: {x: 5, y: 10, z: 5}
   m_Children:
   - {fileID: 986984365}
   m_Father: {fileID: 1386617354}
@@ -3356,6 +3361,8 @@ MonoBehaviour:
     type: 3}
   OneHandedGesturesPath: Assets/Gestures/minorRunes12.dat
   TwoHandedGesturesPath: Assets/Gestures/handControls4.dat
+  OneHandedGesturesPathBuild: /minorRunes12.dat
+  TwoHandedGesturesPathBuild: /handControls4.dat
 --- !u!4 &1651816483 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6707313601647293276, guid: 2cedb055e40f5e54b88dabb9df44a2d7,
@@ -3401,7 +3408,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675484425}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 

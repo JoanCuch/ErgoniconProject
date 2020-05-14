@@ -24,7 +24,7 @@ public class RuneCreator : MonoBehaviour
 	private Transform targetObject;
 	private MajorRune targetMajorRune;
 	private RaycastHit targetHit;
-	[SerializeField] [TagSelector] private string majorRuneTag;
+	[SerializeField] private string majorRuneTag;
 
 	private MinorRune lastRune;
 	private string lastRuneName;

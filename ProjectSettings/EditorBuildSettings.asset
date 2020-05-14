@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TransferingEnergy.unity
+    guid: 7466a4fd4d675d5418c4c34d11b53c38
   m_configObjects: {}

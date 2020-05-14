@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Net;
-using UnityEditorInternal;
 using UnityEngine;
 using Telemetry;
 
@@ -11,6 +9,8 @@ public class ShapesManager : MonoBehaviour
 	[SerializeField] private GameObject starPrefab;
 	[SerializeField] private string OneHandedGesturesPath;
 	[SerializeField] private string TwoHandedGesturesPath;
+	[SerializeField] private string OneHandedGesturesPathBuild;
+	[SerializeField] private string TwoHandedGesturesPathBuild;
 	//"Assets/GestureRecognition/shapes1.dat"
 
 	//Variables that don't change
@@ -58,11 +58,27 @@ public class ShapesManager : MonoBehaviour
 		gestureCombinations = new GestureCombinations(2);
 
 		//Load the file gestures file
+#if UNITY_EDITOR
 		bool success = gestureRecognition.loadFromFile(OneHandedGesturesPath);
 		Debug.LogWarning((success ? "One-Handed gesture file loaded successfully" : "[ERROR] Failed to load gesture file."));
 
 		success = gestureCombinations.loadFromFile(TwoHandedGesturesPath);
 		Debug.LogWarning((success ? "Two-Handed gesture file loaded successfully" : "[ERROR] Failed to load gesture file."));
+#else	
+		bool success = gestureRecognition.loadFromFile(Application.streamingAssetsPath + OneHandedGesturesPathBuild);
+		Debug.LogWarning((success ? "One-Handed gesture file loaded successfully" : "[ERROR] Failed to load gesture file."));
+
+		success = gestureCombinations.loadFromFile(Application.streamingAssetsPath + TwoHandedGesturesPathBuild);
+		Debug.LogWarning((success ? "Two-Handed gesture file loaded successfully" : "[ERROR] Failed to load gesture file."));
+#endif
+
+
+
+		//bool success = gestureRecognition.loadFromFile(OneHandedGesturesPath);
+		//Debug.LogWarning((success ? "One-Handed gesture file loaded successfully" : "[ERROR] Failed to load gesture file."));
+
+		//success = gestureCombinations.loadFromFile(TwoHandedGesturesPath);
+		//Debug.LogWarning((success ? "Two-Handed gesture file loaded successfully" : "[ERROR] Failed to load gesture file."));
 	}
 
 	// Update is called once per frame

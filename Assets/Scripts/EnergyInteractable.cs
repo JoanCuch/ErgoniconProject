@@ -5,10 +5,10 @@ using UnityEngine;
 public class EnergyInteractable : MonoBehaviour
 {
 
-	[ReadOnly] [SerializeField] private float heat;
-	[ReadOnly] [SerializeField] private float energy;
-	[ReadOnly] [SerializeField] private Vector3 impulse;
-	[ReadOnly] [SerializeField] private float fatigue;
+	[SerializeField] private float heat;
+	[SerializeField] private float energy;
+	[SerializeField] private Vector3 impulse;
+	[SerializeField] private float fatigue;
 
 	private float coeffFatigueHeat;
 	private float coeffFatigueForce;

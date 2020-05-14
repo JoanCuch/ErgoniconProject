@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class AmbientMinorRune : SourceMinorRune
 {
-	[SerializeField] [ReadOnly] EnergyInteractable source;
+	[SerializeField] EnergyInteractable source;
 
 	// Start is called before the first frame update
 	protected override void Start()

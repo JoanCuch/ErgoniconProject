@@ -6,7 +6,7 @@ public class ComplementMinorRune : MinorRune
 {
 
 	private RuneClassifications targetClassifications;
-	[SerializeField] [ReadOnly] private MinorRune poweredRune;
+	[SerializeField] private MinorRune poweredRune;
 
 
 	//private MinorRune poweredRune;

@@ -5,7 +5,7 @@ using System.Linq;
 
 public class MajorRune : MonoBehaviour
 {
-	[SerializeField] [ReadOnly] private EnergyInteractable attachedObject;
+	[SerializeField] private EnergyInteractable attachedObject;
 
 	[SerializeField] private Transform centerPoint;
 	[SerializeField] private Transform rightPoint;

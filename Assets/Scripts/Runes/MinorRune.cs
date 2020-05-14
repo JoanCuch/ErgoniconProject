@@ -32,12 +32,12 @@ public class MinorRune : EnergyInteractable
 	[SerializeField] private RuneClassifications runeClassification;
 	[SerializeField] private RuneTypes runeType;
 
-	[SerializeField] [ReadOnly]protected MajorRune parentMajorRune;
+	[SerializeField] protected MajorRune parentMajorRune;
 	//[SerializeField] [ReadOnly] protected bool energyFlowInput;
 
 	[SerializeField] private SpriteRenderer spriteRenderer;
 
-	[SerializeField] [ReadOnly] private bool isWorkable;
+	[SerializeField] private bool isWorkable;
 
 	private float spriteUnitsWidth = 0;
 

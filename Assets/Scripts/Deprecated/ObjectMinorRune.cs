@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class ObjectMinorRune : SourceMinorRune
 {
-	[SerializeField] [ReadOnly] EnergyInteractable source;
+	[SerializeField] EnergyInteractable source;
 	//[SerializeField] private float energyFlow;
 
 	// Start is called before the first frame update

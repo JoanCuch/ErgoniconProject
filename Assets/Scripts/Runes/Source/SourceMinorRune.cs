@@ -8,14 +8,14 @@ public class SourceMinorRune : MinorRune
 	[SerializeField] float initialFlowRate;
 	[SerializeField] float initialRange;
 
-	[SerializeField] [ReadOnly] private bool inversed;
-	[SerializeField] [ReadOnly] private float flowRate;
-	[SerializeField] [ReadOnly] private float efficiency;
-	[SerializeField] [ReadOnly] private float range;
+	[SerializeField] private bool inversed;
+	[SerializeField] private float flowRate;
+	[SerializeField] private float efficiency;
+	[SerializeField] private float range;
 
-	[SerializeField] [ReadOnly] private EnergyInteractable environment;
+	[SerializeField] private EnergyInteractable environment;
 	[SerializeField] private float sourceUpdateDelay;
-	[SerializeField] [TagSelector] private string environmentTag;
+	[SerializeField] private string environmentTag;
 
 	// Start is called before the first frame update
 	protected override void Start()

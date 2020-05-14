@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ObjectSelector : MonoBehaviour
 {
-	[SerializeField] [ReadOnly]private Transform target;
+	[SerializeField] private Transform target;
 
-	[TagSelector] [SerializeField] private string leftIndexFingerTag;
+	[SerializeField] private string leftIndexFingerTag;
 	// Start is called before the first frame update
 	void Start()
     {

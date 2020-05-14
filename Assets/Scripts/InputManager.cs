@@ -11,12 +11,12 @@ public class InputManager : MonoBehaviour
 	private GameManager gameManager;
 
 
-	[TagSelector] [SerializeField] private string leftControllerTag;
-	[TagSelector] [SerializeField] private string rightControllerTag;
-	[TagSelector] [SerializeField] private string leftIndexFingerTag;
-	[TagSelector] [SerializeField] private string rightIndexFingerTag;
-	[TagSelector] [SerializeField] private string leftGloveTag;
-	[TagSelector] [SerializeField] private string rightGloveTag;
+	[SerializeField] private string leftControllerTag;
+	[SerializeField] private string rightControllerTag;
+	[SerializeField] private string leftIndexFingerTag;
+	[SerializeField] private string rightIndexFingerTag;
+	[SerializeField] private string leftGloveTag;
+	[SerializeField] private string rightGloveTag;
 
 
 	[SerializeField] private SteamVR_Action_Boolean DrawAction;

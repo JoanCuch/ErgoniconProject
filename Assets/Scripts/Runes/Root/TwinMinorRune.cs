@@ -5,9 +5,9 @@ using UnityEngine;
 public class TwinMinorRune : MinorRune
 {
 
-	[SerializeField] [ReadOnly] private TwinMinorRune linkedTwinRune;
-	[SerializeField] [ReadOnly] private TransformationRune linkedTransformationRune;
-	[SerializeField] [ReadOnly] private TransformationRune ownTransformationRune;
+	[SerializeField] private TwinMinorRune linkedTwinRune;
+	[SerializeField] private TransformationRune linkedTransformationRune;
+	[SerializeField] private TransformationRune ownTransformationRune;
 
 	[SerializeField] private float detectionRadius;
 
