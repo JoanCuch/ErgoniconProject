@@ -38,7 +38,7 @@ public class ObjectSelector : MonoBehaviour
 		if (Physics.Raycast(ray, out hit))
 		{
 			hitObject = hit.collider.transform;
-			Debug.Log("Detected object: " + hitObject.name);
+			//Debug.Log("Detected object: " + hitObject.name);
 		}
 
 		return (hitObject, hit);

@@ -64,7 +64,7 @@ public class GlobalBlackboard : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("Blackboard is returning a rune type of:" + runeName);
+			//Debug.Log("Blackboard is returning a rune type of:" + runeName);
 		}
 
 		return runeToReturn;

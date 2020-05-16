@@ -20,10 +20,12 @@ public class InputManager : MonoBehaviour
 
 
 	[SerializeField] private SteamVR_Action_Boolean DrawAction;
-	//[SerializeField] private SteamVR_Action_Boolean A;
-	//[SerializeField] private SteamVR_Action_Boolean B;
-	[SerializeField] private SteamVR_Action_Boolean SelectAction;
-
+	//[SerializeField] private SteamVR_Action_Boolean SelectAction;
+	[SerializeField] private SteamVR_Action_Single SelectAction;
+	[SerializeField] private float SelectActionSensibility;
+	[SerializeField] private SteamVR_Action_Skeleton skeletonRight;
+	[SerializeField] private SteamVR_Action_Skeleton skeletonLeft;
+	[SerializeField] private float IndexCurlSensibility;
 
 	public enum PlayerActions {
 		draw,
@@ -78,12 +80,36 @@ public class InputManager : MonoBehaviour
 				break;
 
 			case PlayerActions.select:
-				if (SelectAction[SteamVR_Input_Sources.LeftHand].stateDown ||
-					SelectAction[SteamVR_Input_Sources.RightHand].stateDown)
+				if (
+					(SelectAction[SteamVR_Input_Sources.RightHand].axis >= SelectActionSensibility &&
+						skeletonRight.indexCurl <= SelectActionSensibility)
+					||
+					(SelectAction[SteamVR_Input_Sources.LeftHand].axis >= SelectActionSensibility &&
+						skeletonLeft.indexCurl <= SelectActionSensibility)
+						)
 				{
 					isDoingIt = true;
 				
 				}
+
+
+				/*if (SelectAction[SteamVR_Input_Sources.LeftHand].axis >= SelectActionSensibility ||
+					SelectAction[SteamVR_Input_Sources.RightHand].axis >= SelectActionSensibility)
+					&&
+					skeletonRight.indexCurl >= SelectActionSensibility
+
+
+				{
+					isDoingIt = true;
+				
+				}*/
+
+				/*if (SelectAction[SteamVR_Input_Sources.LeftHand].stateDown ||
+					SelectAction[SteamVR_Input_Sources.RightHand].stateDown)
+				{
+					isDoingIt = true;
+				
+				}*/
 				break;
 
 			case PlayerActions.drawStateDown:
@@ -138,7 +164,19 @@ public class InputManager : MonoBehaviour
 				}
 
 
-				if (SelectAction[SteamVR_Input_Sources.LeftHand].state)
+				if (SelectAction[SteamVR_Input_Sources.LeftHand].axis >= SelectActionSensibility &&
+						skeletonLeft.indexCurl <= SelectActionSensibility)
+				{
+					_leftController = leftIndexFinger;
+				}
+
+				if (SelectAction[SteamVR_Input_Sources.RightHand].axis >= SelectActionSensibility &&
+						skeletonRight.indexCurl <= SelectActionSensibility)
+				{
+					_rightController = rightIndexFinger;
+				}
+
+				/*if (SelectAction[SteamVR_Input_Sources.LeftHand].state)
 				{
 					_leftController = leftIndexFinger;
 				}
@@ -146,7 +184,7 @@ public class InputManager : MonoBehaviour
 				if (SelectAction[SteamVR_Input_Sources.RightHand].state)
 				{
 					_rightController = rightIndexFinger;
-				}
+				}*/
 				break;
 
 			default:

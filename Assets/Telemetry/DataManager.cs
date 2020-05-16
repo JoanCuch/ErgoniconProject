@@ -47,7 +47,7 @@ namespace Telemetry
                 writer.Write(json);
             }
 
-            Debug.Log("saved information on path: " + path);
+            //Debug.Log("saved information on path: " + path);
         }
 
 
@@ -105,18 +105,14 @@ namespace Telemetry
             PlayerData.Action newAction = new PlayerData.Action(_actor.ToString("g"), _type.ToString("g"), _result, _startTime, _endTime, _extraInfo);
 
             data.actions.Add(newAction);
-                Debug.Log("######################################" + _type);
 
             if (_type == Actions.runeCreation)
             {
-                Debug.Log("######################################" + _type);
                 data.runes.Add(newAction);
             }
 
             Save();
         }
-
-
         #endregion
 
     }

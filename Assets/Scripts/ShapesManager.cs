@@ -127,7 +127,7 @@ public class ShapesManager : MonoBehaviour
 					{
 						//Geting the name of the identified rune.
 						currentShapeName = gestureRecognition.getGestureName(gestureId);
-						print("@@@@ finished one-handed gesture: " + currentShapeName);
+						Debug.Log("## one-handed gesture: " + currentShapeName + " ##");
 					}
 
 					foreach (string star in stroke)
@@ -173,7 +173,8 @@ public class ShapesManager : MonoBehaviour
 					{
 						//Geting the name of the identified rune.
 						currentShapeName = gestureCombinations.getGestureCombinationName(itendifiedGestureCombo);
-						print("@@@@ finished two-handed: " + currentShapeName);
+						Debug.Log("## two-handed gesture: " + currentShapeName + " ##");
+
 					}
 
 					foreach (string star in stroke)
@@ -221,7 +222,7 @@ public class ShapesManager : MonoBehaviour
 			gestureRecognition.startStroke(hmd_p, hmd_q);
 			gestureStarted = true;
 			oneHandedGesture = true;
-			Debug.Log("#### Start one-handed gesture");
+			//Debug.Log("#### Start one-handed gesture");
 		}
 		else
 		{
@@ -233,7 +234,7 @@ public class ShapesManager : MonoBehaviour
 			gestureCombinations.startStroke(1, hmd_p, hmd_q); //right hand
 			gestureStarted = true;
 			oneHandedGesture = false;
-			Debug.Log("#### Start two-handed gesture");
+			//Debug.Log("#### Start two-handed gesture");
 
 		}
 	}

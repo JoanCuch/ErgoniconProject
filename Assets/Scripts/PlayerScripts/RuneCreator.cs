@@ -237,7 +237,6 @@ public class RuneCreator : MonoBehaviour
 
 			if (oldTarget != null)
 			{
-				Debug.Log("activate highlight");
 				oldTarget.SetActiveHightlight(true);
 			}
 		}

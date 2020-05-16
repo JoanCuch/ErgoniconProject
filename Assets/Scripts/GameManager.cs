@@ -56,8 +56,7 @@ public class GameManager : MonoBehaviour
 					ChangeState(GameStates.interactionDrawing);
 				}
 				else if (inputManager.IsDoingAction(InputManager.PlayerActions.select))
-				{
-					
+				{				
 					//Getting the controllers that are activating the correct input and setting the target.
 					var fingers = inputManager.GetActiveControllers(InputManager.PlayerActions.select);
 					GameObject finger = fingers.left == null ? fingers.right : fingers.left;
@@ -131,7 +130,7 @@ public class GameManager : MonoBehaviour
 				}
 				else
 				{
-					Debug.Log("searching rune");
+					//Debug.Log("searching rune");
 					bool shapeIsMinorRune = false;
 
 					foreach (string s in globalBlackboard.minorRunesNames)
@@ -139,7 +138,7 @@ public class GameManager : MonoBehaviour
 						if (s == currentShape)
 						{
 							shapeIsMinorRune = true;
-							Debug.Log(currentShape +" is a minor rune shape");
+							//Debug.Log(currentShape +" is a minor rune shape");
 						}
 					}
 
