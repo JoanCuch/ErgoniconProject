@@ -49,8 +49,11 @@ namespace Telemetry
 
         public void GreenButtonActivated()
         {
+            SendAction(DataManager.Actions.greenButton);
+
             if(currentState == InstructionStates.wantsToPass)
             {
+                SendAction(DataManager.Actions.instructionUnsolved);
                 NextInstruction();
             }
             else if(currentState == InstructionStates.solved)
@@ -65,6 +68,8 @@ namespace Telemetry
 
         public void RedButtonActivated()
         {
+            SendAction(DataManager.Actions.redButton);
+
             if(currentState == InstructionStates.instruction)
             {
                 WantsToPassInstruction();
@@ -98,11 +103,15 @@ namespace Telemetry
 
         private void WantsToPassInstruction()
         {
+            SendAction(DataManager.Actions.wantsToPass);
+
             currentState = InstructionStates.wantsToPass;
             text.text = instructionsData.GetNotResolvedMessage();
         }
+
         private void PreviousInstruction()
         {
+            SendAction(DataManager.Actions.previousIntructions);
             currentState = InstructionStates.instruction;
 
             if (currentInstruction < instructions.Count)
@@ -127,9 +136,23 @@ namespace Telemetry
         }
         private void SolvedInstruction()
         {
+            SendAction(DataManager.Actions.instructionSolved);
             currentState = InstructionStates.solved;
 
             text.text = instructionsData.GetResolvedMessage();
         }
+
+        private void SendAction(DataManager.Actions _action)
+        {
+            dataManager.AddAction(
+                DataManager.Actors.player,
+                DataManager.Actions.greenButton,
+                "null",
+                Time.time,
+                Time.time,
+                "null"
+                );
+        }
+
     }
 }

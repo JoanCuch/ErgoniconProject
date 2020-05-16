@@ -81,20 +81,20 @@ public class RuneCreator : MonoBehaviour
 			return;
 		}
 
-		MinorRune currentRune = minorRunePrefab.GetComponent<MinorRune>();
+		MinorRune currentRuneScriptPrefab = minorRunePrefab.GetComponent<MinorRune>();
 
 
 		//Check special cases: destroy and complement runes, that requires two shapes to be created
-		if (currentRune.GetRuneType() == MinorRune.RuneTypes.destroy)
+		if (currentRuneScriptPrefab.GetRuneType() == MinorRune.RuneTypes.destroy)
 		{
 			//An information rute, doesn't need for creating or destroying any rune
 			penultimateRune = lastRune;
-			lastRune = currentRune;
+			lastRune = currentRuneScriptPrefab;
 			return;
 		}
-		else if(currentRune.GetRuneClassification() == MinorRune.RuneClassifications.complement){
+		else if(currentRuneScriptPrefab.GetRuneClassification() == MinorRune.RuneClassifications.complement){
 			penultimateRune = lastRune;
-			lastRune = currentRune;
+			lastRune = currentRuneScriptPrefab;
 			lastRuneName = runeName;
 			return;
 		}
@@ -104,7 +104,7 @@ public class RuneCreator : MonoBehaviour
 		if (lastRune != null && lastRune.GetRuneType() == MinorRune.RuneTypes.destroy)
 		{
 			//Destroy a rune that is the same os the currentRune type
-			targetMajorRune.DestroyMinorRune(currentRune.GetRuneType());			
+			targetMajorRune.DestroyMinorRune(currentRuneScriptPrefab.GetRuneType());			
 			lastRune = null;
 			lastRuneName = null;
 			penultimateRune = null;
@@ -114,14 +114,14 @@ public class RuneCreator : MonoBehaviour
 			if (penultimateRune != null && penultimateRune.GetRuneType() == MinorRune.RuneTypes.destroy)
 			{
 				//Destroy a complement rune
-				targetMajorRune.DestroyComplementRune(lastRune.GetRuneType(), currentRune.GetRuneClassification());
+				targetMajorRune.DestroyComplementRune(lastRune.GetRuneType(), currentRuneScriptPrefab.GetRuneClassification());
 			}
 			else
 			{
 				//Instantiate the last drawn complement rune attached to a rune of the same type of the currentRune
 				//But first let's check that the powered rune is a correct classifaction
-				if (currentRune.GetRuneClassification() == MinorRune.RuneClassifications.source
-					|| currentRune.GetRuneClassification() == MinorRune.RuneClassifications.transformation)
+				if (currentRuneScriptPrefab.GetRuneClassification() == MinorRune.RuneClassifications.source
+					|| currentRuneScriptPrefab.GetRuneClassification() == MinorRune.RuneClassifications.transformation)
 				{
 					GameObject complementRunePrefab = globalBlackboard.GetMinorRune(lastRuneName);
 					GameObject complementRune = Instantiate(complementRunePrefab);
@@ -129,16 +129,16 @@ public class RuneCreator : MonoBehaviour
 
 					ComplementMinorRune complementScript = complementRune.GetComponent<ComplementMinorRune>();
 
-					complementScript.SetTargetClassification(currentRune.GetRuneClassification());
+					complementScript.SetTargetClassification(currentRuneScriptPrefab.GetRuneClassification());
 					targetMajorRune.AddMinorRune(complementRune.transform);
 					//Debug.Log("complement rune: " + lastRuneName + " attached to: " + runeName);
 
 					SendEvent(
 						DataManager.Actions.runeCreation,
-						lastRuneName,
-						currentRune.GetRuneClassification(),
-						currentRune.GetRuneType(),
-						currentRune.GetMajorRune().name
+						runeName,
+						currentRuneScriptPrefab.GetRuneClassification(),
+						currentRuneScriptPrefab.GetRuneType(),
+						targetMajorRune
 						);
 
 
@@ -150,23 +150,28 @@ public class RuneCreator : MonoBehaviour
 
 		}
 		else
-		{		
+		{
+			
+
 			GameObject newMinorRune = Instantiate(minorRunePrefab);
 			newMinorRune.layer = globalBlackboard.targetLayer;
 			targetMajorRune.AddMinorRune(newMinorRune.transform);
+
+			SendEvent(
+						DataManager.Actions.runeCreation,
+						runeName,
+						currentRuneScriptPrefab.GetRuneClassification(),
+						currentRuneScriptPrefab.GetRuneType(),
+						targetMajorRune
+						);
+
 			lastRune = null;
 			lastRuneName = null;
 			penultimateRune = null;
 
 			Debug.Log("creating minor rune type of: " + runeName);
 
-			SendEvent(
-						DataManager.Actions.runeCreation,
-						lastRuneName,
-						currentRune.GetRuneClassification(),
-						currentRune.GetRuneType(),
-						currentRune.GetMajorRune().name
-						);
+			
 		}
 	
 	}
@@ -270,17 +275,17 @@ public class RuneCreator : MonoBehaviour
 		string _result,
 		MinorRune.RuneClassifications _classification,
 		MinorRune.RuneTypes _type,
-		string _majorRune
+		MajorRune _majorRune
 		)
 	{
 		string info =
 			"classification: " + _classification.ToString("g") + ", " +
 			"type: " + _type.ToString("g") + ", " +
-			"majorRuneName: " + _majorRune;
+			"majorRuneName: " + _majorRune.name;
 
 		DataManager.dataManager.AddAction(
 			DataManager.Actors.game,
-			_action,
+			DataManager.Actions.runeCreation,
 			_result,
 			Time.time,
 			Time.time,

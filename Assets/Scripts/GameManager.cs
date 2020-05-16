@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour
 
 	private void OnEnterState(GameStates _nextState)
 	{
-		//SendEvent(DataManager.Actions.changeState, _nextState);
+		SendEvent(DataManager.Actions.changeState, _nextState);
 		switch (_nextState)
 		{
 			case GameStates.inital:

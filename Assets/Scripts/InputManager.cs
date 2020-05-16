@@ -199,10 +199,10 @@ public class InputManager : MonoBehaviour
 		DataManager.dataManager.AddAction(
 			DataManager.Actors.player,
 			_action,
-			"",
+			"null",
 			Time.time,
 			Time.time,
-			null
+			"null"
 			);
 	}
 
