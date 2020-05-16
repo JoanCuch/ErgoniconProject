@@ -25,6 +25,7 @@ public class RuneCreator : MonoBehaviour
 	private MajorRune targetMajorRune;
 	private RaycastHit targetHit;
 	[SerializeField] private string majorRuneTag;
+	[SerializeField] private string magicableTag;
 
 	private MinorRune lastRune;
 	private string lastRuneName;
@@ -214,6 +215,10 @@ public class RuneCreator : MonoBehaviour
 
 	public void SetTarget(Transform _newTarget, RaycastHit hit)
 	{
+		if (_newTarget.transform.tag != magicableTag)
+			return;
+		
+		
 		PhysicObject oldTarget = null;
 
 
@@ -222,7 +227,7 @@ public class RuneCreator : MonoBehaviour
 			oldTarget = targetObject.transform.GetComponent<PhysicObject>();
 			if (oldTarget != null)
 			{
-				Debug.Log("desactivate highlight");
+				//Debug.Log("desactivate highlight");
 				oldTarget.SetActiveHightlight(false);
 			}
 		}

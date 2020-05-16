@@ -671,6 +671,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011273627542, guid: dc06161b6d97feb419f45f03b62e14b9,
+        type: 3}
+      propertyPath: onTransformUpdated.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011273627542, guid: dc06161b6d97feb419f45f03b62e14b9,
+        type: 3}
+      propertyPath: onTransformUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011273627542, guid: dc06161b6d97feb419f45f03b62e14b9,
+        type: 3}
+      propertyPath: onTransformUpdated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
 --- !u!1 &334170999
@@ -951,6 +966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     actions: []
+    runes: []
   file: player.json
 --- !u!4 &445790518
 Transform:
@@ -1577,7 +1593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &791065648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3303,8 +3319,16 @@ MonoBehaviour:
     actionPath: /actions/default/in/InteractUI
     needsReinit: 0
   SelectAction:
-    actionPath: /actions/default/in/SelectTarget
+    actionPath: /actions/default/in/Squeeze
     needsReinit: 0
+  SelectActionSensibility: 0.5
+  skeletonRight:
+    actionPath: /actions/default/in/SkeletonRightHand
+    needsReinit: 0
+  skeletonLeft:
+    actionPath: 
+    needsReinit: 0
+  IndexCurlSensibility: 0.5
 --- !u!114 &1649100143
 MonoBehaviour:
   m_ObjectHideFlags: 0

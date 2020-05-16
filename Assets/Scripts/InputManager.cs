@@ -160,7 +160,7 @@ public class InputManager : MonoBehaviour
 				if(leftIndexFinger == null || rightIndexFinger == null)
 				{
 					FindIndexFingers();
-					Debug.Log(leftIndexFinger + " " + rightIndexFinger);
+					//Debug.Log(leftIndexFinger + " " + rightIndexFinger);
 				}
 
 
