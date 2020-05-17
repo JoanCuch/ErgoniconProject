@@ -59,7 +59,7 @@ public class InputManager : MonoBehaviour
 		}*/
 
 		if (IsDoingAction(PlayerActions.drawStateDown)) SendEvent(DataManager.Actions.draw);
-		if (isSelecting && IsDoingAction(PlayerActions.select)) SendEvent(DataManager.Actions.select);
+		if (!isSelecting && IsDoingAction(PlayerActions.select)) SendEvent(DataManager.Actions.select);
 		
 		isSelecting = IsDoingAction(PlayerActions.select);
 	}
