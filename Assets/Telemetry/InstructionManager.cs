@@ -87,10 +87,10 @@ namespace Telemetry
             {
                 PlayerData.Action lastAction;
 
-                if (dataManager.data.actions == null) return;
-                if (dataManager.data.actions.Count <= 1) return;
+                if (dataManager.data.runes == null) return;
+                if (dataManager.data.runes.Count <= 1) return;
 
-                lastAction = dataManager.data.actions[dataManager.data.actions.Count - 1];
+                lastAction = dataManager.data.runes[dataManager.data.runes.Count - 1];
 
                 if (lastAction.result == currentExpectedResult)
                 {

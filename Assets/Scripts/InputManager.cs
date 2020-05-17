@@ -33,7 +33,6 @@ public class InputManager : MonoBehaviour
 		drawStateDown
 	}
 
-	//Temp and hardcoded
 	private GameObject leftController;
 	private GameObject rightController;
 	private GameObject leftIndexFinger;
@@ -41,9 +40,12 @@ public class InputManager : MonoBehaviour
 	private GameObject leftGlove;
 	private GameObject rightGlove;
 
+	private bool isSelecting;
+
 	// Start is called before the first frame update
 	void Start()
     {
+		isSelecting = false;
 		FindControllers();
 		gameManager = GameManager.gameManager;
     }
@@ -57,9 +59,10 @@ public class InputManager : MonoBehaviour
 		}*/
 
 		if (IsDoingAction(PlayerActions.drawStateDown)) SendEvent(DataManager.Actions.draw);
-		if (IsDoingAction(PlayerActions.select)) SendEvent(DataManager.Actions.select);
-
-    }
+		if (isSelecting && IsDoingAction(PlayerActions.select)) SendEvent(DataManager.Actions.select);
+		
+		isSelecting = IsDoingAction(PlayerActions.select);
+	}
 
 	public bool IsDoingAction(PlayerActions _action)
 	{

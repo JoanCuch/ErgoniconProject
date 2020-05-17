@@ -20,6 +20,7 @@ TagManager:
   - RightHandIndex
   - RightGlove
   - LeftGlove
+  - Magicable
   layers:
   - Default
   - TransparentFX

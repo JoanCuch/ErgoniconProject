@@ -23,7 +23,8 @@ public class RuneCreator : MonoBehaviour
 	//Other
 	private Transform targetObject;
 	private MajorRune targetMajorRune;
-	private RaycastHit targetHit;
+	//private RaycastHit targetHit;
+	[SerializeField] Transform hitTransform;
 	[SerializeField] private string majorRuneTag;
 	[SerializeField] private string magicableTag;
 
@@ -70,7 +71,7 @@ public class RuneCreator : MonoBehaviour
 				Debug.Log("No target selected");
 				return;
 			}
-			targetMajorRune = GetRuneFromTarget(targetObject, targetHit);		
+			targetMajorRune = GetRuneFromTarget(targetObject, hitTransform);		
 		}
 
 		//Getting the minorRune prefab to instantiate it
@@ -182,7 +183,7 @@ public class RuneCreator : MonoBehaviour
 	/// The gameobject can be a scene prop or a major rune. 
 	/// The hit is the position and direction where the major rune will appear.
 	/// </summary>
-	private MajorRune GetRuneFromTarget(Transform _newTarget, RaycastHit hit)
+	private MajorRune GetRuneFromTarget(Transform _newTarget, Transform _hitTransform)
 	{
 		MajorRune majorRuneToReturn = null;
 
@@ -197,7 +198,7 @@ public class RuneCreator : MonoBehaviour
 		else if (objectScript != null)
 		{
 			//If the target is an object, then add a major rune to it.
-			GameObject newRune = Instantiate(majorRunePrefab, hit.point, Quaternion.LookRotation(hit.normal));
+			GameObject newRune = Instantiate(majorRunePrefab, _hitTransform.position, _hitTransform.rotation);
 			newRune.layer = globalBlackboard.targetLayer;////////
 			objectScript.AttachMajorRune(newRune.transform);
 			majorRuneToReturn = newRune.GetComponent<MajorRune>();		
@@ -232,9 +233,18 @@ public class RuneCreator : MonoBehaviour
 			}
 		}
 
+		if(hitTransform == null)
+		{
+			hitTransform = new GameObject().transform;
+		}
+
+
 		targetObject = _newTarget;
-		targetHit = hit;
+		//targetHit = hit;
 		targetMajorRune = null;
+		hitTransform.position = hit.point;
+		hitTransform.rotation = Quaternion.LookRotation(hit.normal);
+		hitTransform.parent = targetObject;
 
 		if (targetObject != null)
 		{
