@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34e3bf9256136f948b6963aab737517a, type: 3}
-  m_Name: Instructions
+  m_Name: Instructions_English
   m_EditorClassIdentifier: 
+  languajeMessage: 'English: press the red button.'
   startMessage: In this window will appear missions you have to accomplish. Pres the
     green button to start.
   nonResolvedMessage: Press the green button to pass to the next mission. \n Press

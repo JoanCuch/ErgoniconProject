@@ -96,7 +96,7 @@ namespace Telemetry
             runeCreation,
             instructionSolved,
             instructionUnsolved,
-            wantsToPass,
+            unsolvedInstruction,
             previousIntructions          
         }
 

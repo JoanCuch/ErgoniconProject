@@ -7,7 +7,10 @@ namespace Telemetry
 {
     public class InstructionManager : MonoBehaviour
     {
-        [SerializeField] private InstructionsData instructionsData;
+        private InstructionsData instructionsData;
+        [SerializeField] private InstructionsData instructionsData_spanish;
+        [SerializeField] private InstructionsData instructionsData_english;
+
 
         private List<InstructionsData.instruction> instructions;
         private int currentInstruction;
@@ -21,19 +24,19 @@ namespace Telemetry
 
         private enum InstructionStates
         {
+            lenguajeSelection,
             start,
             instruction,
             solved,
-            wantsToPass
+            unsolvedInstruction
         }
 
         // Start is called before the first frame update
         private void Start()
         {
-            currentState = InstructionStates.start;
+            currentState = InstructionStates.lenguajeSelection;
             currentInstruction = -1;
-            text.text = instructionsData.GetStartMessage();
-            instructions = instructionsData.GetInstructions();
+            text.text = instructionsData_english.GetLanguajeMessage() + "\n" + instructionsData_spanish.GetLanguajeMessage();
 
             dataManager = DataManager.dataManager;
 
@@ -51,20 +54,34 @@ namespace Telemetry
         {
             SendAction(DataManager.Actions.greenButton);
 
-            if(currentState == InstructionStates.wantsToPass)
+            switch (currentState)
             {
-                SendAction(DataManager.Actions.instructionUnsolved);
-                NextInstruction();
-            }
-            else if(currentState == InstructionStates.solved)
-            {
-                SendAction(DataManager.Actions.instructionSolved);
-                NextInstruction();
-            }
-            else
-            {
-                WantsToPassInstruction();
-            }
+                case InstructionStates.lenguajeSelection:
+                    SetLanguage(instructionsData_spanish);
+                    SetStart();
+                    break;
+
+                case InstructionStates.start:
+                    NextInstruction();
+                    break;
+
+                case InstructionStates.instruction:
+                    SolvedInstruction();
+                    break;
+
+                case InstructionStates.solved:
+                    SendAction(DataManager.Actions.instructionSolved);
+                    NextInstruction();
+                    break;
+
+                case InstructionStates.unsolvedInstruction:
+                    SendAction(DataManager.Actions.instructionUnsolved);
+                    NextInstruction();
+                    break;
+
+                default:
+                    break;
+            }   
 
             /*SendAction(DataManager.Actions.greenButton);
 
@@ -87,13 +104,32 @@ namespace Telemetry
         {
             SendAction(DataManager.Actions.redButton);
 
-            if (currentState == InstructionStates.wantsToPass)
+            switch (currentState)
             {
-                PreviousInstruction();
-            }
-            else if (currentState == InstructionStates.solved)
-            {
-                PreviousInstruction();
+                case InstructionStates.lenguajeSelection:
+                    SetLanguage(instructionsData_english);
+                    SetStart();
+                    break;
+
+                case InstructionStates.start:
+                    currentState = InstructionStates.lenguajeSelection;
+                    text.text = instructionsData.GetLanguajeMessage() + "\n" + instructionsData_spanish.GetLanguajeMessage();
+                    break;
+
+                case InstructionStates.instruction:
+                    UnsolvedInstruction();
+                    break;
+
+                case InstructionStates.solved:
+                    PreviousInstruction();
+                    break;
+
+                case InstructionStates.unsolvedInstruction:
+                    PreviousInstruction();
+                    break;
+
+                default:
+                    break;
             }
 
             /*SendAction(DataManager.Actions.redButton);
@@ -111,7 +147,7 @@ namespace Telemetry
 
         private void CheckCurrentInstruction()
         {
-            if (currentState == InstructionStates.instruction || currentState == InstructionStates.wantsToPass)
+            if (currentState == InstructionStates.instruction || currentState == InstructionStates.unsolvedInstruction)
             {
                 PlayerData.Action lastAction;
 
@@ -129,11 +165,11 @@ namespace Telemetry
 
 
 
-        private void WantsToPassInstruction()
+        private void UnsolvedInstruction()
         {
-            SendAction(DataManager.Actions.wantsToPass);
+            SendAction(DataManager.Actions.unsolvedInstruction);
 
-            currentState = InstructionStates.wantsToPass;
+            currentState = InstructionStates.unsolvedInstruction;
             text.text = instructionsData.GetNotResolvedMessage();
         }
 
@@ -164,10 +200,21 @@ namespace Telemetry
         }
         private void SolvedInstruction()
         {
-            SendAction(DataManager.Actions.instructionSolved);
             currentState = InstructionStates.solved;
 
             text.text = instructionsData.GetResolvedMessage();
+        }
+
+        private void SetStart()
+        {
+            currentState = InstructionStates.start;
+            text.text = instructionsData.GetStartMessage();
+        }
+
+        private void SetLanguage(InstructionsData _instructionsData)
+        {
+            instructionsData = _instructionsData;
+            instructions = instructionsData.GetInstructions();
         }
 
         private void SendAction(DataManager.Actions _action)

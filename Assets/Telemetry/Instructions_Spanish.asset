@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34e3bf9256136f948b6963aab737517a, type: 3}
+  m_Name: Instructions_Spanish
+  m_EditorClassIdentifier: 
+  languajeMessage: "Castellano: pulsa el bot\xF3n verde."
+  startMessage: En esta ventana aparecen instrucciones
+  nonResolvedMessage: Press the green button to pass to the next mission. \n Press
+    the red button to return to the current mission.
+  resolvedMessage: You have completed the mision. \n Press the green button to see
+    the next mission.
+  instructions:
+  - questionMessage: Select and object
+    expectedResult: select
+  - questionMessage: Open the edition mode
+    expectedResult: kinetic
+  - questionMessage: Define the effect. that will be generated. \n Draw a thermic
+      rune.
+    expectedResult: thermic
+  - questionMessage: Define the source of energy. \n Draw an ambient rune.
+    expectedResult: ambient
+  - questionMessage: You have to active the major rune. \n Draw a switch rune.
+    expectedResult: switch
+  - questionMessage: Select another object and draw a runes thats makes and object
+      to move. Hint, use the kinetic rune.
+    expectedResult: kinetic
+  - questionMessage: 'Question E: kinetic'
+    expectedResult: kinetic
+  - questionMessage: 'Question E: kinetic'
+    expectedResult: kinetic
+  - questionMessage: 'Question E: kinetic'
+    expectedResult: kinetic
+  - questionMessage: 'Question E: kinetic'
+    expectedResult: kinetic
+  - questionMessage: 'Question E: kinetic'
+    expectedResult: kinetic
+  - questionMessage: 'Question E: kinetic'
+    expectedResult: kinetic
+  - questionMessage: 'Question E: kinetic'
+    expectedResult: kinetic

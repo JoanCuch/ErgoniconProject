@@ -6,6 +6,7 @@ using UnityEngine;
 public class InstructionsData : ScriptableObject
 {
 
+    [SerializeField] private string languajeMessage;
     [SerializeField] private string startMessage;
     [SerializeField] private string nonResolvedMessage;
     [SerializeField] private string resolvedMessage;
@@ -25,6 +26,7 @@ public class InstructionsData : ScriptableObject
         }
     }
 
+    public string GetLanguajeMessage() { return languajeMessage; }
     public string GetStartMessage() { return startMessage; }
     public string GetNotResolvedMessage() { return nonResolvedMessage; }
     public string GetResolvedMessage() { return resolvedMessage; }
