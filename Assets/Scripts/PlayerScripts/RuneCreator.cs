@@ -216,7 +216,9 @@ public class RuneCreator : MonoBehaviour
 
 	public void SetTarget(Transform _newTarget, RaycastHit hit)
 	{
-		if (_newTarget.transform.tag != magicableTag)
+
+		Debug.Log(_newTarget);
+		if (_newTarget.tag != magicableTag)
 			return;
 		
 		

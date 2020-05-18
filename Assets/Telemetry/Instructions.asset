@@ -12,17 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e3bf9256136f948b6963aab737517a, type: 3}
   m_Name: Instructions
   m_EditorClassIdentifier: 
-  startMessage: Start message
-  nonResolvedMessage: Non resolved message
-  resolvedMessage: Resolved message
+  startMessage: In this window will appear missions you have to accomplish. Pres the
+    green button to start.
+  nonResolvedMessage: Press the green button to pass to the next mission. \n Press
+    the red button to return to the current mission.
+  resolvedMessage: You have completed the mision. \n Press the green button to see
+    the next mission.
   instructions:
-  - questionMessage: 'Question A: thermic'
-    expectedResult: thermic
-  - questionMessage: 'Question B: kinetic'
+  - questionMessage: Select and object
+    expectedResult: select
+  - questionMessage: Open the edition mode
     expectedResult: kinetic
-  - questionMessage: 'Question C: switch'
-    expectedResult: switch
-  - questionMessage: 'Question D: thermic'
+  - questionMessage: Define the effect. that will be generated. \n Draw a thermic
+      rune.
     expectedResult: thermic
+  - questionMessage: Define the source of energy. \n Draw an ambient rune.
+    expectedResult: ambient
+  - questionMessage: You have to active the major rune. \n Draw a switch rune.
+    expectedResult: switch
+  - questionMessage: Select another object and draw a runes thats makes and object
+      to move. Hint, use the kinetic rune.
+    expectedResult: kinetic
+  - questionMessage: 'Question E: kinetic'
+    expectedResult: kinetic
+  - questionMessage: 'Question E: kinetic'
+    expectedResult: kinetic
+  - questionMessage: 'Question E: kinetic'
+    expectedResult: kinetic
+  - questionMessage: 'Question E: kinetic'
+    expectedResult: kinetic
+  - questionMessage: 'Question E: kinetic'
+    expectedResult: kinetic
+  - questionMessage: 'Question E: kinetic'
+    expectedResult: kinetic
   - questionMessage: 'Question E: kinetic'
     expectedResult: kinetic

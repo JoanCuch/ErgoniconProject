@@ -43,7 +43,7 @@ namespace Telemetry
         private void Update()
         {
             if (dataManager == null) dataManager = DataManager.dataManager;
-            CheckCurrentInstruction();
+            //CheckCurrentInstruction();
         }
 
 
@@ -58,17 +58,45 @@ namespace Telemetry
             }
             else if(currentState == InstructionStates.solved)
             {
+                SendAction(DataManager.Actions.instructionSolved);
+                NextInstruction();
+            }
+            else
+            {
+                WantsToPassInstruction();
+            }
+
+            /*SendAction(DataManager.Actions.greenButton);
+
+            if(currentState == InstructionStates.wantsToPass)
+            {
+                SendAction(DataManager.Actions.instructionUnsolved);
+                NextInstruction();
+            }
+            else if(currentState == InstructionStates.solved)
+            {
                 NextInstruction();
             }
             else if(currentState == InstructionStates.start)
             {
                 NextInstruction();
-            }
+            }*/
         }
 
         public void RedButtonActivated()
         {
             SendAction(DataManager.Actions.redButton);
+
+            if (currentState == InstructionStates.wantsToPass)
+            {
+                PreviousInstruction();
+            }
+            else if (currentState == InstructionStates.solved)
+            {
+                PreviousInstruction();
+            }
+
+            /*SendAction(DataManager.Actions.redButton);
 
             if(currentState == InstructionStates.instruction)
             {
@@ -77,7 +105,7 @@ namespace Telemetry
             else if (currentState == InstructionStates.wantsToPass)
             {
                 PreviousInstruction();
-            }
+            }*/
         }
 
 
