@@ -110,6 +110,6 @@ MonoBehaviour:
   efficiency: 0
   range: 1
   environment: {fileID: 0}
-  sourceUpdateDelay: 0.5
+  sourceUpdateDelay: 0.1
   environmentTag: ENVIRONMENT
   source: {fileID: 0}

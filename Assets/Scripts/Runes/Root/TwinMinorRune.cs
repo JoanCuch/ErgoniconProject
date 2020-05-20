@@ -105,7 +105,7 @@ public class TwinMinorRune : MinorRune
 
 	private void OnDestroy()
 	{
-		linkedTwinRune.RemoveLink();
+		if(linkedTwinRune != null) linkedTwinRune.RemoveLink();
 		RemoveLink();
 	}
 

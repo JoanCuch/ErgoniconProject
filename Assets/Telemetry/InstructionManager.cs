@@ -170,7 +170,7 @@ namespace Telemetry
             SendAction(DataManager.Actions.unsolvedInstruction);
 
             currentState = InstructionStates.unsolvedInstruction;
-            text.text = instructionsData.GetNotResolvedMessage();
+            text.text = instructionsData.GetNotResolvedMessage().Replace("#", "\n"); ;
         }
 
         private void PreviousInstruction()
@@ -180,7 +180,7 @@ namespace Telemetry
 
             if (currentInstruction < instructions.Count)
             {
-                text.text = instructions[currentInstruction].questionMessage;
+                text.text = instructions[currentInstruction].questionMessage.Replace("#", "\n");
                 currentExpectedResult = instructions[currentInstruction].expectedResult;
             }
 
@@ -194,7 +194,7 @@ namespace Telemetry
 
             if (currentInstruction < instructions.Count)
             {
-                text.text = instructions[currentInstruction].questionMessage;
+                text.text = instructions[currentInstruction].questionMessage.Replace("#", "\n"); ;
                 currentExpectedResult = instructions[currentInstruction].expectedResult;
             }           
         }
@@ -202,13 +202,13 @@ namespace Telemetry
         {
             currentState = InstructionStates.solved;
 
-            text.text = instructionsData.GetResolvedMessage();
+            text.text = instructionsData.GetResolvedMessage().Replace("#", "\n"); ;
         }
 
         private void SetStart()
         {
             currentState = InstructionStates.start;
-            text.text = instructionsData.GetStartMessage();
+            text.text = instructionsData.GetStartMessage().Replace("#", "\n"); ;
         }
 
         private void SetLanguage(InstructionsData _instructionsData)

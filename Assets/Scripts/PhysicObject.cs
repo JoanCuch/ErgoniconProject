@@ -79,7 +79,6 @@ public class PhysicObject : EnergyInteractable
 		//float colorHeatNumber = Mathf.Clamp(GetHeat(), minHeat, maxHeat);
 		float colorHeatNumber = Mathf.InverseLerp(minHeat, maxHeat, GetHeat());
 		Color newColor = Color.Lerp(minHeatColor, maxHeatColor, colorHeatNumber);
-
 		ownMaterial.SetColor("_EmissionColor", newColor);
 
 		//Color newColor = ownMaterial.GetColor("_EmissionColor") * (GetHeat()*0.001f+1);

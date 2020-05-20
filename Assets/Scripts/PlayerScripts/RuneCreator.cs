@@ -217,8 +217,10 @@ public class RuneCreator : MonoBehaviour
 	public void SetTarget(Transform _newTarget, RaycastHit hit)
 	{
 
-		Debug.Log(_newTarget);
-		if (_newTarget.tag != magicableTag)
+		if (_newTarget == null)
+			return;
+
+		if (_newTarget.tag != magicableTag && _newTarget.tag != majorRuneTag)
 			return;
 		
 		
@@ -250,7 +252,14 @@ public class RuneCreator : MonoBehaviour
 
 		if (targetObject != null)
 		{
-			oldTarget = targetObject.transform.GetComponent<PhysicObject>();
+			if (_newTarget.tag == majorRuneTag)
+			{
+				oldTarget = targetObject.parent.GetComponent<PhysicObject>();
+			}
+			else
+			{
+				oldTarget = targetObject.transform.GetComponent<PhysicObject>();
+			}
 
 			if (oldTarget != null)
 			{
