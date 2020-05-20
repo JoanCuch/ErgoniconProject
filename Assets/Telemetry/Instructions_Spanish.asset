@@ -14,47 +14,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   languajeMessage: "Castellano: pulsa el bot\xF3n verde."
   startMessage: "En esta ventana aparecer\xE1n misiones que debes completar. # # Pulsa
-    el bot\xF3n verde para empezar."
-  nonResolvedMessage: "Estas a punto de passar a la siguiente misi\xF3n. # Pulsa el
-    bot\xF3n verde para continuar. # Pulsa el bot\xF3n rojo para volver atr\xE1s."
-  resolvedMessage: "Has completado la misi\xF3n. # Pulsa el bot\xF3n verde para continuar.
-    # Pulsa el bot\xF3n rojo para volver atr\xE1s."
+    el bot\xF3n verde para empezar. "
+  nonResolvedMessage: "Estas a punto de pasar a la siguiente misi\xF3n. # Pulsa el
+    bot\xF3n verde para continuar. # Pulsa el bot\xF3n rojo para volver atr\xE1s. "
+  resolvedMessage: "Has completado la misi\xF3n. ## Pulsa el bot\xF3n verde para continuar.
+    # Pulsa el bot\xF3n rojo para volver atr\xE1s. "
   instructions:
   - questionMessage: 'Selecciona un objeto.##Pista: apunta con el dedo indice y aprieta
-      el mando.'
+      el mando. '
     expectedResult: 
   - questionMessage: "Abre el modo de edici\xF3n ##Pista: pulsa los dedos indices
-      y abre los brazos."
+      y abre los brazos. "
     expectedResult: 
-  - questionMessage: "Define un efecto. Prueba con una tura termica. ##Pista: con
-      el modo de edici\xF3n abierto, pulsa el dedo indice y haz la forma de la runa.#Pista
-      2: A tu izquierda tienes todas las formas."
+  - questionMessage: "Define un efecto. Prueba con una runa t\xE9rmica. ##Pista: con
+      el modo de edici\xF3n abierto, pulsa el dedo indice y haz la forma de la runa
+      con tu brazo.#Pista 2: A tu izquierda tienes todas las formas. "
     expectedResult: 
-  - questionMessage: Define la fuente de energia. Haz una runa de ambiente.
+  - questionMessage: "Define la fuente de energ\xEDa. Haz una runa de ambiente. "
     expectedResult: 
-  - questionMessage: Para activar el efecto tienes que hacer una runa switch
+  - questionMessage: 'Para activar el efecto tienes que hacer una runa switch '
     expectedResult: 
-  - questionMessage: 'Selecciona otro objeto y haz un conjunto de runas que hagan
-      que el objeto se mueva. ##Pista: necessitaras una runa ambient, un switch i
-      una kinetica.'
+  - questionMessage: "Selecciona otro objeto y haz un conjunto de runas que hagan
+      que el objeto se mueva. ##Pista: necesitar\xE1s una runa ambiente, un switch
+      y una kinetica. "
     expectedResult: 
-  - questionMessage: "A\xF1ade m\xE1s poder a la runa kinetic. Dibuja una runa flow.
+  - questionMessage: "A\xF1ade m\xE1s poder a la runa kinetica. Dibuja una runa flow.
       ##Pista: tendr\xE1s que hacer dos movimientos. Primero la de la runa flow y
-      despu\xE9s la de la runa kinetica."
+      despu\xE9s la de la runa kinetica. "
     expectedResult: 
-  - questionMessage: "A\xF1ande m\xE1s poder a la runa ambiente. Dibuja una runa flow.
-      ##Pista: Dibuja primero la runa flow y despues la ambiente."
+  - questionMessage: "A\xF1ade m\xE1s poder a la runa ambiente. Dibuja una runa flow.
+      ##Pista: Dibuja primero la runa flow y despu\xE9s la ambiente. "
     expectedResult: 
-  - questionMessage: Dibuja una runa twin.
+  - questionMessage: 'Dibuja una runa twin. '
     expectedResult: 
   - questionMessage: 'En otro objeto, crea otro conjunto igual que el anterior. ##Pista:
-      runas ambiente, switch, kinetica y twin'
+      runas ambiente, switch, kinetica y twin '
     expectedResult: 
-  - questionMessage: En otros dos objetos, dibuja lo mismo, pero en vez de usar runas
-      kineticas, utilitza runas joint.
+  - questionMessage: 'En otros dos objetos, dibuja lo mismo, pero en vez de usar runas
+      kineticas, utiliza runas joint. '
     expectedResult: 
   - questionMessage: "Esta es la misi\xF3n final: prueba de experimentar un poco,
-      a ver que te sale."
+      a ver que te sale. "
     expectedResult: 
-  - questionMessage: 'Question E: kinetic'
-    expectedResult: kinetic

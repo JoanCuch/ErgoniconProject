@@ -194,8 +194,8 @@ public class InputManager : MonoBehaviour
 				break;
 		}
 
-		if (_leftController == null && _rightController == null)
-			Debug.LogWarning("Returning null both controllers from inputManager");
+		//if (_leftController == null && _rightController == null)
+			//Debug.LogWarning("Returning null both controllers from inputManager");
 
 		return (_leftController, _rightController);
 	}

@@ -12,39 +12,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e3bf9256136f948b6963aab737517a, type: 3}
   m_Name: Instructions_English
   m_EditorClassIdentifier: 
-  languajeMessage: 'English: press the red button.'
-  startMessage: In this window will appear missions you have to accomplish. Pres the
-    green button to start.
-  nonResolvedMessage: Press the green button to pass to the next mission. \n Press
-    the red button to return to the current mission.
-  resolvedMessage: You have completed the mision. \n Press the green button to see
-    the next mission.
+  languajeMessage: 'English: press the red button. '
+  startMessage: 'On this window will appear mission you have to accomplish. ## Press
+    the green button to start. '
+  nonResolvedMessage: 'You are about to pass to the next mission. ##Press the green
+    button to continue. #Press the red button to go back. '
+  resolvedMessage: 'You have completed the mission. ##Press the green button to continue.
+    #Press the red button to continue. '
   instructions:
-  - questionMessage: Select and object
-    expectedResult: select
-  - questionMessage: Open the edition mode
-    expectedResult: kinetic
-  - questionMessage: Define the effect. that will be generated. \n Draw a thermic
-      rune.
-    expectedResult: thermic
-  - questionMessage: Define the source of energy. \n Draw an ambient rune.
-    expectedResult: ambient
-  - questionMessage: You have to active the major rune. \n Draw a switch rune.
-    expectedResult: switch
-  - questionMessage: Select another object and draw a runes thats makes and object
-      to move. Hint, use the kinetic rune.
-    expectedResult: kinetic
-  - questionMessage: 'Question E: kinetic'
-    expectedResult: kinetic
-  - questionMessage: 'Question E: kinetic'
-    expectedResult: kinetic
-  - questionMessage: 'Question E: kinetic'
-    expectedResult: kinetic
-  - questionMessage: 'Question E: kinetic'
-    expectedResult: kinetic
-  - questionMessage: 'Question E: kinetic'
-    expectedResult: kinetic
-  - questionMessage: 'Question E: kinetic'
-    expectedResult: kinetic
-  - questionMessage: 'Question E: kinetic'
-    expectedResult: kinetic
+  - questionMessage: 'Select an object. ##Hint: point with your index finger and squeeze
+      the controller.'
+    expectedResult: 
+  - questionMessage: 'Open the edition mode. ##Hint: press the two index fingers and
+      open your hands. '
+    expectedResult: 
+  - questionMessage: 'Define and effect. Try creating a thermic rune. ##Hint: with
+      the edition mode activated, press the index finger and make the rune shape with
+      your arm. #Hint 2: On your left, you have all the rune shapes. '
+    expectedResult: 
+  - questionMessage: 'Define the energy source. Draw an ambient rune. '
+    expectedResult: 
+  - questionMessage: 'To activate the effect, you have to make a switch rune. '
+    expectedResult: 
+  - questionMessage: 'Select another object and make a set of rune that creates a
+      movement effect. ##Hint: You will need an ambient, a switch and a kinetic rune. '
+    expectedResult: 
+  - questionMessage: 'Add more power to the kinetic rune. Draw a flow rune. ##Hint:
+      you will need to make two movements. First, the flow rune and later the kinetic
+      rune. '
+    expectedResult: 
+  - questionMessage: 'Add more power to the ambient rune. Draw a flow rune. ##Hint:
+      First draw the flow rune and later the ambient rune. '
+    expectedResult: 
+  - questionMessage: 'Draw a twin rune. '
+    expectedResult: 
+  - questionMessage: 'On another object, create another equal set of runes as the
+      last one. ##Hint: ambient, switch, kinetic and twin rune. '
+    expectedResult: 
+  - questionMessage: 'On other two objects, draw the same set of runes. But, instead
+      of using kinetic rune, use joint runes. '
+    expectedResult: 
+  - questionMessage: 'This is the end: try experimenting a little. See what you can
+      create. '
+    expectedResult: 
