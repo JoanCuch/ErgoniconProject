@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -110,6 +111,15 @@ namespace Telemetry
             {
                 data.runes.Add(newAction);
             }
+
+            data.actionsString.Add(
+                "actor: " + _actor.ToString("g") + ", " +
+                "type: " + _type.ToString("g") + ", " +
+                "result: " + _result + ", " +
+                "startTime: " + _startTime + ", " +
+                "endTime: " + _endTime + ", " +
+                "extraInfo: " + _extraInfo             
+                );
 
             Save();
         }

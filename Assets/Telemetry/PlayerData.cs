@@ -12,6 +12,7 @@ namespace Telemetry
 
         public List<Action> actions;
         public List<Action> runes;
+        public List<String> actionsString;
 
         [Serializable]
         public struct Action
@@ -40,6 +41,7 @@ namespace Telemetry
         {
             actions = new List<Action>();
             runes = new List<Action>();
+            actionsString = new List<string>();
             Debug.LogWarning("new PlayerData created");
         }
 
