@@ -220,6 +220,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: HOVERPOINT
       objectReference: {fileID: 0}
+    - target: {fileID: 171246, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 177230, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 447954, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.48
@@ -387,6 +395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5372b69e41f42094b9a6919fc8a33cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  leftIndexFingerTag: 
 --- !u!4 &392978690
 Transform:
   m_ObjectHideFlags: 0
@@ -415,6 +425,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   majorRunePrefab: {fileID: 865398363205789207, guid: 12957cbaba19a844cbd9607a74e328db,
     type: 3}
+  hitTransform: {fileID: 0}
+  majorRuneTag: 
+  magicableTag: 
 --- !u!1001 &400597557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -996,6 +1009,8 @@ MonoBehaviour:
   energy: 0
   impulse: {x: 0, y: 0, z: 0}
   fatigue: 0
+  meshRenderer: {fileID: 0}
+  highlightMaterial: {fileID: 0}
   ownMaterial: {fileID: 0}
   minHeat: 0
   maxHeat: 0
@@ -1214,6 +1229,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 249330160}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1637523898 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7208817863142941020, guid: 0ea2c7160addab441aa646d9e766da11,
+    type: 3}
+  m_PrefabInstance: {fileID: 7208817864942676758}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1649100138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,26 +1273,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb7515f7807b874d8929777b6069256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabBase: {fileID: 4373542282630320061, guid: 034872b47bb78eb44bad535ea8b9e827,
-    type: 3}
-  prefabInverse: {fileID: 4138891008394126575, guid: bba0761331e0d2b46881c851ec13ceca,
-    type: 3}
-  prefabObject: {fileID: 8758175775533306495, guid: b8c97b739e1301e4ab825793a9020266,
-    type: 3}
-  prefabAmbient: {fileID: 4861901939916807851, guid: efabfc4284adb9c4887e0768b37b3509,
-    type: 3}
-  prefabDirect: {fileID: 2611400237401604716, guid: 038b10f5cf88a7842a9372f456624970,
-    type: 3}
-  prefabHeat: {fileID: 3676821939921262018, guid: 7e4b688cb6e0d2043bb282e4cacec6ff,
-    type: 3}
-  prefabForce: {fileID: 6796488033413302, guid: b3c83bc448ec1cd4f908623adfc1fa81,
-    type: 3}
-  prefabGravitational: {fileID: 8785132799884486001, guid: 086a10a711baafb46bdf11e9bf2bc223,
-    type: 3}
-  prefabAtract: {fileID: 9015326284793306471, guid: 29f05716d79a1fc4e98953b83ee5d808,
-    type: 3}
+  runePrefabs: []
+  prefabLine: {fileID: 0}
+  prefabDestroy: {fileID: 0}
   OpenRuneEditingModeShapeName: OpenHands
   CloseRuneEditingModeShapeName: CloseHands
+  DestroyRuneShapeName: 
   minorRunesNames:
   - basic
   - inverse
@@ -1277,6 +1290,8 @@ MonoBehaviour:
   - gravitation
   - attraction
   failedGestureName: fail
+  defaultLayer: 0
+  targetLayer: 0
 --- !u!114 &1649100140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1289,11 +1304,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3080f7840b77034db5bcb629817a21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runesIdealWorld: {fileID: 1649100139}
+  globalBlackboard: {fileID: 0}
   inputManager: {fileID: 1649100142}
   runeCreator: {fileID: 392978691}
   objectSelector: {fileID: 392978689}
   shapesManager: {fileID: 1649100143}
+  runeEditingEffect: {fileID: 0}
 --- !u!4 &1649100141
 Transform:
   m_ObjectHideFlags: 0
@@ -1322,18 +1338,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftControllerTag: LeftHand
   rightControllerTag: RightHand
-  Click:
-    actionPath: /actions/default/in/InteractUI
+  leftIndexFingerTag: 
+  rightIndexFingerTag: 
+  leftGloveTag: 
+  rightGloveTag: 
+  DrawAction:
+    actionPath: 
     needsReinit: 0
-  A:
-    actionPath: /actions/default/in/AClick
+  SelectAction:
+    actionPath: 
     needsReinit: 0
-  B:
-    actionPath: /actions/default/in/BClick
+  SelectActionSensibility: 0
+  skeletonRight:
+    actionPath: 
     needsReinit: 0
-  TouchPad:
-    actionPath: /actions/default/in/TrackpadTouchInput
+  skeletonLeft:
+    actionPath: 
     needsReinit: 0
+  IndexCurlSensibility: 0
 --- !u!114 &1649100143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1350,6 +1372,8 @@ MonoBehaviour:
     type: 3}
   OneHandedGesturesPath: Assets/Gestures/minorRunes7.dat
   TwoHandedGesturesPath: Assets/Gestures/handControls2.dat
+  OneHandedGesturesPathBuild: 
+  TwoHandedGesturesPathBuild: 
 --- !u!1001 &1801540732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1538,6 +1562,11 @@ PrefabInstance:
       propertyPath: _maxLogCount
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7208817864192202153, guid: 0ea2c7160addab441aa646d9e766da11,
+        type: 3}
+      propertyPath: _text
+      value: 
+      objectReference: {fileID: 1637523898}
     - target: {fileID: 7208817864192202196, guid: 0ea2c7160addab441aa646d9e766da11,
         type: 3}
       propertyPath: m_Camera

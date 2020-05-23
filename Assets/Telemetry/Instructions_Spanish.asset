@@ -13,42 +13,44 @@ MonoBehaviour:
   m_Name: Instructions_Spanish
   m_EditorClassIdentifier: 
   languajeMessage: "Castellano: pulsa el bot\xF3n verde."
-  startMessage: "En esta ventana aparecer\xE1n misiones que debes completar. # # Pulsa
-    el bot\xF3n verde para empezar. "
-  nonResolvedMessage: "Estas a punto de pasar a la siguiente misi\xF3n. # Pulsa el
-    bot\xF3n verde para continuar. # Pulsa el bot\xF3n rojo para volver atr\xE1s. "
-  resolvedMessage: "Has completado la misi\xF3n. ## Pulsa el bot\xF3n verde para continuar.
-    # Pulsa el bot\xF3n rojo para volver atr\xE1s. "
+  startMessage: "En esta ventana aparecer\xE1n misiones que debes completar. #Si no
+    puedes completar una misi\xF3n, puedes pulsar el bot\xF3n rojo para saltarla.
+    ## - Pulsa el bot\xF3n verde para empezar. "
+  nonResolvedMessage: "Estas a punto de pasar a la siguiente misi\xF3n. ## - Pulsa
+    el bot\xF3n verde para continuar. # - Pulsa el bot\xF3n rojo para volver atr\xE1s. "
+  resolvedMessage: "Has completado la misi\xF3n. ## - Pulsa el bot\xF3n verde para
+    continuar. # - Pulsa el bot\xF3n rojo para volver atr\xE1s. "
   instructions:
-  - questionMessage: 'Selecciona un objeto.##Pista: apunta con el dedo indice y aprieta
-      el mando. '
+  - questionMessage: "Selecciona un objeto.## - Apunta con el dedo \xEDndice y aprieta
+      el mando. # - Para seleccionar debes estar en el modo de interacci\xF3n # -
+      El objeto seleccionado se iluminar\xE1 en azul. "
     expectedResult: 
-  - questionMessage: "Abre el modo de edici\xF3n ##Pista: pulsa los dedos indices
-      y abre los brazos. "
+  - questionMessage: "Abre el modo de edici\xF3n ## - Pulsa los dedos indices y abre
+      los brazos. "
     expectedResult: 
-  - questionMessage: "Define un efecto. Prueba con una runa t\xE9rmica. ##Pista: con
-      el modo de edici\xF3n abierto, pulsa el dedo indice y haz la forma de la runa
-      con tu brazo.#Pista 2: A tu izquierda tienes todas las formas. "
+  - questionMessage: "Define un efecto. Prueba con una runa t\xE9rmica. ## - Con el
+      modo de edici\xF3n abierto, pulsa el dedo indice y haz la forma de la runa con
+      tu brazo.# - A tu izquierda tienes todas las formas. "
     expectedResult: 
   - questionMessage: "Define la fuente de energ\xEDa. Haz una runa de ambiente. "
     expectedResult: 
   - questionMessage: 'Para activar el efecto tienes que hacer una runa switch '
     expectedResult: 
   - questionMessage: "Selecciona otro objeto y haz un conjunto de runas que hagan
-      que el objeto se mueva. ##Pista: necesitar\xE1s una runa ambiente, un switch
-      y una kinetica. "
+      que el objeto se mueva. ## - Necesitar\xE1s una runa ambiente, una switch y
+      una kinetica. # - Para seleccionar debes estar en modo interacci\xF3n. "
     expectedResult: 
   - questionMessage: "A\xF1ade m\xE1s poder a la runa kinetica. Dibuja una runa flow.
-      ##Pista: tendr\xE1s que hacer dos movimientos. Primero la de la runa flow y
-      despu\xE9s la de la runa kinetica. "
+      ## - Tendr\xE1s que hacer dos movimientos. Primero la de la runa flow y despu\xE9s
+      la de la runa kinetica. "
     expectedResult: 
   - questionMessage: "A\xF1ade m\xE1s poder a la runa ambiente. Dibuja una runa flow.
-      ##Pista: Dibuja primero la runa flow y despu\xE9s la ambiente. "
+      ## - Dibuja primero la runa flow y despu\xE9s la ambiente. "
     expectedResult: 
   - questionMessage: 'Dibuja una runa twin. '
     expectedResult: 
-  - questionMessage: 'En otro objeto, crea otro conjunto igual que el anterior. ##Pista:
-      runas ambiente, switch, kinetica y twin '
+  - questionMessage: 'En otro objeto, crea otro conjunto igual que el anterior. ##
+      - Runas: ambiente, switch, kinetica y twin '
     expectedResult: 
   - questionMessage: 'En otros dos objetos, dibuja lo mismo, pero en vez de usar runas
       kineticas, utiliza runas joint. '

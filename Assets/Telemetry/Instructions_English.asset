@@ -13,41 +13,44 @@ MonoBehaviour:
   m_Name: Instructions_English
   m_EditorClassIdentifier: 
   languajeMessage: 'English: press the red button. '
-  startMessage: 'On this window will appear mission you have to accomplish. ## Press
-    the green button to start. '
-  nonResolvedMessage: 'You are about to pass to the next mission. ##Press the green
-    button to continue. #Press the red button to go back. '
-  resolvedMessage: 'You have completed the mission. ##Press the green button to continue.
-    #Press the red button to continue. '
+  startMessage: 'n this window will appear mission you have to accomplish. #If you
+    cannot finish a mission, you can press the red button to pass it. ## - Press the
+    green button to start.'
+  nonResolvedMessage: 'You are about to pass to the next mission. ## - Press the green
+    button to continue. # - Press the red button to go back. '
+  resolvedMessage: 'You have completed the mission. ## - Press the green button to
+    continue. # - Press the red button to continue. '
   instructions:
-  - questionMessage: 'Select an object. ##Hint: point with your index finger and squeeze
-      the controller.'
+  - questionMessage: 'Select an object. ## - Point with your index finger and squeeze
+      the controller. '
     expectedResult: 
-  - questionMessage: 'Open the edition mode. ##Hint: press the two index fingers and
-      open your hands. '
+  - questionMessage: 'Open the edition mode. ## - Press the two index fingers and
+      open your hands. # - To be able to select, you must be on interaction mode.
+      # - The select object will be highlighted in blue. '
     expectedResult: 
-  - questionMessage: 'Define and effect. Try creating a thermic rune. ##Hint: with
-      the edition mode activated, press the index finger and make the rune shape with
-      your arm. #Hint 2: On your left, you have all the rune shapes. '
+  - questionMessage: 'Define and effect. Try creating a thermic rune. ## - With the
+      edition mode activated, press the index finger and make the rune shape with
+      your arm. # - On your left, you have all the rune shapes. '
     expectedResult: 
   - questionMessage: 'Define the energy source. Draw an ambient rune. '
     expectedResult: 
   - questionMessage: 'To activate the effect, you have to make a switch rune. '
     expectedResult: 
   - questionMessage: 'Select another object and make a set of rune that creates a
-      movement effect. ##Hint: You will need an ambient, a switch and a kinetic rune. '
+      movement effect. ## - You will need an ambient, a switch and a kinetic rune.
+      # - To be able to select, you must be on interaction mode.'
     expectedResult: 
-  - questionMessage: 'Add more power to the kinetic rune. Draw a flow rune. ##Hint:
-      you will need to make two movements. First, the flow rune and later the kinetic
+  - questionMessage: 'Add more power to the kinetic rune. Draw a flow rune. ## - You
+      will need to make two movements. First, the flow rune and later the kinetic
       rune. '
     expectedResult: 
-  - questionMessage: 'Add more power to the ambient rune. Draw a flow rune. ##Hint:
-      First draw the flow rune and later the ambient rune. '
+  - questionMessage: 'Add more power to the ambient rune. Draw a flow rune. ## - First
+      draw the flow rune and later the ambient rune. '
     expectedResult: 
   - questionMessage: 'Draw a twin rune. '
     expectedResult: 
   - questionMessage: 'On another object, create another equal set of runes as the
-      last one. ##Hint: ambient, switch, kinetic and twin rune. '
+      last one. ## - Ambient, switch, kinetic and twin runes. '
     expectedResult: 
   - questionMessage: 'On other two objects, draw the same set of runes. But, instead
       of using kinetic rune, use joint runes. '

@@ -115,5 +115,5 @@ MonoBehaviour:
   environment: {fileID: 0}
   sourceUpdateDelay: 0.5
   environmentTag: ENVIRONMENT
-  impulseMultiplier: 10000
+  impulseMultiplier: 15000
   distanceSQRT: 1

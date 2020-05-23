@@ -113,11 +113,11 @@ namespace Telemetry
             }
 
             data.actionsString.Add(
-                "actor: " + _actor.ToString("g") + ", " +
-                "type: " + _type.ToString("g") + ", " +
-                "result: " + _result + ", " +
-                "startTime: " + _startTime + ", " +
-                "endTime: " + _endTime + ", " +
+                "actor: " + _actor.ToString("g") + "/ " +
+                "type: " + _type.ToString("g") + "/ " +
+                "result: " + _result + "/ " +
+                "startTime: " + _startTime + "/ " +
+                "endTime: " + _endTime + "/ " +
                 "extraInfo: " + _extraInfo             
                 );
 
