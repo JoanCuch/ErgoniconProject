@@ -34,7 +34,7 @@ public class PhysicObject : EnergyInteractable
 
 
 		//temp hardcoded
-		AddEnergy(30);
+		AddEnergy(10000);
     }
 
 

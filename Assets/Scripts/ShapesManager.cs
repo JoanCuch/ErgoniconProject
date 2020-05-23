@@ -336,12 +336,12 @@ public class ShapesManager : MonoBehaviour
 	
 		
 		string extra =
-			"similarity: " + currentShapeSimilarity + ", " +
-			"scale: " + currentShapeScale + ", " +
-			"position: " + currentShapePos + ", " +
-			"dir0: " + currentShape0 + ", " +
-			"dir1: " + currentShape1 + ", " +
-			"dir2: " + currentShape2 + ", ";
+			"similarity: " + currentShapeSimilarity + "/ " +
+			"scale: " + currentShapeScale + "/ " +
+			"position: " + currentShapePos + "/ " +
+			"dir0: " + currentShape0 + "/ " +
+			"dir1: " + currentShape1 + "/ " +
+			"dir2: " + currentShape2 + "/ ";
 			
 
 		DataManager.dataManager.AddAction(

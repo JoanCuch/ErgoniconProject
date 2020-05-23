@@ -304,8 +304,8 @@ public class RuneCreator : MonoBehaviour
 		)
 	{
 		string info =
-			"classification: " + _classification.ToString("g") + ", " +
-			"type: " + _type.ToString("g") + ", " +
+			"classification: " + _classification.ToString("g") + "/ " +
+			"type: " + _type.ToString("g") + "/ " +
 			"majorRuneName: " + _majorRune.name;
 
 		DataManager.dataManager.AddAction(
